@@ -35,22 +35,19 @@ export default function Home() {
 
   
   return (
-    <main className="">
+    <main className="text-white">
       <Menu menu={menu} />
       <div id="container" className="ml-6 mr-6 mb-6">
-        <div
-          id="menu"
-          className="fixed right-0 top-0 pt-2 pb-2 pl-8 pr-8 m-4 pointer-events rounded-full border-2 border-white"
-          onClick={() => handleMenu()}
+        <div id="menu" className="fixed right-0 top-0 pt-2 pb-2 pl-8 pr-8 m-4 pointer-events rounded-full border-2 border-white" onClick={() => handleMenu()}
         >
           Menu
         </div>
         <div id="landing" className="h-[100vh] flex">
-          <div className="self-end">
-            <h1 className="text-2xl">
+          <div className="self-end pb-[3vh]">
+            <h1 className="text-2xl lg:text-8xl">
               Tyler West
             </h1>
-            <div id="textContainer" className="text-2xl relative min-h-[50px] flex items-center">
+            <div id="textContainer" className="text-2xl relative min-h-[50px] flex items-center lg:text-8xl">
             <h1 className="absolute">UI Designer</h1>
             <h1 className="absolute">3D Designer</h1>
             <h1 className="absolute">Frontend Developer</h1>
