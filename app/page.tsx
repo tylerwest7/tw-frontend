@@ -8,7 +8,7 @@ import { text } from "stream/consumers";
 export default function Home() {
   const router = useRouter();
 
-  const [menu, setMenu] = useState();
+  const [menu, setMenu] = useState(false);
 
   useEffect(() => {
     console.log("Hello");
