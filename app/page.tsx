@@ -55,13 +55,13 @@ export default function Home() {
               <h1 className="absolute">Frontend Developer</h1>
             </div>
             <p className="pt-6">
-              Hi, my name is Tyler West and I’m a designer focusing on the
+              Hi, my name is Tyler West and I&apos;m a designer focusing on the
               merger of UI and 3D.
             </p>
             <p>
               With a strong background in 3D Motion Design, I am currently
               pushing my skillset into the interactive fields of XR Design at
-              Carnevale in Grand Rapids, MI. I'm excited to learn new
+              Carnevale in Grand Rapids, MI. I&apos;m excited to learn new
               technologies and create amazing experiences.
             </p>
           </div>
@@ -128,8 +128,8 @@ export default function Home() {
           <p>
             With a strong background in 3D Motion Design, I am currently pushing
             my skillset into the interactive fields of XR Design at Carnevale in
-            Grand Rapids, MI. I'm excited to learn new technologies and create
-            amazing experiences.
+            Grand Rapids, MI. I&apos;m excited to learn new technologies and
+            create amazing experiences.
           </p>
         </div>
       </div>
