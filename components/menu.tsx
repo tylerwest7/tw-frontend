@@ -1,16 +1,27 @@
 import { useEffect, useRef, useState } from "react";
 
-function Menu(props) {
-  const [childrenVisibility, setChildrenVisibility] = useState({});
-  const menuRef = useRef(null);
+interface MenuProps {
+  menu: boolean;
+}
+
+interface ChildrenVisibilityState {
+  [index: number]: number;
+}
+
+export default function Menu(props: MenuProps) {
+  const [childrenVisibility, setChildrenVisibility] =
+    useState<ChildrenVisibilityState>({});
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const menuDiv = menuRef.current;
+    if (!menuDiv) return;
+
     const allItems = menuDiv.querySelectorAll("*");
 
     if (props.menu) {
       setChildrenVisibility((prevState) => {
-        const newState = { ...prevState };
+        const newState: ChildrenVisibilityState = { ...prevState };
         allItems.forEach((child, index) => {
           newState[index] = 1;
         });
@@ -114,5 +125,3 @@ function Menu(props) {
     </div>
   );
 }
-
-export default Menu;
