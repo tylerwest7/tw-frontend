@@ -32,27 +32,7 @@ export default function Home() {
     }
   };
 
-  //Text animation
-  useEffect(() => {
-    const textContainer = document.getElementById("textContainer");
-    const textElements = textContainer?.children;
 
-    if (textElements) {
-      Array.from(textElements).forEach((element) => {
-        element.style.transition = "transform 2s";
-        element.style.transform = "translateY(-250px)";
-
-        setTimeout(() => {
-          element.style.transform = "translateY(0)";
-        }, 2000); // Move to 0px after 2 seconds
-
-        setTimeout(() => {
-          element.style.transition = "transform 1s";
-          element.style.transform = "translateY(250px)";
-        }, 3000); // Move to 250px after 3 seconds
-      });
-    }
-  }, []);
   
   return (
     <main className="">
