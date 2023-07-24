@@ -32,25 +32,27 @@ export default function Home() {
     }
   };
 
-
-  
   return (
     <main className="text-white">
       <Menu menu={menu} />
       <div id="container" className="ml-6 mr-6 mb-6">
-        <div id="menu" className="fixed right-0 top-0 pt-2 pb-2 pl-8 pr-8 m-4 pointer-events rounded-full border-2 border-white" onClick={() => handleMenu()}
+        <div
+          id="menu"
+          className="fixed right-0 top-0 pt-2 pb-2 pl-8 pr-8 m-4 pointer-events rounded-full border-2 border-white"
+          onClick={() => handleMenu()}
         >
           Menu
         </div>
         <div id="landing" className="h-[100vh] flex">
           <div className="self-end pb-[3vh]">
-            <h1 className="text-2xl lg:text-8xl">
-              Tyler West
-            </h1>
-            <div id="textContainer" className="text-2xl relative min-h-[50px] flex items-center lg:text-8xl">
-            <h1 className="absolute">UI Designer</h1>
-            <h1 className="absolute">3D Designer</h1>
-            <h1 className="absolute">Frontend Developer</h1>
+            <h1 className="text-2xl lg:text-8xl">Tyler West</h1>
+            <div
+              id="textContainer"
+              className="text-2xl relative min-h-[50px] flex items-center lg:text-8xl"
+            >
+              <h1 className="absolute">UI Designer</h1>
+              <h1 className="absolute">3D Designer</h1>
+              <h1 className="absolute">Frontend Developer</h1>
             </div>
             <p className="pt-6">
               Hi, my name is Tyler West and I’m a designer focusing on the
@@ -82,7 +84,7 @@ export default function Home() {
                 <div className="flex items-center">
                   <div className="h-[100px] w-[100px] bg-green-500 mt-4 mb-4"></div>
                   <h1 className="pl-4">Hello world</h1>
-                  <h1 className="ml-auto">></h1>
+                  <h1 className="ml-auto"></h1>
                 </div>
                 <div className="w-full bg-[white]"></div>
               </div>
@@ -91,9 +93,7 @@ export default function Home() {
         </div>
         <div id="about" className="pt-[10vh] pb-[10vh]">
           <div id="clients" className="">
-            <h1 className="pb-[5vh] text-2xl w-3/4">
-              Who I've worked with
-            </h1>
+            <h1 className="pb-[5vh] text-2xl w-3/4">Who I've worked with</h1>
             <div className="flex flex-wrap justify-center w-3/4">
               {logos.map((logo, index) => (
                 <div key={index} className="w-2/4 md:w-1/3 lg:w-1/3 p-2">
@@ -109,9 +109,7 @@ export default function Home() {
             </div>
           </div>
           <div id="awards" className="pt-[10vh]">
-            <h1 className="pb-[5vh] text-2xl w-3/4">
-              Press and awards
-            </h1>
+            <h1 className="pb-[5vh] text-2xl w-3/4">Press and awards</h1>
             <div className="flex flex-wrap">
               {logos.map((logo, index) => (
                 <div key={index} className="w-2/4 md:w-1/3 lg:w-1/3">
