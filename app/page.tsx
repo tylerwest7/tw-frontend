@@ -58,10 +58,11 @@ export default function Home() {
               Hi, my name is Tyler West and I’m a designer focusing on the
               merger of UI and 3D.
             </p>
-            <p className="pt-6 pb-6">
+            <p>
               With a strong background in 3D Motion Design, I am currently
               pushing my skillset into the interactive fields of XR Design at
-              Carnevale in Grand Rapids, MI.
+              Carnevale in Grand Rapids, MI. I'm excited to learn new
+              technologies and create amazing experiences.
             </p>
           </div>
         </div>
@@ -123,12 +124,12 @@ export default function Home() {
         </div>
         <div id="footer" className="pt-[10vh]">
           <h1 className="pb-[5vh] text-2xl w-3/4">Say hi</h1>
-          <img></img>
           <h1 className="pb-[2vh]">tyler@tylerwest.co</h1>
           <p>
             With a strong background in 3D Motion Design, I am currently pushing
             my skillset into the interactive fields of XR Design at Carnevale in
-            Grand Rapids, MI
+            Grand Rapids, MI. I'm excited to learn new technologies and create
+            amazing experiences.
           </p>
         </div>
       </div>
