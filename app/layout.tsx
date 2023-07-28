@@ -18,6 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link href="https://use.typekit.net/pgl6tup.css" rel="stylesheet" />
+      </head>
       <body className={inter.className}>
         {children}
         <LenisScroller />

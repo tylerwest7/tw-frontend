@@ -33,7 +33,7 @@ export default function Home() {
   };
 
   return (
-    <main className="text-white">
+    <main id="scrollsection" className="text-white">
       <Menu menu={menu} />
       <div id="container" className="ml-6 mr-6 mb-6">
         <div
@@ -43,18 +43,18 @@ export default function Home() {
         >
           Menu
         </div>
-        <div id="landing" className="h-[100vh] flex">
-          <div className="self-end pb-[3vh]">
-            <h1 className="text-2xl lg:text-8xl">Tyler West</h1>
-            <div
-              id="textContainer"
-              className="text-2xl relative min-h-[50px] flex items-center lg:text-8xl"
-            >
-              <h1 className="absolute">UI Designer</h1>
-              <h1 className="absolute">3D Designer</h1>
-              <h1 className="absolute">Frontend Developer</h1>
-            </div>
-            <p className="pt-6">
+        <div
+          id="landing"
+          className="h-[100vh] flex items-end lg:items-center haas"
+        >
+          <div className="lg:w-6/12">
+            <h1 className="text-2xl leading-none lg:text-[9rem] haas-bold">
+              Tyler West
+            </h1>
+            <h1 className="text-2xl leading-none lg:text-[9rem] haas-bold">
+              UI Designer
+            </h1>
+            <p className="leading-none pt-[4vh]">
               Hi, my name is Tyler West and Im a designer focusing on the merger
               of UI and 3D.
             </p>
@@ -65,6 +65,7 @@ export default function Home() {
               technologies and create amazing experiences.
             </p>
           </div>
+          <div className="lg:w-6/12 bg-red-500"></div>
         </div>
         <div id="projects" className="pt-[10vh] pb-[10vh]">
           <div className="">
