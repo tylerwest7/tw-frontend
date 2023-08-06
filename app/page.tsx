@@ -8,7 +8,7 @@ import { getPortraits, getProjects } from "@/sanity/sanity-utils";
 import { getClients } from "@/sanity/sanity-utils";
 
 interface Project {
-  altText?: string;
+  altText: string;
   image?: string;
   slug?: string;
   tag?: string;
@@ -75,7 +75,7 @@ export default function Home() {
               <Image
                 className="p-4"
                 src={project.image}
-                alt={project.altText}
+                alt={project.altText || "Default Alt Text"}
                 height={250}
                 width={250}
               />
@@ -93,7 +93,7 @@ export default function Home() {
             {portraits.map((portrait, index) => (
               <div
                 style={{
-                  backgroundImage: `url(${portrait.image})`,
+                  backgroundImage: `url(${(portrait as Project).image})`,
                   backgroundSize: "cover",
                 }}
                 key={index}
@@ -118,7 +118,9 @@ export default function Home() {
                   <div
                     key={index}
                     className="min-w-[8rem] min-h-[4rem] bg-contain bg-no-repeat bg-center"
-                    style={{ backgroundImage: `url(${client.image})` }}
+                    style={{
+                      backgroundImage: `url(${(client as Project).image})`,
+                    }}
                   ></div>
                 ))}
               </div>
