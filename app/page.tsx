@@ -54,7 +54,7 @@ export default function Home() {
     <div className="ml-9 mr-9 lg:ml-24 lg:mr-24">
       <div id="landing" className=" grid grid-cols-2 content-end h-screen">
         <div className="col-span-2 lg:col-span-1 pb-[8vh]">
-          <h2 className="text-xl">01/</h2>
+          <h2 className="text-xl pb-4">01/</h2>
           <h1 className="lg:text-[10rem] leading-none">
             Tyler West <br /> UI Designer
           </h1>
