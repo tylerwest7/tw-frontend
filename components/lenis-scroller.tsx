@@ -1,29 +1,9 @@
 "use client";
 import { useEffect, useRef } from "react";
 import Lenis from "@studio-freight/lenis";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/all";
 
-export const LenisScroller = () => {
+const LenisScroller = () => {
   const contentRef = useRef(null);
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  useEffect(() => {
-    ScrollTrigger.create({
-      trigger: contentRef.current,
-      start: "top top", // Trigger when top of the content reaches the top of the viewport
-      end: "bottom bottom", // Trigger when bottom of the content reaches the bottom of the viewport
-      onEnter: () => {
-        // Load more content here
-        console.log("Loading more content...");
-      },
-      onEnterBack: () => {
-        // Load more content when scrolling back up (optional)
-        console.log("Loading more content when scrolling back up...");
-      },
-    });
-  }, []);
 
   // Smoothscroll using Lenis
   useEffect(() => {
@@ -42,9 +22,7 @@ export const LenisScroller = () => {
     };
   }, []);
 
-  return (
-    <>
-      <div ref={contentRef}></div>
-    </>
-  );
+  return <></>;
 };
+
+export default LenisScroller;

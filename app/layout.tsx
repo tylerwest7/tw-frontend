@@ -2,9 +2,10 @@
 //import "./globals.css";
 import "../styles/globals.css";
 import { Inter } from "next/font/google";
-import { LenisScroller } from "@/components/lenis-scroller";
+import LenisScroller from "@/components/lenis-scroller";
 
-const inter = Inter({ subsets: ["latin"] });
+//const inter = Inter({ subsets: ["latin"] });
+//<body className={inter.className}>
 
 export const metadata = {
   title: "Create Next App",
@@ -17,11 +18,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html className="bg-black" lang="en">
       <head>
         <link href="https://use.typekit.net/pgl6tup.css" rel="stylesheet" />
       </head>
-      <body className={inter.className}>
+      <body className="text-white">
         {children}
         <LenisScroller />
       </body>

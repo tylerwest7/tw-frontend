@@ -3,16 +3,8 @@
 @tailwind utilities;
 @import url("https://use.typekit.net/pgl6tup.css");
 
-html {
-  background-color: black;
-}
-
-.haas {
-  font-family: "neue-haas-grotesk-display", sans-serif;
-}
-
-.haas-bold {
-  font-family: "neue-haas-grotesk-display", sans-serif;
-  font-weight: 500;
-  font-style: bold;
+@layer base {
+  html {
+    font-family: "neue-haas-grotesk-text", sans-serif;
+  }
 }
