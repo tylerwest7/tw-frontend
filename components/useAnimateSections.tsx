@@ -4,7 +4,7 @@ const useAnimateSections = (transitionStyle = "opacity 0.5s") => {
   useEffect(() => {
     const animatedSections = new Set();
 
-    const handleIntersection = (entries) => {
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         const animateSection = entry.target;
         const childElements = Array.from(
