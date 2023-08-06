@@ -9,42 +9,42 @@ const project = {
       name: "title",
       title: "Title",
       type: "string",
-      validation: (Rule) => Rule.required(),
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "altText",
       title: "Alt Text",
       type: "string",
       description: "Alternative text for the image (for accessibility)",
-      validation: (Rule) => Rule.required(),
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "desc",
       title: "Description",
       type: "string",
       description: "Project description",
-      validation: (Rule) => Rule.required(),
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "agencies",
       title: "Agencies",
       type: "string",
       description: "Project description",
-      validation: (Rule) => Rule.required(),
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "role",
       title: "Role",
       type: "string",
       description: "Project description",
-      validation: (Rule) => Rule.required(),
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "tag",
       title: "Tag",
       type: "string",
       description: "Type of project",
-      validation: (Rule) => Rule.required(),
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "slug",
@@ -59,7 +59,7 @@ const project = {
       options: {
         hotspot: true, // Enables image hotspot to focus on a specific area of the image
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "video",

@@ -21,7 +21,7 @@ const portrait = {
       options: {
         hotspot: true, // Enables image hotspot to focus on a specific area of the image
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule: any) => Rule.required(),
     },
   ],
 };
