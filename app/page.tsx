@@ -126,8 +126,8 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <h1>Press and awards</h1>
-              <div className="grid grid-cols-2 underline text-xl">
+              <h1 className="pb-4 pt-4">Press and awards</h1>
+              <div className="grid grid-cols-2 underline text-xl gap-4">
                 {awards.map((award, index) => (
                   <h1 key={index}>{award.title}</h1>
                 ))}
