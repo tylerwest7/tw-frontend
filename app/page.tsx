@@ -8,9 +8,11 @@ import { getPortraits, getProjects } from "@/sanity/sanity-utils";
 import { getClients } from "@/sanity/sanity-utils";
 
 interface Project {
-  slug: string;
-  image: string;
   altText: string;
+  image: string;
+  slug: string;
+  tag: string;
+  title: string;
   // Other properties...
 }
 
@@ -37,10 +39,13 @@ export default function Home() {
       const fetchedProjects = await getProjects();
       const fetchedClients = await getClients();
       const fetchedPortraits = await getPortraits();
+
       setProjects(fetchedProjects);
       setClients(fetchedClients);
       setPortraits(fetchedPortraits);
       setAwards(myAwards);
+
+      console.log(projects);
     };
 
     fetchProjects();
