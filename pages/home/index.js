@@ -7,7 +7,6 @@ import LenisScroller from "@/components/lenis-scroller";
 import "../../styles/globals.css";
 import Menu from "../../components/menu/menu.tsx";
 import React from "react";
-import useAnimateSections from "../../components/useAnimateSections";
 
 //Scroll animation
 
