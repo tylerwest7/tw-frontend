@@ -18,7 +18,6 @@ export default async function Project({ params }: Props) {
         <h1>01/</h1>
         <h1></h1>
         <h1>{project.title}</h1>
-        <h1>{project.desc}</h1>
       </div>
       {project.image && (
         <Image

@@ -8,11 +8,11 @@ import { getPortraits, getProjects } from "@/sanity/sanity-utils";
 import { getClients } from "@/sanity/sanity-utils";
 
 interface Project {
-  altText: string;
-  image: string;
-  slug: string;
-  tag: string;
-  title: string;
+  altText?: string;
+  image?: string;
+  slug?: string;
+  tag?: string;
+  title?: string;
   // Other properties...
 }
 
@@ -20,13 +20,11 @@ export default function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [clients, setClients] = useState([]);
   const [portraits, setPortraits] = useState([]);
-  const [awards, setAwards] = useState([]);
-
-  const myAwards = [
+  const [awards, setAwards] = useState([
     { title: "Designers are scary!", link: "https://example.com/item1" },
     { title: "Stache feature", link: "https://example.com/item2" },
     { title: "WMAA Addy Association", link: "https://example.com/item3" },
-  ];
+  ]);
 
   const paragraphOne =
     "Tyler is an experienced designer with a solid background in 2D/3D motion design, boasting four years of industry expertise. Throughout his career, he has demonstrated a remarkable talent for crafting captivating visual narratives and bringing ideas to life through stunning animations. Notable projects include commercials and interactive visual effects, where Tyler's contributions have consistently delivered creative solutions that leave a lasting impression.";
@@ -43,7 +41,6 @@ export default function Home() {
       setProjects(fetchedProjects);
       setClients(fetchedClients);
       setPortraits(fetchedPortraits);
-      setAwards(myAwards);
 
       console.log(projects);
     };
