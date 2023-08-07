@@ -34,10 +34,8 @@ export default function Home() {
     console.log("Element is in view: ", isInView);
   }, [isInView]);
 
-  const paragraphOne =
-    "Tyler is an experienced designer with a solid background in 2D/3D motion design, boasting four years of industry expertise. Throughout his career, he has demonstrated a remarkable talent for crafting captivating visual narratives and bringing ideas to life through stunning animations. Notable projects include commercials and interactive visual effects, where Tylers contributions have consistently delivered creative solutions that leave a lasting impression.";
-  const paragraphTwo =
-    "Recently, Tyler has set his sights on exploring the dynamic realm of UI/UX design. Drawing upon his extensive motion design expertise, he brings a fresh perspective to designing seamless and user-friendly interfaces. His aim is to create visually striking experiences that not only delight users but also enhance usability and functionality. By blending his creative flair with a keen understanding of end-user needs, Tyler is poised to make a significant impact in the world of digital design. As he embarks on this new chapter, he looks forward to pushing boundaries, solving complex design challenges, and making a meaningful contribution to the ever-evolving landscape of UI/UX design.";
+  const paragraphOne = "A";
+  const paragraphTwo = "B";
 
   useEffect(() => {
     const fetchProjects = async () => {
