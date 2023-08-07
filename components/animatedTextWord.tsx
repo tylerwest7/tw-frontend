@@ -1,28 +1,28 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-interface AnimatedTextCharacterProps {
+interface AnimatedTextWordProps {
   text: string;
-  padding: string;
+  classes: string;
 }
 
-const AnimatedTextCharacter: React.FC<AnimatedTextCharacterProps> = ({
+const AnimatedTextWord: React.FC<AnimatedTextWordProps> = ({
   text,
-  padding,
+  classes,
 }) => {
-  // Splitting text into letters
-  const letters = Array.from(text);
+  const words = text.split(" ");
 
-  // Variants for Container
+  // Variants for Container of words.
   const container = {
-    hidden: { opacity: 1 },
-    visible: (i = 1) => ({
+    hidden: { opacity: 0 },
+    visible: (i: number = 1) => ({
       opacity: 1,
-      transition: { staggerChildren: 0.03, delayChildren: 0.2 * i },
+      transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
     }),
   };
 
-  // Variants for each letter
+  // Variants for each word.
+
   const child = {
     visible: {
       opacity: 1,
@@ -37,7 +37,7 @@ const AnimatedTextCharacter: React.FC<AnimatedTextCharacterProps> = ({
     hidden: {
       opacity: 1,
       x: 0,
-      y: 500,
+      y: -500,
       transition: {
         type: "tween", // Use tween for cubic-bezier transition
         ease: [0.65, 0, 0.35, 1], // Specify the cubic-bezier timing function
@@ -48,19 +48,22 @@ const AnimatedTextCharacter: React.FC<AnimatedTextCharacterProps> = ({
 
   return (
     <motion.div
-      className="overflow-hidden flex text-4xl lg:text-9xl font-medium"
-      style={{ paddingBottom: padding }}
+      className={classes}
       variants={container}
       initial="hidden"
       animate="visible"
     >
-      {letters.map((letter, index) => (
-        <motion.span variants={child} key={index}>
-          {letter === " " ? "\u00A0" : letter}
+      {words.map((word, index) => (
+        <motion.span
+          variants={child}
+          style={{ marginRight: "5px" }}
+          key={index}
+        >
+          {word}
         </motion.span>
       ))}
     </motion.div>
   );
 };
 
-export default AnimatedTextCharacter;
+export default AnimatedTextWord;

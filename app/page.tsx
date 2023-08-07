@@ -7,6 +7,7 @@ import LenisScroller from "@/components/lenis-scroller";
 import { getPortraits, getProjects } from "@/sanity/sanity-utils";
 import { getClients } from "@/sanity/sanity-utils";
 import AnimatedTextCharacter from "@/components/animatedTextCharacter";
+import AnimatedTextWord from "@/components/animatedTextWord";
 
 interface Project {
   altText: string;
@@ -68,19 +69,36 @@ export default function Home() {
         className="absolute top-9 left-[2.25rem] right-[2.25rem] lg:left-[9rem] lg:right-[9rem]"
       >
         <div className="grid grid-cols-2 lg:grid-cols-4 text-md font-regular">
-          <h1>Tyler West</h1>
-          <h1 className="hidden lg:block">UI Designer at Carnevale</h1>
+          {/* <h1>Tyler West</h1> */}
+          {/* <h1 className="hidden lg:block">UI Designer at Carnevale</h1>
           <h1 className="hidden lg:block">Grand Rapids, MI</h1>
-          <h1 className="text-right">Menu</h1>
+          <h1 className="text-right">Menu</h1> */}
+          <AnimatedTextWord
+            text="Tyler West"
+            classes="overflow-hidden flex text-xl lg:text-xl font-regular"
+          />
+          <AnimatedTextWord
+            text="UI Designer at Carnevale"
+            classes="hidden lg:flex overflow-hidden flex text-xl lg:text-xl font-regular"
+          />
+          <AnimatedTextWord
+            text="Grand Rapids, MI"
+            classes="hidden lg:flex overflow-hidden flex text-xl lg:text-xl font-regular"
+          />
+          <AnimatedTextWord
+            text="Menu"
+            classes="text-right overflow-hidden flex text-xl lg:text-xl font-regular ml-auto lg:mr-0"
+          />
         </div>
       </div>
       <div id="landing" className=" grid grid-cols-2 content-end h-screen">
         <div className="col-span-2 lg:col-span-1 pb-[8vh] overflow-hidden">
-          <h2 className="text-4xl pb-4">01/</h2>
+          {/* <h2 className="text-4xl pb-4">01/</h2> */}
           {/* <h1 className="text-4xl lg:text-[10rem] leading-none">Tyler West</h1>
           <h1 className="text-4xl lg:text-[10rem] leading-none">UI Designer</h1> */}
-          <AnimatedTextCharacter text="Tyler West" />
-          <AnimatedTextCharacter text="UI Designer" />
+          <AnimatedTextCharacter padding="0rem" text="01" />
+          <AnimatedTextCharacter padding="0rem" text="Tyler West" />
+          <AnimatedTextCharacter padding="1rem" text="UI Designer" />
         </div>
       </div>
       <div
@@ -188,7 +206,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div id="footer" className=" pt-[35vh] pb-[10vh]">
+      <div id="footer" className="pt-[20vh] lg:pt-[35vh] pb-[10vh]">
         <div className="grid grid-cols-4 pb-[10vh]">
           <h1 className="col-span-1">04/</h1>
           <h1 className="col-span-1">Lets work together</h1>
@@ -196,17 +214,19 @@ export default function Home() {
           <h1 className="col-span-1"></h1>
         </div>
         <div className="grid grid-cols-3">
-          <h1 className="col-span-2 lg:text-[8rem] uppercase underline break-words pt-[10vh] pb-[10vh]">
+          <h1 className="col-span-3 lg:col-span-2 text-4xl lg:text-[8rem] uppercase underline break-words pt-[10vh] pb-[10vh]">
             tyler@tylerwest.co
           </h1>
         </div>
         <div className="grid grid-cols-4 pt-[10vh]">
-          <h1 className="col-span-1">
+          <h1 className="col-span-2 lg:col-span-1">
             Tyler West <br /> UI Designer
           </h1>
-          <h1 className="col-span-1">Instagram</h1>
-          <h1 className="col-span-1"></h1>
-          <h1 className="col-span-1 text-right">Designed and developed</h1>
+          <h1 className="hidden lg:block lg:col-span-1">Instagram</h1>
+          <h1 className="hidden lg:block lg:col-span-1"></h1>
+          <h1 className="col-span-2 lg:col-span-1 text-right">
+            Designed and developed
+          </h1>
         </div>
       </div>
       <LenisScroller />
