@@ -191,7 +191,7 @@ export default function Home() {
       <div id="footer" className=" pt-[35vh] pb-[10vh]">
         <div className="grid grid-cols-4 pb-[10vh]">
           <h1 className="col-span-1">04/</h1>
-          <h1 className="col-span-1">Let's work together</h1>
+          <h1 className="col-span-1">Lets work together</h1>
           <h1 className="col-span-1"></h1>
           <h1 className="col-span-1"></h1>
         </div>
