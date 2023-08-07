@@ -8,6 +8,7 @@ import { getPortraits, getProjects } from "@/sanity/sanity-utils";
 import { getClients } from "@/sanity/sanity-utils";
 import AnimatedTextCharacter from "@/components/animatedTextCharacter";
 import AnimatedTextWord from "@/components/animatedTextWord";
+import ThreeCube from "@/components/ThreeCube";
 
 interface Project {
   altText: string;
@@ -64,6 +65,7 @@ export default function Home() {
 
   return (
     <div className="ml-9 mr-9 lg:ml-24 lg:mr-24">
+      <ThreeCube />
       <div
         id="header"
         className="absolute top-9 left-[2.25rem] right-[2.25rem] lg:left-[9rem] lg:right-[9rem]"
@@ -181,7 +183,7 @@ export default function Home() {
               <p>{paragraphOne}</p>
               <p>{paragraphTwo}</p>
             </div>
-            <div id="awards" className="pt-[10vh]">
+            <div id="awards" className="pt-[5vh] lg:pt-[10vh]">
               <h1 className="pb-4 pt-4">Press and awards</h1>
               <div className="grid grid-cols-2 underline text-xl gap-4">
                 {awards.map((award, index) => (
@@ -189,7 +191,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div id="clients" className="pt-[20vh]">
+            <div id="clients" className="pt-[10vh] lg:pt-[20vh]">
               <h1 className="">Notable clients I have helped create for</h1>
               <div className="flex overflow-x-auto space-x-4 p-2 items-center">
                 {clients.map((client, index) => (
