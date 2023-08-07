@@ -30,7 +30,6 @@ const ThreeCube: React.FC = () => {
       <Canvas>
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
-        <OrbitControls enableZoom={false} />
         <Box />
       </Canvas>
     </div>
