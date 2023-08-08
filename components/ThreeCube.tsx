@@ -1,6 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
+
+function Model() {
+  //const gltf = useGLTF("https://thinkuldeep.com/modelviewer/Astronaut.glb");
+  const gltf = useGLTF("/space_shuttle/scene.gltf");
+  //const gltf = useGLTF("/sphere/sphere.gltf");
+  return <primitive object={gltf.scene} />;
+}
 
 const Box: React.FC = () => {
   const meshRef = useRef<any>(null);
@@ -14,8 +21,9 @@ const Box: React.FC = () => {
   });
 
   return (
-    <mesh ref={meshRef}>
-      <boxGeometry args={[1, 1, 1]} />
+    <mesh scale={[0.1, 0.1, 0.1]} ref={meshRef}>
+      {/* <boxGeometry args={[1, 1, 1]} /> */}
+      <Model />
       <meshStandardMaterial color="orange" />
     </mesh>
   );
