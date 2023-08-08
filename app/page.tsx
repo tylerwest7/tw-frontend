@@ -216,7 +216,7 @@ export default function Home() {
           <h1 className="col-span-1"></h1>
         </div>
         <div className="grid grid-cols-3">
-          <h1 className="col-span-3 lg:col-span-2 text-4xl lg:text-[8rem] uppercase underline break-words pt-[10vh] pb-[10vh]">
+          <h1 className="col-span-3 lg:col-span-2 text-4xl lg:text-[8rem] uppercase underline break-words pt-[10vh] pb-[10vh] leading-[1]">
             tyler@tylerwest.co
           </h1>
         </div>
