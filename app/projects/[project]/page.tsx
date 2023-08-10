@@ -2,7 +2,7 @@ import { getProject } from "@/sanity/sanity-utils";
 import Image from "next/image";
 
 type Props = {
-  params: { project: string };
+  params: { project: string; projectImages: [] };
 };
 
 export default async function Project({ params }: Props) {
@@ -31,7 +31,7 @@ export default async function Project({ params }: Props) {
           </div>
         )}
       </div>
-      {project.projectImages.map((project, index) => (
+      {project.projectImages.map((project: any, index: any) => (
         <h1 key={project.key}>{project.asset._ref}</h1>
       ))}
     </div>
