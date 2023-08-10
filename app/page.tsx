@@ -157,7 +157,7 @@ export default function Home() {
                     backgroundColor: "black",
                     height: isInView ? "0%" : "100%",
                     transition: "height 1.5s cubic-bezier(0.65, 0, 0.35, 1)",
-                    transitionDelay: "0.25s",
+                    transitionDelay: "0.15s",
                   }}
                 ></div>
 

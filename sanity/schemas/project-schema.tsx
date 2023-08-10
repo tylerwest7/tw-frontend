@@ -75,6 +75,29 @@ const project = {
       type: "string",
       description: "Ex. Youtube, Vimeo, Google Drive",
     },
+    {
+      //remove this if errors
+      name: "projectImages",
+      title: "projectImages",
+      type: "array",
+      of: [
+        {
+          type: "image",
+        },
+        {
+          title: "URL",
+          name: "urlObject",
+          type: "object",
+          fields: [
+            {
+              title: "URL",
+              name: "urlField",
+              type: "url",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 
