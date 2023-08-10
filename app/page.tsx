@@ -16,6 +16,7 @@ interface Project {
   slug?: string;
   tag?: string;
   title?: string;
+  projectImages?: string;
   // Other properties...
 }
 
