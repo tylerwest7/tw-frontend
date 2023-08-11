@@ -2,6 +2,7 @@
 import { getProject, getProjects } from "@/sanity/sanity-utils";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import scrollToTop from "@/components/useScrollToTop";
 
 type Props = {
   params: {

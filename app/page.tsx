@@ -11,6 +11,8 @@ import AnimatedTextWord from "@/components/animatedTextWord";
 import ThreeCube from "@/components/ThreeCube";
 import LottieAnimation from "@/components/lottie/arrow";
 import CursorFollower from "@/components/useCursorFollow";
+import SpinningCube from "@/components/FallingCubes";
+import FallingCubes from "@/components/FallingCubes";
 
 //Create project object
 interface Project {
@@ -38,8 +40,17 @@ export default function Home() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   useEffect(() => {
-    console.log("Element is in view: ", isInView);
+    //console.log("Element is in view: ", isInView);
   }, [isInView]);
+
+  //3D animation
+  const [mass, setMass] = useState<number>(0);
+  const threeRef = useRef(null);
+  const threeInView = useInView(threeRef, { once: true });
+  useEffect(() => {
+    console.log("Element is in view: ", threeInView);
+    //console.log(threeInView);
+  }, [threeInView]);
 
   //About paragraphs
   const paragraphOne = "A";
@@ -87,7 +98,8 @@ export default function Home() {
   return (
     <div className="ml-9 mr-9 lg:ml-24 lg:mr-24">
       <CursorFollower size={cursorSize} hovering={isHovering} />
-      <ThreeCube />
+      {/* <ThreeCube /> */}
+
       <div id="landing" className=" grid grid-cols-2 content-end h-screen">
         <div className="col-span-2 lg:col-span-1 pb-[8vh] overflow-hidden">
           {/* <h2 className="text-4xl pb-4">01/</h2> */}
@@ -107,6 +119,7 @@ export default function Home() {
         <h1 className=" text-xl">02/</h1>
         {projects.map((project, index) => (
           <Link
+            scroll={true}
             key={index}
             href={`/projects/${project.slug}`}
             className="w-screen grid grid-cols-4 items-center"
@@ -207,7 +220,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div id="footer" className="pt-[20vh] lg:pt-[35vh] pb-[10vh]">
+      <div id="footer" className="pt-[20vh] lg:pt-[35vh] pb-[10vh] relative">
         <div className="grid grid-cols-4 pb-[10vh]">
           <h1 className="col-span-1">04/</h1>
           <h1 className="col-span-1">Lets work together</h1>
@@ -215,7 +228,10 @@ export default function Home() {
           <h1 className="col-span-1"></h1>
         </div>
         <div className="grid grid-cols-3">
-          <h1 className="col-span-3 lg:col-span-2 text-4xl lg:text-[8rem] uppercase underline break-words pt-[10vh] pb-[10vh] leading-[1]">
+          <h1
+            ref={threeRef}
+            className="col-span-3 lg:col-span-2 text-4xl lg:text-[8rem] uppercase underline break-words pt-[10vh] pb-[10vh] leading-[1]"
+          >
             tyler@tylerwest.co
           </h1>
         </div>
@@ -229,6 +245,7 @@ export default function Home() {
             Designed and developed
           </h1>
         </div>
+        <FallingCubes threeVisible={threeInView} />
       </div>
       <LenisScroller />
     </div>
