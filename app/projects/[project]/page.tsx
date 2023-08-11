@@ -1,6 +1,7 @@
 "use client";
 import { getProject, getProjects } from "@/sanity/sanity-utils";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 type Props = {
   params: {
@@ -12,14 +13,33 @@ type Props = {
   };
 };
 
-export default async function Project({ params }: Props) {
-  const slug = params.project;
-  const work = await getProject(slug);
+export default function Project({ params }: Props) {
+  const [work, setWork] = useState<any>({});
+  const [works, setWorks] = useState<any[]>([]);
+  const [nextProjectSlug, setNextProjectSlug] = useState<string | null>(null);
+  const [nextProjectTitle, setNextProjectTitle] = useState<string | null>(null);
 
-  //Get next project
-  const works = await getProjects();
+  useEffect(() => {
+    const fetchData = async () => {
+      const slug = params.project;
+      const fetchedWork = await getProject(slug);
+      setWork(fetchedWork);
 
-  const numberOfProjects = (currentSlug: any) => {
+      const fetchedWorks = await getProjects();
+      setWorks(fetchedWorks);
+
+      const currentSlug = slug;
+      const nextProject = numberOfProjects(currentSlug);
+      if (nextProject) {
+        setNextProjectSlug(nextProject.slug);
+        setNextProjectTitle(nextProject.title);
+      }
+    };
+
+    fetchData();
+  }, [params.project]);
+
+  const numberOfProjects = (currentSlug: string) => {
     const currentIndex = works.findIndex(
       (soloWork) => soloWork.slug === currentSlug
     );
@@ -30,20 +50,7 @@ export default async function Project({ params }: Props) {
       return nextProject;
     }
 
-    return null; // Return null if currentSlug is not found in works
-  };
-
-  const currentSlug = slug; // Replace with the actual current project's slug
-  const nextProject = numberOfProjects(currentSlug);
-
-  const nextProjectSlug = nextProject ? nextProject.slug : null;
-  const nextProjectTitle = nextProject ? nextProject.title : null;
-
-  //console.log("Next project slug:", nextProjectSlug);
-  //console.log("Next project title:", nextProjectTitle);
-
-  const activateControls = () => {
-    console.log("Activate controls");
+    return null;
   };
 
   return (

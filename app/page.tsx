@@ -84,7 +84,6 @@ export default function Home() {
         <h1 className=" text-xl">02/</h1>
         {projects.map((project, index) => (
           <Link
-            scroll={false}
             key={index}
             href={`/projects/${project.slug}`}
             className="w-screen grid grid-cols-4 items-center"
