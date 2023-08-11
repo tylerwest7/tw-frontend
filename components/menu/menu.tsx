@@ -11,7 +11,7 @@ export default function Menu() {
   return (
     <div
       id="header"
-      className="ml-9 mr-9 lg:ml-24 lg:mr-24 absolute left-0 top-0 right-0 pt-9"
+      className="ml-9 mr-9 lg:ml-24 lg:mr-24 fixed left-0 top-0 right-0 pt-9"
     >
       <div className="grid grid-cols-2 lg:grid-cols-4 text-md font-regular">
         {/* <h1>Tyler West</h1> */}

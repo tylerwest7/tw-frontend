@@ -29,7 +29,7 @@ export default function Project({ params }: Props) {
       setWorks(fetchedWorks);
 
       const currentSlug = slug;
-      const nextProject = numberOfProjects(currentSlug);
+      const nextProject = numberOfProjects(currentSlug, fetchedWorks);
       if (nextProject) {
         setNextProjectSlug(nextProject.slug);
         setNextProjectTitle(nextProject.title);
@@ -39,14 +39,14 @@ export default function Project({ params }: Props) {
     fetchData();
   }, [params.project]);
 
-  const numberOfProjects = (currentSlug: string) => {
-    const currentIndex = works.findIndex(
+  const numberOfProjects = (currentSlug: string, fetchedWorks: any[]) => {
+    const currentIndex = fetchedWorks.findIndex(
       (soloWork) => soloWork.slug === currentSlug
     );
 
     if (currentIndex !== -1) {
-      const nextIndex = (currentIndex + 1) % works.length;
-      const nextProject = works[nextIndex];
+      const nextIndex = (currentIndex + 1) % fetchedWorks.length;
+      const nextProject = fetchedWorks[nextIndex];
       return nextProject;
     }
 
