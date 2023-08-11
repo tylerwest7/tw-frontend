@@ -98,6 +98,29 @@ const project = {
         },
       ],
     },
+    {
+      name: "projectVideos",
+      title: "Project Videos",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              title: "Video File",
+              name: "videoFile",
+              type: "file",
+              accept: "video/*",
+            },
+            {
+              title: "Video URL",
+              name: "videoUrl",
+              type: "url",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 

@@ -3,6 +3,7 @@
 import "../styles/globals.css";
 import { Inter } from "next/font/google";
 import LenisScroller from "@/components/lenis-scroller";
+import Menu from "@/components/menu/menu";
 
 //const inter = Inter({ subsets: ["latin"] });
 //<body className={inter.className}>
@@ -23,6 +24,7 @@ export default function RootLayout({
         <link href="https://use.typekit.net/pgl6tup.css" rel="stylesheet" />
       </head>
       <body className="text-white">
+        <Menu />
         {children}
         <LenisScroller />
       </body>

@@ -29,7 +29,13 @@ export async function getProject(slug: string): Promise<Project> {
       "slug": slug.current,
       "image": image.asset->url,
       url,
-      projectImages
+      "projectImages": projectImages[].asset->url,
+      videoLink,
+      "video": video.asset->url,
+      "projectVideos": projectVideos[]{
+        "videoFile": videoFile.asset->url,
+        "videoUrl": videoUrl
+      }
     }`,
     { slug }
   );

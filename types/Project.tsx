@@ -10,5 +10,9 @@ export type Project = {
   altText: string;
   tag: string;
   url: string;
+  desc: string;
+  videoLink: string;
+  video: any;
+  projectVideos: any;
   content: PortableTextBlock[];
 };

@@ -1,133 +1,43 @@
-import { useEffect, useRef, useState } from "react";
+"use client";
 
-interface MenuProps {
-  menu: boolean;
-}
+import Link from "next/link";
+import "../../styles/globals.css";
+import { useState } from "react";
+import AnimatedTextWord from "../animatedTextWord";
 
-interface ChildrenVisibilityState {
-  [index: number]: number;
-}
-
-export default function Menu(props: MenuProps) {
-  const [childrenVisibility, setChildrenVisibility] =
-    useState<ChildrenVisibilityState>({});
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const menuDiv = menuRef.current;
-    if (!menuDiv) return;
-
-    const allItems = menuDiv.querySelectorAll("*");
-
-    if (props.menu) {
-      setChildrenVisibility((prevState) => {
-        const newState: ChildrenVisibilityState = { ...prevState };
-        allItems.forEach((child, index) => {
-          newState[index] = 1;
-        });
-        return newState;
-      });
-    } else {
-      allItems.forEach((child, index) => {
-        setChildrenVisibility((prevState) => ({ ...prevState, [index]: 0 }));
-      });
-    }
-  }, [props.menu]);
+export default function Menu() {
+  const [testState, setTestState] = useState();
 
   return (
-    <div>
-      <div className="fixed right-0">
-        <h1 className="pl-8 pr-8 mr-6 mt-6 pt-4 pb-4 border border-white rounded-full bg-black">
-          Menu
-        </h1>
-      </div>
-      <div
-        ref={menuRef}
-        id="menu"
-        className="h-screen w-screen bg-black fixed top-0 left-0 right-0 bottom-0 flex items-center flex-wrap"
-        style={{
-          transform: props.menu ? "translateY(0)" : "translateY(-100vh)",
-          transition: "1s",
-        }}
-      >
-        <ul className="pl-8 text-4xl self-end">
-          <li
-            style={{
-              opacity: childrenVisibility[0] || 0,
-              transition: "opacity 0.5s ease-in-out",
-              transitionDelay: "0s",
-            }}
-          >
-            Home
-          </li>
-          <li
-            style={{
-              opacity: childrenVisibility[1] || 0,
-              transition: "opacity 0.5s ease-in-out",
-              transitionDelay: "0.25s",
-            }}
-          >
-            Work
-          </li>
-          <li
-            style={{
-              opacity: childrenVisibility[2] || 0,
-              transition: "opacity 0.5s ease-in-out",
-              transitionDelay: "0.5s",
-            }}
-          >
-            About
-          </li>
-        </ul>
-        <div className="p-8 self-end">
-          <h1
-            style={{
-              opacity: childrenVisibility[3] || 0,
-              transition: "opacity 0.5s ease-in-out",
-              transitionDelay: "0.75s",
-            }}
-          >
-            tyler@tylerwest.co
-          </h1>
-          <h1
-            style={{
-              opacity: childrenVisibility[4] || 0,
-              transition: "opacity 0.5s ease-in-out",
-              transitionDelay: "1s",
-            }}
-          >
-            Grand Rapids, MI Local time 10:03am
-          </h1>
-          <ul className="inline-block w-screen flex gap-4">
-            <li
-              style={{
-                opacity: childrenVisibility[5] || 0,
-                transition: "opacity 0.5s ease-in-out",
-                transitionDelay: "1.25s",
-              }}
-            >
-              Instagram
-            </li>
-            <li
-              style={{
-                opacity: childrenVisibility[6] || 0,
-                transition: "opacity 0.5s ease-in-out",
-                transitionDelay: "1.5s",
-              }}
-            >
-              Linkedin
-            </li>
-            <li
-              style={{
-                opacity: childrenVisibility[7] || 0,
-                transition: "opacity 0.5s ease-in-out",
-                transitionDelay: "1.75s",
-              }}
-            >
-              Behance
-            </li>
-          </ul>
-        </div>
+    <div
+      id="header"
+      className="ml-9 mr-9 lg:ml-24 lg:mr-24 absolute left-0 top-0 right-0 pt-9"
+    >
+      <div className="grid grid-cols-2 lg:grid-cols-4 text-md font-regular">
+        {/* <h1>Tyler West</h1> */}
+        {/* <h1 className="hidden lg:block">UI Designer at Carnevale</h1>
+          <h1 className="hidden lg:block">Grand Rapids, MI</h1>
+          <h1 className="text-right">Menu</h1> */}
+        <Link href="/">
+          <AnimatedTextWord
+            text="Tyler West"
+            classes="overflow-hidden flex text-xl lg:text-xl font-regular"
+          />
+        </Link>
+        <AnimatedTextWord
+          text="UI Designer at Carnevale"
+          classes="hidden lg:flex overflow-hidden flex text-xl lg:text-xl font-regular"
+        />
+        <AnimatedTextWord
+          text="Grand Rapids, MI"
+          classes="hidden lg:flex overflow-hidden flex text-xl lg:text-xl font-regular"
+        />
+        <Link href="/about" className="ml-auto">
+          <AnimatedTextWord
+            text="Menu"
+            classes="text-right overflow-hidden flex text-xl lg:text-xl font-regular ml-auto lg:mr-0"
+          />
+        </Link>
       </div>
     </div>
   );
