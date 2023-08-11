@@ -16,12 +16,17 @@ type Props = {
 export default function Project({ params }: Props) {
   const [work, setWork] = useState<any>({});
   const [works, setWorks] = useState<any[]>([]);
+  const [sound, setSound] = useState<boolean>(true); // Default value is true
+
   const [nextProjectSlug, setNextProjectSlug] = useState<string | null>(null);
   const [nextProjectTitle, setNextProjectTitle] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true); // Loading state
 
   useEffect(() => {
     const fetchData = async () => {
       const slug = params.project;
+      console.log("Loading started");
+      setIsLoading(true); // Set loading to true
       const fetchedWork = await getProject(slug);
       setWork(fetchedWork);
 
@@ -34,6 +39,9 @@ export default function Project({ params }: Props) {
         setNextProjectSlug(nextProject.slug);
         setNextProjectTitle(nextProject.title);
       }
+
+      setIsLoading(false); // Set loading to false once data is fetched
+      console.log("Loading finished");
     };
 
     fetchData();
@@ -53,6 +61,15 @@ export default function Project({ params }: Props) {
     return null;
   };
 
+  const activateSound = () => {
+    setSound((prevSound) => !prevSound); // Toggle the sound state
+  };
+
+  // Return loading state if isLoading is true
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="ml-9 mr-9 lg:ml-24 lg:mr-24 text-white">
       <div className="grid grid-cols-4 pt-[10vh] pb-[10vh] gap-4">
@@ -62,7 +79,7 @@ export default function Project({ params }: Props) {
       </div>
       <div className="grid grid-cols-1 pb-4">
         {work.video ? (
-          <div className="col-span-1">
+          <div className="col-span-1" onClick={() => activateSound()}>
             <video
               className="w-full"
               controls={false}
@@ -73,12 +90,12 @@ export default function Project({ params }: Props) {
             />
           </div>
         ) : work.videoLink ? (
-          <div className="col-span-1">
+          <div className="col-span-1" onClick={() => activateSound()}>
             <video
               className="w-full"
               controls={false}
               autoPlay
-              muted
+              muted={sound}
               loop
               src={work.videoLink}
             />

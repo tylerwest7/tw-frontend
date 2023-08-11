@@ -1,7 +1,8 @@
 "use client";
 
 const isBrowser = () => typeof window !== "undefined"; //The approach recommended by Next.js
-function scrollToTop() {
+
+export default function scrollToTop() {
   if (!isBrowser()) return;
   setTimeout(() => {
     window.document.body.scrollIntoView({ behavior: "smooth" });

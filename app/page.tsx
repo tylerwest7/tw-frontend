@@ -9,7 +9,10 @@ import { getClients } from "@/sanity/sanity-utils";
 import AnimatedTextCharacter from "@/components/animatedTextCharacter";
 import AnimatedTextWord from "@/components/animatedTextWord";
 import ThreeCube from "@/components/ThreeCube";
+import LottieAnimation from "@/components/lottie/arrow";
+import CursorFollower from "@/components/useCursorFollow";
 
+//Create project object
 interface Project {
   altText: string;
   image?: string;
@@ -21,6 +24,7 @@ interface Project {
 }
 
 export default function Home() {
+  //Use state
   const [projects, setProjects] = useState<Project[]>([]);
   const [clients, setClients] = useState([]);
   const [portraits, setPortraits] = useState([]);
@@ -30,42 +34,59 @@ export default function Home() {
     { title: "WMAA Addy Association", link: "https://example.com/item3" },
   ]);
 
+  //Image animation
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-
   useEffect(() => {
     console.log("Element is in view: ", isInView);
   }, [isInView]);
 
+  //About paragraphs
   const paragraphOne = "A";
   const paragraphTwo = "B";
 
+  //Set data
   useEffect(() => {
     const fetchProjects = async () => {
       const fetchedProjects = await getProjects();
       const fetchedClients = await getClients();
       const fetchedPortraits = await getPortraits();
-
       setProjects(fetchedProjects);
       setClients(fetchedClients);
       setPortraits(fetchedPortraits);
     };
-
     fetchProjects();
   }, []);
 
+  //Project hover effects
   const [hoveredIndex, setHoveredIndex] = useState(null);
-
+  const [playAnim, setPlayAnim] = useState<boolean>(false);
   const handleHover = (index: any) => {
     setHoveredIndex(index);
+    setPlayAnim(true);
   };
-
   const handleMouseLeave = () => {
     setHoveredIndex(null);
+    setPlayAnim(false);
+  };
+
+  //Cursor hover
+  const [cursorSize, setCursorSize] = useState<number>(1);
+  const [isHovering, setIsHovering] = useState<boolean>(false);
+
+  const cursorHovering = () => {
+    setCursorSize(3);
+    setIsHovering(true);
+  };
+
+  const cursorLeaving = () => {
+    setCursorSize(1);
+    setIsHovering(false);
   };
 
   return (
     <div className="ml-9 mr-9 lg:ml-24 lg:mr-24">
+      <CursorFollower size={cursorSize} hovering={isHovering} />
       <ThreeCube />
       <div id="landing" className=" grid grid-cols-2 content-end h-screen">
         <div className="col-span-2 lg:col-span-1 pb-[8vh] overflow-hidden">
@@ -79,6 +100,8 @@ export default function Home() {
       </div>
       <div
         id="projects"
+        onMouseEnter={() => cursorHovering()}
+        onMouseLeave={() => cursorLeaving()}
         className="flex items-center flex-wrap pt-[20vh] pb-[20vh]"
       >
         <h1 className=" text-xl">02/</h1>
@@ -110,7 +133,9 @@ export default function Home() {
             <h1 className="lg:text-4xl text-left pl-9 line-clamp-2">
               {project.tag}
             </h1>
-            <h1 className="lg:text-4xl text-right line-clamp-2">Right</h1>
+            <div className="lg:text-4xl text-right">
+              <LottieAnimation animHovered={playAnim} index={index} />
+            </div>
           </Link>
         ))}
       </div>
