@@ -98,7 +98,7 @@ export default function Home() {
   return (
     <div className="ml-9 mr-9 lg:ml-24 lg:mr-24">
       <CursorFollower size={cursorSize} hovering={isHovering} />
-      {/* <ThreeCube /> */}
+      <ThreeCube />
 
       <div id="landing" className=" grid grid-cols-2 content-end h-screen">
         <div className="col-span-2 lg:col-span-1 pb-[8vh] overflow-hidden">
