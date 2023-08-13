@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import { Inter } from "next/font/google";
 import LenisScroller from "@/components/lenis-scroller";
 import Menu from "@/components/menu/menu";
+import GoogleTagManager from "@/components/GoogleTagManager";
 
 //const inter = Inter({ subsets: ["latin"] });
 //<body className={inter.className}>
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html className="bg-black" lang="en">
       <head>
         <link href="https://use.typekit.net/pgl6tup.css" rel="stylesheet" />
+        <GoogleTagManager />
       </head>
       <body className="text-white">
         <Menu />

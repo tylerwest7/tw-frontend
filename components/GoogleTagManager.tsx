@@ -1,33 +1,30 @@
-import { useEffect } from "react";
+// GoogleAnalytics.tsx
 
-const GoogleTagManager = () => {
-  useEffect(() => {
-    const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_ID;
+import Script from "next/script";
 
-    if (googleAnalyticsId) {
-      // Add the Google tag (gtag.js) asynchronously
-      const script = document.createElement("script");
-      script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`;
-      document.head.appendChild(script);
+const GoogleAnalytics = () => {
+  const GA_TRACKING_ID = process.env.GOOGLE_ANALYTICS;
 
-      // Define the dataLayer if it doesn't exist
-      (window as any).dataLayer = (window as any).dataLayer || [];
+  if (!GA_TRACKING_ID) {
+    return null;
+  }
 
-      // Define the gtag function
-      const gtag = (...args: any[]) => {
-        (window as any).dataLayer.push(...args);
-      };
-
-      // Initialize gtag with 'js' command and current date
-      gtag("js", new Date());
-
-      // Configure gtag with 'config' command and the provided ID
-      gtag("config", googleAnalyticsId);
-    }
-  }, []);
-
-  return null; // This component doesn't render anything
+  return (
+    <>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_TRACKING_ID}');
+        `}
+      </Script>
+    </>
+  );
 };
 
-export default GoogleTagManager;
+export default GoogleAnalytics;
