@@ -13,6 +13,7 @@ import LottieAnimation from "@/components/lottie/arrow";
 import CursorFollower from "@/components/useCursorFollow";
 import SpinningCube from "@/components/FallingCubes";
 import FallingCubes from "@/components/FallingCubes";
+import GoogleTagManager from "@/components/GoogleTagManager";
 
 //Create project object
 interface Project {
@@ -252,6 +253,7 @@ export default function Home() {
         <FallingCubes threeVisible={threeInView} />
       </div>
       <LenisScroller />
+      <GoogleTagManager />
     </div>
   );
 }
