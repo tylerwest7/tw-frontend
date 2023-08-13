@@ -6,6 +6,12 @@ const project = {
   type: "document",
   fields: [
     {
+      name: "order",
+      title: "Order",
+      type: "number",
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
       name: "title",
       title: "Title",
       type: "string",

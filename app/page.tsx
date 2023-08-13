@@ -54,18 +54,25 @@ export default function Home() {
   }, [threeInView]);
 
   //Loading
-  const [isLoading, setIsLoading] = useState<boolean>();
+  const [isLoading, setIsLoading] = useState<boolean>(true); // Start with loading state as true
 
   //Set data
   useEffect(() => {
     const fetchProjects = async () => {
-      const fetchedProjects = await getProjects();
-      const fetchedClients = await getClients();
-      const fetchedPortraits = await getPortraits();
-      setProjects(fetchedProjects);
-      setClients(fetchedClients);
-      setPortraits(fetchedPortraits);
-      console.log(fetchedProjects);
+      setIsLoading(true); // Set loading to true before fetching data
+      try {
+        const fetchedProjects = await getProjects();
+        const fetchedClients = await getClients();
+        const fetchedPortraits = await getPortraits();
+        setProjects(fetchedProjects);
+        setClients(fetchedClients);
+        setPortraits(fetchedPortraits);
+        console.log(fetchedProjects);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      } finally {
+        setIsLoading(false); // Set loading to false after fetching data (whether successful or not)
+      }
     };
     fetchProjects();
   }, []);
