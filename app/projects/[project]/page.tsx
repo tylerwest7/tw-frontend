@@ -2,13 +2,13 @@
 import { getProject, getProjects } from "@/sanity/sanity-utils";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import scrollToTop from "@/components/useScrollToTop";
 
 type Props = {
   params: {
     project: string;
     projectImages: [];
     desc: string;
+    role: string;
     videolink: string;
     projectVideos: string;
   };
@@ -17,17 +17,15 @@ type Props = {
 export default function Project({ params }: Props) {
   const [work, setWork] = useState<any>({});
   const [works, setWorks] = useState<any[]>([]);
-  const [sound, setSound] = useState<boolean>(true); // Default value is true
-
+  const [sound, setSound] = useState<boolean>(true);
   const [nextProjectSlug, setNextProjectSlug] = useState<string | null>(null);
   const [nextProjectTitle, setNextProjectTitle] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true); // Loading state
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const slug = params.project;
-      console.log("Loading started");
-      setIsLoading(true); // Set loading to true
+      setIsLoading(true);
       const fetchedWork = await getProject(slug);
       setWork(fetchedWork);
 
@@ -41,8 +39,7 @@ export default function Project({ params }: Props) {
         setNextProjectTitle(nextProject.title);
       }
 
-      setIsLoading(false); // Set loading to false once data is fetched
-      console.log("Loading finished");
+      setIsLoading(false);
     };
 
     fetchData();
@@ -63,54 +60,64 @@ export default function Project({ params }: Props) {
   };
 
   const activateSound = () => {
-    setSound((prevSound) => !prevSound); // Toggle the sound state
+    setSound((prevSound) => !prevSound);
   };
-
-  // Return loading state if isLoading is true
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="ml-9 mr-9 lg:ml-24 lg:mr-24 text-white">
       <div className="grid grid-cols-4 pt-[10vh] pb-[10vh] gap-4">
         <h1 className="col-span-4 lg:col-span-1">01/</h1>
-        <h1 className="col-span-4 lg:col-span-1">{work.title}</h1>
-        <h1 className="col-span-4 lg:col-span-2">{work.desc}</h1>
+        <h1 className="col-span-4 lg:col-span-1">{work.title && work.title}</h1>
+        <div className="col-span-4 lg:col-span-2">
+          <h1 className="pb-9">{work.desc && work.desc}</h1>
+          <h1 className="text-sm opacity-50">{work.role && work.role}</h1>
+        </div>
       </div>
       <div className="grid grid-cols-1 pb-4">
         {work.video ? (
           <div className="col-span-1" onClick={() => activateSound()}>
-            <video
-              className="w-full"
-              controls={false}
-              autoPlay
-              muted
-              loop
-              src={work.video}
-            />
+            {isLoading ? (
+              <h1>Loading video...</h1>
+            ) : (
+              <video
+                className="w-full"
+                controls={false}
+                autoPlay
+                muted
+                loop
+                src={work.video}
+              />
+            )}
           </div>
         ) : work.videoLink ? (
           <div className="col-span-1" onClick={() => activateSound()}>
-            <video
-              className="w-full"
-              controls={false}
-              autoPlay
-              muted={sound}
-              loop
-              src={work.videoLink}
-            />
+            {isLoading ? (
+              <h1>Loading video...</h1>
+            ) : (
+              <video
+                className="w-full"
+                controls={false}
+                autoPlay
+                muted={sound}
+                loop
+                src={work.videoLink}
+              />
+            )}
           </div>
         ) : (
           work.image && (
             <div className="col-span-1 max-h-[80vh] overflow-hidden flex justify-center items-center">
-              <img
-                className="w-full"
-                src={work.image}
-                alt={work.altText}
-                height={500}
-                width={500}
-              />
+              {isLoading ? (
+                <h1>Loading video...</h1>
+              ) : (
+                <img
+                  className="w-full"
+                  src={work.image}
+                  alt={work.altText}
+                  height={500}
+                  width={500}
+                />
+              )}
             </div>
           )
         )}
@@ -121,41 +128,57 @@ export default function Project({ params }: Props) {
             work.projectVideos.map((videoItem: any, index: any) => (
               <div key={index} className="col-span-1">
                 {videoItem.videoFile && (
-                  <video
-                    className="w-full"
-                    controls={false}
-                    autoPlay
-                    muted
-                    loop
-                    src={videoItem.videoFile}
-                  />
+                  <div>
+                    {isLoading ? (
+                      <h1>Loading video...</h1>
+                    ) : (
+                      <video
+                        className="w-full"
+                        controls={false}
+                        autoPlay
+                        muted
+                        loop
+                        src={videoItem.videoFile}
+                      />
+                    )}
+                  </div>
                 )}
                 {videoItem.videoUrl && (
-                  <video
-                    className="w-full"
-                    controls={false}
-                    autoPlay
-                    muted
-                    loop
-                    src={videoItem.videoUrl}
-                  />
+                  <div>
+                    {isLoading ? (
+                      <h1>Loading video...</h1>
+                    ) : (
+                      <video
+                        className="w-full"
+                        controls={false}
+                        autoPlay
+                        muted
+                        loop
+                        src={videoItem.videoUrl}
+                      />
+                    )}
+                  </div>
                 )}
               </div>
             ))}
         </div>
       </div>
-
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
         {work.projectImages &&
           work.projectImages.map((project: any, index: any) => (
-            <img
-              key={index}
-              className="w-full"
-              src={project}
-              alt={project.altText || "Default Alt Text"}
-              height={250}
-              width={250}
-            />
+            <div key={index} className="col-span-1">
+              {isLoading ? (
+                <div>Loading image...</div>
+              ) : (
+                <img
+                  className="w-full"
+                  src={project}
+                  alt={project.altText || "Default Alt Text"}
+                  height={250}
+                  width={250}
+                />
+              )}
+            </div>
           ))}
       </div>
       <div className="grid grid-cols-2 pt-[20vh] pb-[20vh] items-start">

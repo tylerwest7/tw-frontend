@@ -53,13 +53,22 @@ const project = {
       options: { source: "title" },
     },
     {
+      name: "imagePreview",
+      title: "imagePreview",
+      type: "image",
+      options: {
+        hotspot: true, // Enables image hotspot to focus on a specific area of the image
+      },
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
       name: "image",
       title: "Image",
       type: "image",
       options: {
         hotspot: true, // Enables image hotspot to focus on a specific area of the image
       },
-      validation: (Rule: any) => Rule.required(),
+      //validation: (Rule: any) => Rule.required(),
     },
     {
       name: "video",

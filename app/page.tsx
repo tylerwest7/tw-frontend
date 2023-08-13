@@ -17,6 +17,7 @@ import FallingCubes from "@/components/FallingCubes";
 //Create project object
 interface Project {
   altText: string;
+  imagePreview?: string;
   image?: string;
   slug?: string;
   tag?: string;
@@ -52,9 +53,8 @@ export default function Home() {
     //console.log(threeInView);
   }, [threeInView]);
 
-  //About paragraphs
-  const paragraphOne = "A";
-  const paragraphTwo = "B";
+  //Loading
+  const [isLoading, setIsLoading] = useState<boolean>();
 
   //Set data
   useEffect(() => {
@@ -65,6 +65,7 @@ export default function Home() {
       setProjects(fetchedProjects);
       setClients(fetchedClients);
       setPortraits(fetchedPortraits);
+      console.log(fetchedProjects);
     };
     fetchProjects();
   }, []);
@@ -114,7 +115,7 @@ export default function Home() {
         id="projects"
         onMouseEnter={() => cursorHovering()}
         onMouseLeave={() => cursorLeaving()}
-        className="flex items-center flex-wrap pt-[20vh] pb-[20vh]"
+        className="flex items-center flex-wrap pt-[20vh] pb-[20vh] min-h-[20vh]"
       >
         <h1 className=" text-xl">02/</h1>
         {projects.map((project, index) => (
@@ -133,10 +134,10 @@ export default function Home() {
             onMouseEnter={() => handleHover(index)}
             onMouseLeave={handleMouseLeave}
           >
-            {project.image && (
+            {project.imagePreview && (
               <Image
                 className="pl-0 p-4"
-                src={project.image}
+                src={project.imagePreview}
                 alt={project.altText || "Default Alt Text"}
                 height={250}
                 width={250}
@@ -191,10 +192,6 @@ export default function Home() {
               expertise with UI/UX skills to create visually striking and
               user-friendly experiences.
             </h1>
-            <div className="grid lg:grid-cols-2 pt-[4vh] text-sm gap-4">
-              <p>{paragraphOne}</p>
-              <p>{paragraphTwo}</p>
-            </div>
             <div id="awards" className="pt-[5vh] lg:pt-[10vh]">
               <h1 className="pb-4 pt-4">Press and awards</h1>
               <div className="grid grid-cols-2 underline text-xl gap-4">
