@@ -12,3 +12,8 @@
 body {
   scroll-behavior: smooth;
 }
+
+.menu-open {
+  overflow: hidden;
+  max-height: 100vh;
+}

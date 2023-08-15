@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Canvas, useThree, useFrame } from "@react-three/fiber";
+import React, { useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Environment } from "@react-three/drei";
 
 function Model() {
@@ -11,17 +11,25 @@ function Model() {
 
 const Box: React.FC = () => {
   const meshRef = useRef<any>(null);
+  const [initialRotation] = useState(Math.PI / 4); // 45 degrees in radians
 
   useFrame(() => {
     const rotationSpeed = 0.01;
-    const targetRotation = window.scrollY * rotationSpeed;
+    const targetRotationY = window.scrollY * rotationSpeed;
+
     if (meshRef.current) {
-      meshRef.current.rotation.y = targetRotation;
+      // Apply the initial local rotation to all axes and rotate the model around its local y-axis
+      meshRef.current.rotation.set(
+        initialRotation,
+        initialRotation,
+        initialRotation
+      );
+      meshRef.current.rotation.y = initialRotation + targetRotationY;
     }
   });
 
   return (
-    <mesh scale={[1, 1, 1]} ref={meshRef}>
+    <mesh scale={[1, 1, 1]} ref={meshRef} rotation={[0, initialRotation, 0]}>
       {/* <boxGeometry args={[1, 1, 1]} /> */}
       <Model />
       <meshStandardMaterial color="orange" />

@@ -1,6 +1,6 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import LenisScroller from "@/components/lenis-scroller";
@@ -13,6 +13,7 @@ import LottieAnimation from "@/components/lottie/arrow";
 import CursorFollower from "@/components/useCursorFollow";
 import SpinningCube from "@/components/FallingCubes";
 import FallingCubes from "@/components/FallingCubes";
+import Link from "@/components/Link";
 
 //Create project object
 interface Project {
@@ -43,6 +44,14 @@ export default function Home() {
   useEffect(() => {
     //console.log("Element is in view: ", isInView);
   }, [isInView]);
+
+  //Lock scrolling
+  // useEffect(() => {
+  //   const body = document.body;
+
+  //   body.style.overflow = "hidden";
+  //   body.style.position = "fixed";
+  // }, []);
 
   //3D animation
   const [mass, setMass] = useState<number>(0);
@@ -251,7 +260,6 @@ export default function Home() {
         </div>
         <FallingCubes threeVisible={threeInView} />
       </div>
-      <LenisScroller />
     </div>
   );
 }

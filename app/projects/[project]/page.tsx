@@ -1,4 +1,5 @@
 "use client";
+
 import { getProject, getProjects } from "@/sanity/sanity-utils";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -64,7 +65,7 @@ export default function Project({ params }: Props) {
   };
 
   return (
-    <div className="ml-9 mr-9 lg:ml-24 lg:mr-24 text-white">
+    <div className="ml-9 mr-9 lg:ml-24 lg:mr-24 text-white min-h-[100vh]">
       <div className="grid grid-cols-4 pt-[10vh] pb-[10vh] gap-4">
         <h1 className="col-span-4 lg:col-span-1">01/</h1>
         <h1 className="col-span-4 lg:col-span-1">{work.title && work.title}</h1>
