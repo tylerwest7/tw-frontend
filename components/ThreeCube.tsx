@@ -11,25 +11,9 @@ function Model() {
 
 const Box: React.FC = () => {
   const meshRef = useRef<any>(null);
-  const [initialRotation] = useState(Math.PI / 4); // 45 degrees in radians
-
-  useFrame(() => {
-    const rotationSpeed = 0.01;
-    const targetRotationY = window.scrollY * rotationSpeed;
-
-    if (meshRef.current) {
-      // Apply the initial local rotation to all axes and rotate the model around its local y-axis
-      meshRef.current.rotation.set(
-        initialRotation,
-        initialRotation,
-        initialRotation
-      );
-      meshRef.current.rotation.y = initialRotation + targetRotationY;
-    }
-  });
 
   return (
-    <mesh scale={[1, 1, 1]} ref={meshRef} rotation={[0, initialRotation, 0]}>
+    <mesh scale={[1, 1, 1]} ref={meshRef}>
       {/* <boxGeometry args={[1, 1, 1]} /> */}
       <Model />
       <meshStandardMaterial color="orange" />

@@ -33,9 +33,10 @@ export default function RootLayout({
 
   useEffect(() => {
     if (!lenis) {
-      setLenis(new Lenis());
+      const newLenis = new Lenis();
+      setLenis(newLenis);
+      newLenis.direction = 0;
     }
-
     requestAnimationFrame(raf);
 
     return () => {

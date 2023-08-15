@@ -1,33 +1,25 @@
-"use client";
-
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import "../../styles/globals.css";
-import { useEffect, useState } from "react";
 import AnimatedTextWord from "../animatedTextWord";
 
-export default function Menu() {
+interface Props {
+  // Any props you might need
+}
+
+const Menu: React.FC<Props> = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
-  function openMenu() {
-    console.log("open menu");
+  const openMenu = (): void => {
     setShowMenu(!showMenu);
-  }
+  };
 
-  function handleMenu(showMenu: boolean) {
+  const handleMenu = (): void => {
     // Scroll to the #about div
     const aboutDiv = document.getElementById("about");
     if (aboutDiv) {
       aboutDiv.scrollIntoView({ behavior: "smooth" });
     }
-  }
-
-  useEffect(() => {
-    if (showMenu) {
-      document.body.classList.add("menu-open");
-    } else {
-      document.body.classList.remove("menu-open");
-    }
-  }, [showMenu]);
+  };
 
   return (
     <div>
@@ -36,10 +28,6 @@ export default function Menu() {
         className="ml-9 mr-9 lg:ml-24 lg:mr-24 fixed left-0 top-0 right-0 pt-9"
       >
         <div className="grid grid-cols-2 lg:grid-cols-4 text-md font-regular">
-          {/* <h1>Tyler West</h1> */}
-          {/* <h1 className="hidden lg:block">UI Designer at Carnevale</h1>
-          <h1 className="hidden lg:block">Grand Rapids, MI</h1>
-          <h1 className="text-right">Menu</h1> */}
           <Link href="/">
             <AnimatedTextWord
               text="Tyler West"
@@ -54,7 +42,7 @@ export default function Menu() {
             text="Grand Rapids, MI"
             classes="hidden lg:flex overflow-hidden flex text-xl lg:text-xl font-regular"
           />
-          <div onClick={() => openMenu()}>
+          <div onClick={openMenu}>
             <AnimatedTextWord
               text="Menu"
               classes="text-right overflow-hidden flex text-xl lg:text-xl font-regular ml-auto lg:mr-0"
@@ -73,7 +61,7 @@ export default function Menu() {
         <div className="grid grid-cols-1 p-9 gap-4 justify-end h-full">
           <div className="flex flex-col justify-end h-full">
             <div className="mt-auto">
-              <h1 onClick={() => handleMenu(!showMenu)} className="text-4xl">
+              <h1 onClick={handleMenu} className="text-4xl">
                 About
               </h1>
               <h1 className="text-4xl">Hello world</h1>
@@ -92,4 +80,6 @@ export default function Menu() {
       ></div>
     </div>
   );
-}
+};
+
+export default Menu;

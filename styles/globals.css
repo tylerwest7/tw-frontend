@@ -13,7 +13,6 @@ body {
   scroll-behavior: smooth;
 }
 
-.menu-open {
+.overflow-y-hidden {
   overflow: hidden;
-  max-height: 100vh;
 }
