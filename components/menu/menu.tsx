@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import AnimatedTextWord from "../animatedTextWord";
+import { AppContext } from "@/app/layout";
 
 interface Props {
   // Any props you might need
@@ -8,10 +9,24 @@ interface Props {
 
 const Menu: React.FC<Props> = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const appContext = useContext(AppContext);
+
+  // Check if appContext is null before destructuring lenis
+  const lenis = appContext?.lenis;
 
   const openMenu = (): void => {
     setShowMenu(!showMenu);
   };
+
+  useEffect(() => {
+    if (showMenu) {
+      lenis?.stop();
+      console.log("freeze scroll");
+    } else {
+      lenis?.start();
+      console.log("start scroll");
+    }
+  }, [showMenu]);
 
   const handleMenu = (): void => {
     // Scroll to the #about div

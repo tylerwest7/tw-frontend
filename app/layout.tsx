@@ -33,23 +33,21 @@ export default function RootLayout({
 
   useEffect(() => {
     if (!lenis) {
-      const newLenis = new Lenis();
+      const newLenis = new Lenis({});
       setLenis(newLenis);
-      newLenis.direction = 0;
+      console.log("direction set");
     }
     requestAnimationFrame(raf);
-
-    return () => {
-      lenis?.destroy();
-    };
-  }, [lenis, raf]);
+  }, [lenis]);
 
   return (
     <AppContext.Provider value={{ lenis }}>
       <html
         className=""
         lang="en"
-        style={{ backgroundColor: darkMode ? "black" : "#E1DFDD" }}
+        style={{
+          backgroundColor: darkMode ? "black" : "#E1DFDD",
+        }}
       >
         <head>
           <title>Tyler West</title>

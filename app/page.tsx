@@ -46,12 +46,10 @@ export default function Home() {
   }, [isInView]);
 
   //Lock scrolling
-  // useEffect(() => {
-  //   const body = document.body;
-
-  //   body.style.overflow = "hidden";
-  //   body.style.position = "fixed";
-  // }, []);
+  useEffect(() => {
+    console.log("Locking");
+    //document.body.className += " overflow-hidden max-h-[100vh]";
+  }, []);
 
   //3D animation
   const [mass, setMass] = useState<number>(0);
