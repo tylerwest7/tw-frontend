@@ -40,7 +40,7 @@ const Menu: React.FC<Props> = () => {
     <div>
       <div
         id="header"
-        className="ml-9 mr-9 lg:ml-24 lg:mr-24 fixed left-0 top-0 right-0 pt-9"
+        className="ml-9 mr-9 lg:ml-24 lg:mr-24 fixed left-0 top-0 right-0 pt-9 z-[998]"
       >
         <div className="grid grid-cols-2 lg:grid-cols-4 text-md font-regular">
           <Link href="/">
@@ -67,7 +67,7 @@ const Menu: React.FC<Props> = () => {
       </div>
       <div
         id="sidebar"
-        className="w-[20vw] h-screen bg-black fixed right-0 z-[999]"
+        className="w-[20vw] h-screen bg-black fixed right-0 z-[1000]"
         style={{
           transform: showMenu ? "translateX(0vw)" : "translateX(20vw)",
           transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
@@ -87,7 +87,8 @@ const Menu: React.FC<Props> = () => {
         </div>
       </div>
       <div
-        className="absolute left-0 top-0 right-0 bottom-0 bg-black z-[998] pointer-events-none"
+        onClick={openMenu}
+        className="fixed left-0 top-0 right-0 bottom-0 bg-black z-[999]"
         style={{
           opacity: showMenu ? "50%" : "0%",
           transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",

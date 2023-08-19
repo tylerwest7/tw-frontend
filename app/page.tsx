@@ -167,7 +167,7 @@ export default function Home() {
           </Link>
         ))}
       </div>
-      <div id="about" ref={ref} className="">
+      <div id="about" ref={ref} className="about">
         <h1 className="text-xl pb-4">03/</h1>
         <div id="aboutContainer" className="grid grid-cols-2">
           <div className="col-span-2 lg:col-span-1">
