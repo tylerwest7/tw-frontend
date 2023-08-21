@@ -57,7 +57,7 @@ const Menu: React.FC<Props> = () => {
             text="Grand Rapids, MI"
             classes="hidden lg:flex overflow-hidden flex text-xl lg:text-xl font-regular"
           />
-          <div onClick={openMenu}>
+          <div onClick={openMenu} className="ml-auto">
             <AnimatedTextWord
               text="Menu"
               classes="text-right overflow-hidden flex text-xl lg:text-xl font-regular ml-auto lg:mr-0"
@@ -67,28 +67,29 @@ const Menu: React.FC<Props> = () => {
       </div>
       <div
         id="sidebar"
-        className="w-[20vw] h-screen bg-black fixed right-0 z-[1000]"
+        className="w-[100vw] h-screen bg-black fixed right-0 z-[1000]"
         style={{
-          transform: showMenu ? "translateX(0vw)" : "translateX(20vw)",
+          transform: showMenu ? "translateX(0vw)" : "translateX(100vw)",
           transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
         }}
       >
-        <div className="grid grid-cols-1 p-9 gap-4 justify-end h-full">
-          <div className="flex flex-col justify-end h-full">
-            <div className="mt-auto">
-              <h1 onClick={handleMenu} className="text-4xl">
-                About
-              </h1>
-              <h1 className="text-4xl">Hello world</h1>
-              <h1 className="text-4xl">Hello world</h1>
-              <h1 className="text-4xl">Hello world</h1>
+        <div className="h-screen">
+          <div className="h-full grid grid-col-1 ml-9 mr-9 lg:ml-24 lg:mr-24 pt-9 pb-9">
+            <h1 className="text-xl ml-auto" onClick={openMenu}>
+              Close
+            </h1>
+            <div className="mt-auto text-[4rem]">
+              <h1 onClick={handleMenu}>About</h1>
+              <h1>Hello world</h1>
+              <h1>Hello world</h1>
+              <h1>Hello world</h1>
             </div>
           </div>
         </div>
       </div>
       <div
         onClick={openMenu}
-        className="fixed left-0 top-0 right-0 bottom-0 bg-black z-[999]"
+        className="fixed left-0 top-0 right-0 bottom-0 bg-black z-[999] pointer-events-none"
         style={{
           opacity: showMenu ? "50%" : "0%",
           transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
