@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import LenisScroller from "@/components/lenis-scroller";
@@ -87,6 +87,7 @@ export default function Home() {
   //Project hover effects
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [playAnim, setPlayAnim] = useState<boolean>(false);
+
   const handleHover = (index: any) => {
     setHoveredIndex(index);
     setPlayAnim(true);
@@ -115,7 +116,7 @@ export default function Home() {
       <CursorFollower size={cursorSize} hovering={isHovering} />
       <ThreeCube />
 
-      <div id="landing" className=" grid grid-cols-2 content-end h-screen">
+      <div id="landing" className=" grid grid-cols-1 content-end h-screen">
         <div className="col-span-2 lg:col-span-1 pb-[8vh] overflow-hidden">
           {/* <h2 className="text-4xl pb-4">01/</h2> */}
           {/* <h1 className="text-4xl lg:text-[10rem] leading-none">Tyler West</h1>
@@ -143,7 +144,6 @@ export default function Home() {
                 hoveredIndex === null || hoveredIndex === index ? 1 : 0.5,
               transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
               borderBottomWidth: hoveredIndex === index ? "4px" : "1px",
-              borderBottomColor: "white",
             }}
             onMouseEnter={() => handleHover(index)}
             onMouseLeave={handleMouseLeave}
@@ -256,7 +256,7 @@ export default function Home() {
             Designed and developed
           </h1>
         </div>
-        <FallingCubes threeVisible={threeInView} />
+        {/* <FallingCubes threeVisible={threeInView} /> */}
       </div>
     </div>
   );

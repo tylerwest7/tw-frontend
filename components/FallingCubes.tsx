@@ -5,6 +5,13 @@ import { BufferGeometry, Mesh, Material } from "three";
 import { Environment, Plane } from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Group } from "three";
+import {
+  Bloom,
+  DepthOfField,
+  EffectComposer,
+  Noise,
+  Vignette,
+} from "@react-three/postprocessing";
 
 function Model({ url }: { url: string }) {
   const [model, setModel] = useState<Group | null>(null);
@@ -60,7 +67,7 @@ const PlaneWithPhysics: React.FC<{ position: [number, number, number] }> = ({
       args={[1000, 1000]}
       ref={ref as React.MutableRefObject<Mesh<BufferGeometry, Material[]>>}
     >
-      <meshStandardMaterial color="black" transparent opacity={0} />
+      <meshStandardMaterial color="black" opacity={0} />
     </Plane>
   );
 };
@@ -83,23 +90,25 @@ const App: React.FC<threeProps> = ({ threeVisible }) => {
   const cubePositions: [number, number, number][] = Array.from(
     { length: 12 },
     () => [
-      Math.random() * 3 - 1.5, // Random x position between -1.5 and 1.5
-      Math.random() * 3, // Random y position between 0 and 3
-      Math.random() * 3 - 1.5, // Random z position between -1.5 and 1.5
+      Math.random() * 3 - 0.1, // Random x position between -1.5 and 1.5
+      Math.random() * 3 - 0.1, // Random x position between -1.5 and 1.5
+      Math.random() * 3 - 0.1, // Random x position between -1.5 and 1.5
     ]
   );
 
   return (
     <div className="absolute left-0 top-0 right-0 bottom-0 z-[-1]">
-      <Canvas camera={{ position: [0, 0, 1], fov: 80 }}>
+      <Canvas camera={{ position: [0, 0, 3], fov: 35 }}>
         <Environment preset="city" />
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
         <Physics gravity={[0, customGravity, 0]}>
-          {cubePositions.map((position, index) => (
-            <Cube key={index} position={position} />
-          ))}
-          <PlaneWithPhysics position={[0, -2, 0]} />
+          <Debug>
+            {cubePositions.map((position, index) => (
+              <Cube key={index} position={position} />
+            ))}
+            <PlaneWithPhysics position={[0, -0.5, 0]} />
+          </Debug>
         </Physics>
       </Canvas>
     </div>

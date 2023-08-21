@@ -8,9 +8,11 @@ import GoogleTagManager from "@/components/GoogleTagManager";
 import { createContext, useCallback, useEffect, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 
-//Create lenis context
+//Create context
 export const AppContext = createContext<{
   lenis: Lenis | null;
+  darkMode: boolean;
+  toggleDarkMode: () => void;
 } | null>(null);
 
 export default function RootLayout({
@@ -19,6 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [darkMode, setDarkMode] = useState<boolean>(true);
+
+  const toggleDarkMode = () => {
+    setDarkMode((prevDarkMode) => !prevDarkMode);
+  };
 
   //Lenis
   const [lenis, setLenis] = useState<Lenis | null>(null);
@@ -41,12 +47,13 @@ export default function RootLayout({
   }, [lenis]);
 
   return (
-    <AppContext.Provider value={{ lenis }}>
+    <AppContext.Provider value={{ lenis, darkMode, toggleDarkMode }}>
       <html
         className=""
         lang="en"
         style={{
           backgroundColor: darkMode ? "black" : "#E1DFDD",
+          borderBottomColor: darkMode ? "#E1DFDD" : "black",
         }}
       >
         <head>

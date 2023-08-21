@@ -12,6 +12,7 @@
     "@react-three/cannon": "^2.5.0",
     "@react-three/drei": "^9.80.1",
     "@react-three/fiber": "^8.13.6",
+    "@react-three/postprocessing": "^2.15.0",
     "@studio-freight/lenis": "^1.0.16",
     "@studio-freight/react-lenis": "^0.0.21",
     "@types/node": "20.4.2",

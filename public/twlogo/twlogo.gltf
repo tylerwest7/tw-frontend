@@ -1,6 +1,6 @@
 {
 	"asset":{
-		"generator":"Khronos glTF Blender I/O v3.5.30",
+		"generator":"Khronos glTF Blender I/O v3.6.27",
 		"version":"2.0"
 	},
 	"scene":0,
@@ -15,36 +15,31 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"twlogo",
-			"scale":[
-				4,
-				4,
-				4
+			"name":"OUT_Logo",
+			"rotation":[
+				0.7071068286895752,
+				0,
+				0,
+				0.7071068286895752
+			],
+			"translation":[
+				0,
+				0,
+				-0.15000000596046448
 			]
-		}
-	],
-	"materials":[
-		{
-			"doubleSided":true,
-			"name":"Material.001",
-			"pbrMetallicRoughness":{
-				"metallicFactor":0,
-				"roughnessFactor":0.5
-			}
 		}
 	],
 	"meshes":[
 		{
-			"name":"subdivide1",
+			"name":"OUT_Logo.003",
 			"primitives":[
 				{
 					"attributes":{
 						"POSITION":0,
-						"TEXCOORD_0":1,
-						"NORMAL":2
+						"NORMAL":1,
+						"TEXCOORD_0":2
 					},
-					"indices":3,
-					"material":0
+					"indices":3
 				}
 			]
 		}
@@ -53,67 +48,67 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":18218,
+			"count":12318,
 			"max":[
-				0.3826124370098114,
-				0.4007793366909027,
-				0.12437859922647476
+				0.38700002431869507,
+				0.30000001192092896,
+				0.3970000147819519
 			],
 			"min":[
-				-0.39961621165275574,
-				-0.370485782623291,
-				-0.12570373713970184
+				-0.38700002431869507,
+				0,
+				-0.3970000147819519
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":18218,
-			"type":"VEC2"
+			"count":12318,
+			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":18218,
-			"type":"VEC3"
+			"count":12318,
+			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":27696,
+			"count":66816,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":218616,
+			"byteLength":147816,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":145744,
-			"byteOffset":218616,
+			"byteLength":147816,
+			"byteOffset":147816,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":218616,
-			"byteOffset":364360,
+			"byteLength":98544,
+			"byteOffset":295632,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":55392,
-			"byteOffset":582976,
+			"byteLength":133632,
+			"byteOffset":394176,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":638368,
+			"byteLength":527808,
 			"uri":"twlogo.bin"
 		}
 	]
