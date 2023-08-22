@@ -41,7 +41,7 @@ const LottieAnimation: React.FC<LottieAnimationProps> = ({
   }, [index]);
 
   return (
-    <div id={index} className="flex justify-end items-center">
+    <div id={index} className="flex justify-end items-center color">
       <div ref={animationContainerRef} className="h-4 lg:h-9" />
     </div>
   );

@@ -42,25 +42,25 @@ const Menu: React.FC<Props> = () => {
         id="header"
         className="ml-9 mr-9 lg:ml-24 lg:mr-24 fixed left-0 top-0 right-0 pt-9 z-[998]"
       >
-        <div className="grid grid-cols-2 lg:grid-cols-4 text-md font-regular">
+        <div className="grid grid-cols-2 lg:grid-cols-4 text-md font-medium">
           <Link href="/">
             <AnimatedTextWord
               text="Tyler West"
-              classes="overflow-hidden flex text-xl lg:text-xl font-regular"
+              classes="overflow-hidden flex text-xl lg:text-xl font-medium"
             />
           </Link>
           <AnimatedTextWord
             text="UI Designer at Carnevale"
-            classes="hidden lg:flex overflow-hidden flex text-xl lg:text-xl font-regular"
+            classes="hidden lg:flex overflow-hidden flex text-xl lg:text-xl font-medium"
           />
           <AnimatedTextWord
             text="Grand Rapids, MI"
-            classes="hidden lg:flex overflow-hidden flex text-xl lg:text-xl font-regular"
+            classes="hidden lg:flex overflow-hidden flex text-xl lg:text-xl font-medium"
           />
           <div onClick={openMenu} className="ml-auto">
             <AnimatedTextWord
               text="Menu"
-              classes="text-right overflow-hidden flex text-xl lg:text-xl font-regular ml-auto lg:mr-0"
+              classes="text-right overflow-hidden flex text-xl lg:text-xl font-medium ml-auto lg:mr-0"
             />
           </div>
         </div>

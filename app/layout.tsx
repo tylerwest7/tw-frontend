@@ -52,7 +52,7 @@ export default function RootLayout({
         className=""
         lang="en"
         style={{
-          backgroundColor: darkMode ? "black" : "#E1DFDD",
+          backgroundColor: darkMode ? "#E1DFDD" : "#E1DFDD",
           borderBottomColor: darkMode ? "#E1DFDD" : "black",
         }}
       >
@@ -63,8 +63,8 @@ export default function RootLayout({
           <GoogleTagManager />
         </head>
         <body
-          className="text-white"
-          style={{ color: darkMode ? "white" : "black" }}
+          className="text-black"
+          style={{ color: darkMode ? "black" : "black" }}
         >
           <Menu />
           {children}

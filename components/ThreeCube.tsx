@@ -82,13 +82,14 @@ const ThreeCube: React.FC = () => {
           <Environment preset="city" blur={1} />
           <pointLight position={[10, 10, 10]} />
           <Box />
-          <EffectComposer>
+          {/* <EffectComposer>
             <Bloom
               luminanceThreshold={0}
               luminanceSmoothing={0.9}
               height={300}
+              intensity={0.25}
             />
-          </EffectComposer>
+          </EffectComposer> */}
         </Canvas>
       </div>
     </div>

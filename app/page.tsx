@@ -14,6 +14,7 @@ import CursorFollower from "@/components/useCursorFollow";
 import SpinningCube from "@/components/FallingCubes";
 import FallingCubes from "@/components/FallingCubes";
 import Link from "@/components/Link";
+import Arrow from "@/components/arrow";
 
 //Create project object
 interface Project {
@@ -27,10 +28,14 @@ interface Project {
   // Other properties...
 }
 
+interface Client {
+  name: string;
+}
+
 export default function Home() {
   //Use state
   const [projects, setProjects] = useState<Project[]>([]);
-  const [clients, setClients] = useState([]);
+  const [clients, setClients] = useState<Client[]>([]);
   const [portraits, setPortraits] = useState([]);
   const [awards, setAwards] = useState([
     { title: "Designers are scary!", link: "https://example.com/item1" },
@@ -130,7 +135,7 @@ export default function Home() {
         id="projects"
         onMouseEnter={() => cursorHovering()}
         onMouseLeave={() => cursorLeaving()}
-        className="flex items-center flex-wrap pt-[20vh] pb-[20vh] min-h-[20vh]"
+        className="flex items-center flex-wrap pt-[20vh] pb-[20vh] min-h-[20vh] font-medium"
       >
         <h1 className=" text-xl">02/</h1>
         {projects.map((project, index) => (
@@ -144,6 +149,7 @@ export default function Home() {
                 hoveredIndex === null || hoveredIndex === index ? 1 : 0.5,
               transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
               borderBottomWidth: hoveredIndex === index ? "4px" : "1px",
+              borderColor: "black",
             }}
             onMouseEnter={() => handleHover(index)}
             onMouseLeave={handleMouseLeave}
@@ -161,8 +167,9 @@ export default function Home() {
             <h1 className="lg:text-4xl text-left pl-9 line-clamp-2">
               {project.tag}
             </h1>
-            <div className="lg:text-4xl text-right">
-              <LottieAnimation animHovered={playAnim} index={index} />
+            <div className="lg:text-4xl ml-auto">
+              {/* <LottieAnimation animHovered={playAnim} index={index} /> */}
+              <Arrow />
             </div>
           </Link>
         ))}
@@ -206,7 +213,7 @@ export default function Home() {
               expertise with UI/UX skills to create visually striking and
               user-friendly experiences.
             </h1>
-            <div id="awards" className="pt-[5vh] lg:pt-[10vh]">
+            <div id="awards" className="pt-[5vh] lg:pt-[40vh]">
               <h1 className="pb-4 pt-4">Press and awards</h1>
               <div className="grid grid-cols-2 underline text-xl gap-4">
                 {awards.map((award, index) => (
@@ -214,7 +221,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div id="clients" className="pt-[10vh] lg:pt-[20vh]">
+            {/* <div id="clients" className="pt-[10vh] lg:pt-[20vh]">
               <h1 className="">Notable clients I have helped create for</h1>
               <div className="flex overflow-x-auto space-x-4 p-2 items-center">
                 {clients.map((client, index) => (
@@ -227,7 +234,18 @@ export default function Home() {
                   ></div>
                 ))}
               </div>
-            </div>
+            </div> */}
+          </div>
+        </div>
+      </div>
+      <div id="clients" className="pt-[10vh] pb-[10vh]">
+        <div className="marquee">
+          <div className="flex items-center overflow-x-scroll">
+            {clients.map((client) => (
+              <h1 className="text-[10rem]" key={client.name}>
+                {client.name}
+              </h1>
+            ))}
           </div>
         </div>
       </div>
