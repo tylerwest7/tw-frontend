@@ -78,7 +78,7 @@ export default function Project({ params }: Props) {
         <Suspense
           fallback={
             <div className="absolute left-0 right-0 top-0 bottom-0 bg-red-500">
-              We're loading the content
+              Were loading the content
             </div>
           }
         >
