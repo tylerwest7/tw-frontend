@@ -264,7 +264,7 @@ export default function Home() {
           id="clients"
           className="pt-[25vh] pb-[25vh] lg:pt-[35vh] lg:pb-[35vh]"
         >
-          <h1 className="text-xl pb-4">04/ Brands I've Worked On</h1>
+          <h1 className="text-xl pb-4">04/ Brands Ive Worked On</h1>
           <Marquee autoFill speed={250}>
             {clients.map((client) => (
               <div className="marquee_element" key={client.name}>
