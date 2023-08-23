@@ -44,7 +44,7 @@ const Menu: React.FC<Props> = () => {
     <div>
       <div
         id="header"
-        className="ml-9 mr-9 lg:ml-24 lg:mr-24 fixed left-0 top-0 right-0 pt-9 z-[998] pb-9"
+        className="ml-9 mr-9 lg:ml-24 lg:mr-24 fixed left-0 top-0 right-0 pt-6 pb-6 z-[998]"
         style={{
           borderBottomWidth: "4px",
           borderColor: "black",
@@ -66,7 +66,7 @@ const Menu: React.FC<Props> = () => {
           </h1>
           <Link href="/home" className="grid-col-1 order-4 lg:order-2">
             <h1 className="lg:text-2xl font-medium hidden lg:block lg:text-center">
-              Grand Rapids, MI
+              Midwest, USA
             </h1>
           </Link>
         </div>

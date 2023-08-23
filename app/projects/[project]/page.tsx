@@ -205,7 +205,7 @@ export default function Project({ params }: Props) {
                   {nextProjectTitle}
                 </h1>
 
-                <div className="mt-auto mr-auto lg:ml-auto w-[10px]">
+                <div className="mt-auto mr-auto lg:ml-auto lg:mr-0 w-[10px]">
                   <Arrow />
                 </div>
               </Link>

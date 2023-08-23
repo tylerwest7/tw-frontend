@@ -130,7 +130,7 @@ export default function Home() {
     <PageWrapper>
       <div
         id="page"
-        className="ml-9 mr-9 lg:ml-24 lg:mr-24"
+        className="ml-9 mr-9 lg:ml-24 lg:mr-24  tracking-[-0.025rem] lg:tracking-[-0.05rem]"
         style={{
           opacity: isVisible ? "1" : "0",
           transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
@@ -138,7 +138,7 @@ export default function Home() {
       >
         <CursorFollower size={cursorSize} hovering={isHovering} />
         <ThreeCube />
-        <div id="landing" className=" grid grid-cols-1 content-end h-screen">
+        <div id="landing" className="grid grid-cols-1 content-end h-screen">
           <div className="col-span-2 pb-[10vh] overflow-hidden">
             <h2 className="text-4xl pb-4 font-medium">01/</h2>
             <h1 className="text-4xl font-medium lg:text-[10rem] leading-none">
@@ -268,7 +268,7 @@ export default function Home() {
           <Marquee autoFill speed={250}>
             {clients.map((client) => (
               <div className="marquee_element" key={client.name}>
-                <h1 className="text-[3rem] lg:text-[10rem] font-medium pl-9 pr-9">
+                <h1 className="text-[3rem] lg:text-[10rem] font-medium pl-9 pr-9 ">
                   {client.name}
                 </h1>
               </div>
@@ -277,7 +277,16 @@ export default function Home() {
           <Marquee direction="right" autoFill speed={250}>
             {clients.map((client) => (
               <div className="marquee_element" key={client.name}>
-                <h1 className="text-[3rem] lg:text-[10rem] font-medium pl-9 pr-9">
+                <h1 className="text-[3rem] lg:text-[10rem] font-medium pl-9 pr-9  tracking-[-0.05rem]">
+                  {client.name}
+                </h1>
+              </div>
+            ))}
+          </Marquee>
+          <Marquee autoFill speed={250}>
+            {clients.map((client) => (
+              <div className="marquee_element" key={client.name}>
+                <h1 className="text-[3rem] lg:text-[10rem] font-medium pl-9 pr-9 ">
                   {client.name}
                 </h1>
               </div>
@@ -294,7 +303,7 @@ export default function Home() {
           <div className="grid grid-cols-3 pt-[5vh] pb-[5vh]">
             <h1
               ref={threeRef}
-              className="col-span-3 lg:col-span-2 text-4xl lg:text-[8rem] uppercase underline break-words pt-[2vh] pb-[2vh] lg:pt-[10vh] lg:pb-[10vh] leading-[1]"
+              className="col-span-3 lg:col-span-2 text-4xl lg:text-[8rem] uppercase underline break-words pt-[2vh] pb-[2vh] lg:pt-[10vh] lg:pb-[10vh] leading-[1] font-medium"
             >
               tyler@tylerwest.co
             </h1>

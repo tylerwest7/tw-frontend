@@ -50,7 +50,7 @@ const CursorFollower: React.FC<CursorFollowerProps> = ({ size, hovering }) => {
           opacity: hovering ? "100" : "0",
           transition: "opacity 0.2s cubic-bezier(0.65, 0, 0.35, 1)",
         }}
-        className="text-black text-center leading-none text-[0.5rem] w-full"
+        className="text-black text-center leading-none text-[0.5rem] w-full tracking-normal"
       >
         View project
       </h1>
