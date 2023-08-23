@@ -235,7 +235,19 @@ export default function Home() {
                 expertise with UI/UX skills to create visually striking and
                 user-friendly experiences.
               </h1>
-              <div id="awards" className="pt-[5vh] lg:pt-[40vh]">
+              <div className="grid grid-cols-2 text-black pt-[10vh] gap-9">
+                <h1>
+                  With 3+ years of 2D/3D motion design experience. Tylers
+                  strongest skillset is in 3D simulations, animation, lighting,
+                  and texturing.
+                </h1>
+                <h1>
+                  With an additional 3 years in UI/UX design, Tyler is
+                  experienced with designing, prototyping, and producing
+                  functioning interfaces for software used by thousands.
+                </h1>
+              </div>
+              <div id="awards" className="pt-[5vh] lg:pt-[20vh]">
                 <h1 className="pb-4 pt-4 font-medium text-2xl">
                   Press and awards
                 </h1>
@@ -271,7 +283,7 @@ export default function Home() {
         </div>
         <div id="footer" className="pb-[10vh] relative text-2xl font-medium">
           <div className="grid grid-cols-4 pb-[10vh]">
-            <h1 className="col-span-1">04/</h1>
+            <h1 className="col-span-1">04/ Contact Me</h1>
             <h1 className="col-span-1">Lets work together</h1>
             <h1 className="col-span-1"></h1>
             <h1 className="col-span-1"></h1>

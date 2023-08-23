@@ -52,24 +52,19 @@ const Menu: React.FC<Props> = () => {
         }}
       >
         <div className="grid grid-cols-2 lg:grid-cols-4 text-xl font-medium">
-          <Link href="/">
-            <h1 className="overflow-hidden flex text-xl lg:text-2xl font-medium">
-              Tyler West
-            </h1>
+          <Link href="/" className="order-1">
+            <h1 className="lg:text-2xl font-medium">Tyler West</h1>
           </Link>
-          <h1 className="overflow-hidden flex text-xl lg:text-2xl font-medium">
-            Tyler West
-          </h1>
-          <Link href="/home">
-            <h1 className="overflow-hidden flex text-xl lg:text-2xl font-medium">
-              Grand Rapids, MI
-            </h1>
-          </Link>
-          <div onClick={openMenu} className="ml-auto cursor-pointer">
-            <h1 className="overflow-hidden flex text-xl lg:text-2xl font-medium">
-              Menu
-            </h1>
+          <div
+            onClick={openMenu}
+            className="ml-auto cursor-pointer order-2 lg:order-4"
+          >
+            <h1 className="font-medium ml-auto">Menu</h1>
           </div>
+          <h1 className="font-medium hidden lg:block order-3">Designer</h1>
+          <Link href="/home" className="grid-col-1 order-4 lg:order-2">
+            <h1 className="font-medium hidden lg:block">Grand Rapids, MI</h1>
+          </Link>
         </div>
       </div>
       <div
@@ -88,7 +83,7 @@ const Menu: React.FC<Props> = () => {
             >
               Close
             </h1>
-            <div className="mt-auto text-[9rem] pb-[10vh] font-medium">
+            <div className="mt-auto text-[4rem] lg:text-[9rem] pb-[10vh] font-medium">
               <h1 onClick={handleMenu}>Home</h1>
               <h1>Projects</h1>
               <h1>About</h1>

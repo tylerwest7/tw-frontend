@@ -1,5 +1,6 @@
 "use client";
 
+import Arrow from "@/components/arrow";
 import PageWrapper from "@/components/pageWrapper";
 import { getProject, getProjects } from "@/sanity/sanity-utils";
 import Link from "next/link";
@@ -61,10 +62,6 @@ export default function Project({ params }: Props) {
     return null;
   };
 
-  const activateSound = () => {
-    setSound((prevSound) => !prevSound);
-  };
-
   return (
     <PageWrapper>
       <div className="ml-9 mr-9 lg:ml-24 lg:mr-24 text-black min-h-[100vh]">
@@ -87,13 +84,13 @@ export default function Project({ params }: Props) {
         >
           <div className="grid grid-cols-1 pb-4">
             {work.video ? (
-              <div className="col-span-1" onClick={() => activateSound()}>
+              <div className="col-span-1">
                 {isLoading ? (
                   <h1>Loading video...</h1>
                 ) : (
                   <video
                     className="w-full"
-                    controls={false}
+                    controls={true}
                     autoPlay
                     muted
                     loop
@@ -102,13 +99,13 @@ export default function Project({ params }: Props) {
                 )}
               </div>
             ) : work.videoLink ? (
-              <div className="col-span-1" onClick={() => activateSound()}>
+              <div className="col-span-1">
                 {isLoading ? (
                   <h1>Loading video...</h1>
                 ) : (
                   <video
                     className="w-full"
-                    controls={false}
+                    controls={true}
                     autoPlay
                     muted={sound}
                     loop
@@ -198,14 +195,19 @@ export default function Project({ params }: Props) {
           <h1 className="col-span-2 lg:col-span-1 text-xl lg:text-8xl pb-9">
             View next project
           </h1>
-          {nextProjectSlug && (
-            <Link
-              className="col-span-2 lg:col-span-1 text-left lg:text-right text-lg lg:text-md"
-              href={nextProjectSlug}
-            >
-              <h1>{nextProjectTitle}</h1>
-            </Link>
-          )}
+          <div className="col-span-2 lg:col-span-1 flex flex-wrap ml-auto">
+            {nextProjectSlug && (
+              <Link
+                className="text-left lg:text-right text-lg lg:text-md w-full"
+                href={nextProjectSlug}
+              >
+                <h1>{nextProjectTitle}</h1>
+              </Link>
+            )}
+            <div className="ml-auto pt-9">
+              <Arrow />
+            </div>
+          </div>
         </div>
       </div>
     </PageWrapper>
