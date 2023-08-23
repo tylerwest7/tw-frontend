@@ -19,6 +19,10 @@ const Menu: React.FC<Props> = () => {
   };
 
   useEffect(() => {
+    console.log(lenis?.velocity);
+  }, []);
+
+  useEffect(() => {
     if (showMenu) {
       lenis?.stop();
       console.log("freeze scroll");
@@ -40,61 +44,59 @@ const Menu: React.FC<Props> = () => {
     <div>
       <div
         id="header"
-        className="ml-9 mr-9 lg:ml-24 lg:mr-24 fixed left-0 top-0 right-0 pt-9 z-[998]"
+        className="ml-9 mr-9 lg:ml-24 lg:mr-24 fixed left-0 top-0 right-0 pt-9 z-[998] pb-9"
+        style={{
+          borderBottomWidth: "4px",
+          borderColor: "black",
+          backgroundColor: "#E1DFDD",
+        }}
       >
-        <div className="grid grid-cols-2 lg:grid-cols-4 text-md font-medium">
+        <div className="grid grid-cols-2 lg:grid-cols-4 text-xl font-medium">
           <Link href="/">
-            <AnimatedTextWord
-              text="Tyler West"
-              classes="overflow-hidden flex text-xl lg:text-xl font-medium"
-            />
+            <h1 className="overflow-hidden flex text-xl lg:text-2xl font-medium">
+              Tyler West
+            </h1>
           </Link>
-          <AnimatedTextWord
-            text="UI Designer at Carnevale"
-            classes="hidden lg:flex overflow-hidden flex text-xl lg:text-xl font-medium"
-          />
-          <AnimatedTextWord
-            text="Grand Rapids, MI"
-            classes="hidden lg:flex overflow-hidden flex text-xl lg:text-xl font-medium"
-          />
-          <div onClick={openMenu} className="ml-auto">
-            <AnimatedTextWord
-              text="Menu"
-              classes="text-right overflow-hidden flex text-xl lg:text-xl font-medium ml-auto lg:mr-0"
-            />
+          <h1 className="overflow-hidden flex text-xl lg:text-2xl font-medium">
+            Tyler West
+          </h1>
+          <Link href="/home">
+            <h1 className="overflow-hidden flex text-xl lg:text-2xl font-medium">
+              Grand Rapids, MI
+            </h1>
+          </Link>
+          <div onClick={openMenu} className="ml-auto cursor-pointer">
+            <h1 className="overflow-hidden flex text-xl lg:text-2xl font-medium">
+              Menu
+            </h1>
           </div>
         </div>
       </div>
       <div
         id="sidebar"
-        className="w-[100vw] h-screen bg-black fixed right-0 z-[1000]"
+        className="w-[100vw] h-screen fixed right-0 z-[1000]"
         style={{
           transform: showMenu ? "translateX(0vw)" : "translateX(100vw)",
-          transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
+          transition: "all 1s cubic-bezier(0.65, 0, 0.35, 1)",
         }}
       >
-        <div className="h-screen">
+        <div className="h-screen" style={{ backgroundColor: "#E1DFDD" }}>
           <div className="h-full grid grid-col-1 ml-9 mr-9 lg:ml-24 lg:mr-24 pt-9 pb-9">
-            <h1 className="text-xl ml-auto" onClick={openMenu}>
+            <h1
+              className="text-2xl ml-auto font-medium cursor-pointer"
+              onClick={openMenu}
+            >
               Close
             </h1>
-            <div className="mt-auto text-[4rem]">
-              <h1 onClick={handleMenu}>About</h1>
-              <h1>Hello world</h1>
-              <h1>Hello world</h1>
-              <h1>Hello world</h1>
+            <div className="mt-auto text-[9rem] pb-[10vh] font-medium">
+              <h1 onClick={handleMenu}>Home</h1>
+              <h1>Projects</h1>
+              <h1>About</h1>
+              <h1>Instagram</h1>
             </div>
           </div>
         </div>
       </div>
-      <div
-        onClick={openMenu}
-        className="fixed left-0 top-0 right-0 bottom-0 bg-black z-[999] pointer-events-none"
-        style={{
-          opacity: showMenu ? "50%" : "0%",
-          transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
-        }}
-      ></div>
     </div>
   );
 };

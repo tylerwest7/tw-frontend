@@ -15,6 +15,9 @@ import SpinningCube from "@/components/FallingCubes";
 import FallingCubes from "@/components/FallingCubes";
 import Link from "@/components/Link";
 import Arrow from "@/components/arrow";
+import Marquee from "react-fast-marquee";
+import { useRouter } from "next/router";
+import PageWrapper from "@/components/pageWrapper";
 
 //Create project object
 interface Project {
@@ -116,166 +119,184 @@ export default function Home() {
     setIsHovering(false);
   };
 
+  //Exit anim
+  const [isVisible, setIsVisible] = useState(true); // State to control visibility
+
+  const handleExit = () => {
+    setIsVisible(false);
+  };
+
   return (
-    <div className="ml-9 mr-9 lg:ml-24 lg:mr-24">
-      <CursorFollower size={cursorSize} hovering={isHovering} />
-      <ThreeCube />
-
-      <div id="landing" className=" grid grid-cols-1 content-end h-screen">
-        <div className="col-span-2 lg:col-span-1 pb-[8vh] overflow-hidden">
-          {/* <h2 className="text-4xl pb-4">01/</h2> */}
-          {/* <h1 className="text-4xl lg:text-[10rem] leading-none">Tyler West</h1>
-          <h1 className="text-4xl lg:text-[10rem] leading-none">UI Designer</h1> */}
-          <AnimatedTextCharacter padding="0rem" text="/01" />
-          <AnimatedTextCharacter padding="0rem" text="Tyler West" />
-          <AnimatedTextCharacter padding="1rem" text="UI Designer" />
-        </div>
-      </div>
+    <PageWrapper>
       <div
-        id="projects"
-        onMouseEnter={() => cursorHovering()}
-        onMouseLeave={() => cursorLeaving()}
-        className="flex items-center flex-wrap pt-[20vh] pb-[20vh] min-h-[20vh] font-medium"
+        id="page"
+        className="ml-9 mr-9 lg:ml-24 lg:mr-24"
+        style={{
+          opacity: isVisible ? "1" : "0",
+          transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
+        }}
       >
-        <h1 className=" text-xl">02/</h1>
-        {projects.map((project, index) => (
-          <Link
-            scroll={true}
-            key={index}
-            href={`/projects/${project.slug}`}
-            className="w-screen grid grid-cols-4 items-center"
-            style={{
-              opacity:
-                hoveredIndex === null || hoveredIndex === index ? 1 : 0.5,
-              transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
-              borderBottomWidth: hoveredIndex === index ? "4px" : "1px",
-              borderColor: "black",
-            }}
-            onMouseEnter={() => handleHover(index)}
-            onMouseLeave={handleMouseLeave}
-          >
-            {project.imagePreview && (
-              <Image
-                className="pl-0 p-4"
-                src={project.imagePreview}
-                alt={project.altText || "Default Alt Text"}
-                height={250}
-                width={250}
-              />
-            )}
-            <h1 className="lg:text-4xl line-clamp-2">{project.title}</h1>
-            <h1 className="lg:text-4xl text-left pl-9 line-clamp-2">
-              {project.tag}
+        <CursorFollower size={cursorSize} hovering={isHovering} />
+        <ThreeCube />
+        <div id="landing" className=" grid grid-cols-1 content-end h-screen">
+          <div className="col-span-2 pb-[10vh] overflow-hidden">
+            <h2 className="text-4xl pb-4 font-medium">01/</h2>
+            <h1 className="text-4xl font-medium lg:text-[10rem] leading-none">
+              Tyler West
             </h1>
-            <div className="lg:text-4xl ml-auto">
-              {/* <LottieAnimation animHovered={playAnim} index={index} /> */}
-              <Arrow />
-            </div>
-          </Link>
-        ))}
-      </div>
-      <div id="about" ref={ref} className="about">
-        <h1 className="text-xl pb-4">03/</h1>
-        <div id="aboutContainer" className="grid grid-cols-2">
-          <div className="col-span-2 lg:col-span-1">
-            {portraits.map((portrait, index) => (
-              <div
-                key={index}
-                className="h-[50vh] lg:h-full w-full lg:w-6/12 relative"
-              >
-                {/* The mask element */}
-                <div
-                  id="mask"
-                  className="h-full w-full absolute top-0 left-0"
-                  style={{
-                    backgroundColor: "black",
-                    height: isInView ? "0%" : "100%",
-                    transition: "height 1.5s cubic-bezier(0.65, 0, 0.35, 1)",
-                    transitionDelay: "0.15s",
-                  }}
-                ></div>
-
-                {/* The actual image */}
-                <div
-                  style={{
-                    backgroundImage: `url(${(portrait as Project).image})`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    height: "100%",
-                  }}
-                ></div>
-              </div>
-            ))}
+            <h1 className="text-4xl font-medium lg:text-[10rem] leading-none">
+              UI Designer
+            </h1>
+            {/* <AnimatedTextCharacter padding="0rem" text="/01" />
+            <AnimatedTextCharacter padding="0rem" text="Tyler West" />
+            <AnimatedTextCharacter padding="1rem" text="UI Designer" /> */}
           </div>
-          <div className="col-span-2 lg:col-span-1">
-            <h1 className="lg:text-5xl pt-4 font-medium">
-              Tyler is an experienced designer combining 2D/3D motion design
-              expertise with UI/UX skills to create visually striking and
-              user-friendly experiences.
-            </h1>
-            <div id="awards" className="pt-[5vh] lg:pt-[40vh]">
-              <h1 className="pb-4 pt-4">Press and awards</h1>
-              <div className="grid grid-cols-2 underline text-xl gap-4">
-                {awards.map((award, index) => (
-                  <h1 key={index}>{award.title}</h1>
-                ))}
+        </div>
+        <div
+          id="projects"
+          onMouseEnter={() => cursorHovering()}
+          onMouseLeave={() => cursorLeaving()}
+          className="flex items-center flex-wrap pt-[20vh] pb-[20vh] min-h-[20vh]"
+        >
+          <h1 className="text-xl">02/ Favorite Projects</h1>
+          {projects.map((project, index) => (
+            <Link
+              onClick={handleExit}
+              scroll={true}
+              key={index}
+              href={`/projects/${project.slug}`}
+              className="w-screen grid grid-cols-4 items-center font-medium"
+              style={{
+                opacity:
+                  hoveredIndex === null || hoveredIndex === index ? 1 : 0.5,
+                transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
+                borderBottomWidth: hoveredIndex === index ? "4px" : "1px",
+                borderColor: "black",
+              }}
+              onMouseEnter={() => handleHover(index)}
+              onMouseLeave={handleMouseLeave}
+            >
+              {project.imagePreview && (
+                <Image
+                  className="pl-0 p-4"
+                  src={project.imagePreview}
+                  alt={project.altText || "Default Alt Text"}
+                  height={250}
+                  width={250}
+                />
+              )}
+              <h1 className="lg:text-4xl line-clamp-2">{project.title}</h1>
+              <h1 className="lg:text-4xl text-left pl-9 line-clamp-2">
+                {project.tag}
+              </h1>
+              <div className="lg:text-4xl ml-auto">
+                {/* <LottieAnimation animHovered={playAnim} index={index} /> */}
+                <Arrow />
               </div>
-            </div>
-            {/* <div id="clients" className="pt-[10vh] lg:pt-[20vh]">
-              <h1 className="">Notable clients I have helped create for</h1>
-              <div className="flex overflow-x-auto space-x-4 p-2 items-center">
-                {clients.map((client, index) => (
+            </Link>
+          ))}
+        </div>
+        <div id="about" ref={ref} className="about">
+          <h1 className="text-xl pb-4">03/ About</h1>
+          <div id="aboutContainer" className="grid grid-cols-2">
+            <div className="col-span-2 lg:col-span-1">
+              {portraits.map((portrait, index) => (
+                <div
+                  key={index}
+                  className="h-[50vh] lg:h-full w-full lg:w-6/12 relative"
+                >
+                  {/* The mask element */}
                   <div
-                    key={index}
-                    className="min-w-[8rem] min-h-[4rem] bg-contain bg-no-repeat bg-center"
+                    id="mask"
+                    className="h-full w-full absolute top-0 left-0"
                     style={{
-                      backgroundImage: `url(${(client as Project).image})`,
+                      backgroundColor: "#E1DFDD",
+                      height: isInView ? "0%" : "100%",
+                      transition: "height 1.5s cubic-bezier(0.65, 0, 0.35, 1)",
+                      transitionDelay: "0.15s",
                     }}
                   ></div>
-                ))}
-              </div>
-            </div> */}
-          </div>
-        </div>
-      </div>
-      <div id="clients" className="pt-[10vh] pb-[10vh]">
-        <div className="marquee">
-          <div className="flex items-center overflow-x-scroll">
-            {clients.map((client) => (
-              <h1 className="text-[10rem]" key={client.name}>
-                {client.name}
+
+                  {/* The actual image */}
+                  <div
+                    style={{
+                      backgroundImage: `url(${(portrait as Project).image})`,
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      height: "100%",
+                    }}
+                  ></div>
+                </div>
+              ))}
+            </div>
+            <div className="col-span-2 lg:col-span-1">
+              <h1 className="lg:text-5xl pt-4 font-medium">
+                Tyler is an experienced designer combining 2D/3D motion design
+                expertise with UI/UX skills to create visually striking and
+                user-friendly experiences.
               </h1>
-            ))}
+              <div id="awards" className="pt-[5vh] lg:pt-[40vh]">
+                <h1 className="pb-4 pt-4 font-medium text-2xl">
+                  Press and awards
+                </h1>
+                <div className="grid grid-cols-2 underline font-medium text-2xl gap-4">
+                  {awards.map((award, index) => (
+                    <h1 key={index}>{award.title}</h1>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <div id="clients" className="pt-[35vh] pb-[35vh]">
+          <h1 className="text-xl pb-4">04/ Brands I've Worked On</h1>
+          <Marquee autoFill speed={500}>
+            {clients.map((client) => (
+              <div className="marquee_element" key={client.name}>
+                <h1 className="text-[5rem] lg:text-[10rem] pl-9 pr-9">
+                  {client.name}
+                </h1>
+              </div>
+            ))}
+          </Marquee>
+          <Marquee direction="right" autoFill speed={500}>
+            {clients.map((client) => (
+              <div className="marquee_element" key={client.name}>
+                <h1 className="text-[5rem] lg:text-[10rem] pl-9 pr-9">
+                  {client.name}
+                </h1>
+              </div>
+            ))}
+          </Marquee>
+        </div>
+        <div id="footer" className="pb-[10vh] relative text-2xl font-medium">
+          <div className="grid grid-cols-4 pb-[10vh]">
+            <h1 className="col-span-1">04/</h1>
+            <h1 className="col-span-1">Lets work together</h1>
+            <h1 className="col-span-1"></h1>
+            <h1 className="col-span-1"></h1>
+          </div>
+          <div className="grid grid-cols-3 pt-[5vh] pb-[5vh]">
+            <h1
+              ref={threeRef}
+              className="col-span-3 lg:col-span-2 text-4xl lg:text-[8rem] uppercase underline break-words pt-[10vh] pb-[10vh] leading-[1]"
+            >
+              tyler@tylerwest.co
+            </h1>
+          </div>
+          <div className="grid grid-cols-4 pt-[10vh]">
+            <h1 className="col-span-2 lg:col-span-1">
+              Tyler West <br /> UI Designer
+            </h1>
+            <h1 className="hidden lg:block lg:col-span-1">Instagram</h1>
+            <h1 className="hidden lg:block lg:col-span-1"></h1>
+            <h1 className="col-span-2 lg:col-span-1 text-right">
+              Designed and developed
+            </h1>
+          </div>
+          {/* <FallingCubes threeVisible={threeInView} /> */}
+        </div>
       </div>
-      <div id="footer" className="pt-[20vh] lg:pt-[35vh] pb-[10vh] relative">
-        <div className="grid grid-cols-4 pb-[10vh]">
-          <h1 className="col-span-1">04/</h1>
-          <h1 className="col-span-1">Lets work together</h1>
-          <h1 className="col-span-1"></h1>
-          <h1 className="col-span-1"></h1>
-        </div>
-        <div className="grid grid-cols-3">
-          <h1
-            ref={threeRef}
-            className="col-span-3 lg:col-span-2 text-4xl lg:text-[8rem] uppercase underline break-words pt-[10vh] pb-[10vh] leading-[1]"
-          >
-            tyler@tylerwest.co
-          </h1>
-        </div>
-        <div className="grid grid-cols-4 pt-[10vh]">
-          <h1 className="col-span-2 lg:col-span-1">
-            Tyler West <br /> UI Designer
-          </h1>
-          <h1 className="hidden lg:block lg:col-span-1">Instagram</h1>
-          <h1 className="hidden lg:block lg:col-span-1"></h1>
-          <h1 className="col-span-2 lg:col-span-1 text-right">
-            Designed and developed
-          </h1>
-        </div>
-        {/* <FallingCubes threeVisible={threeInView} /> */}
-      </div>
-    </div>
+    </PageWrapper>
   );
 }
