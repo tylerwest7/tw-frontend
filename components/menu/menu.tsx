@@ -59,11 +59,15 @@ const Menu: React.FC<Props> = () => {
             onClick={openMenu}
             className="ml-auto cursor-pointer order-2 lg:order-4"
           >
-            <h1 className="font-medium ml-auto">Menu</h1>
+            <h1 className="lg:text-2xl font-medium ml-auto">Menu</h1>
           </div>
-          <h1 className="font-medium hidden lg:block order-3">Designer</h1>
+          <h1 className="lg:text-2xl font-medium hidden lg:block order-3 lg:text-center">
+            Designer
+          </h1>
           <Link href="/home" className="grid-col-1 order-4 lg:order-2">
-            <h1 className="font-medium hidden lg:block">Grand Rapids, MI</h1>
+            <h1 className="lg:text-2xl font-medium hidden lg:block lg:text-center">
+              Grand Rapids, MI
+            </h1>
           </Link>
         </div>
       </div>
@@ -83,11 +87,19 @@ const Menu: React.FC<Props> = () => {
             >
               Close
             </h1>
-            <div className="mt-auto text-[4rem] lg:text-[9rem] pb-[10vh] font-medium">
-              <h1 onClick={handleMenu}>Home</h1>
-              <h1>Projects</h1>
-              <h1>About</h1>
-              <h1>Instagram</h1>
+            <div className="mt-auto text-[4rem] lg:text-[6rem] pb-[10vh] font-medium">
+              <Link onClick={openMenu} href="/">
+                <h1>Home</h1>
+              </Link>
+              <Link onClick={openMenu} href="/">
+                <h1>Projects</h1>
+              </Link>
+              <Link onClick={openMenu} href="/">
+                <h1>About</h1>
+              </Link>
+              <Link onClick={openMenu} href="/">
+                <h1>Instagram</h1>
+              </Link>
             </div>
           </div>
         </div>

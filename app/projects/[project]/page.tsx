@@ -65,7 +65,7 @@ export default function Project({ params }: Props) {
   return (
     <PageWrapper>
       <div className="ml-9 mr-9 lg:ml-24 lg:mr-24 text-black min-h-[100vh]">
-        <div className="grid grid-cols-4 pt-[10vh] pb-[10vh] gap-4">
+        <div className="grid grid-cols-4 pt-[20vh] pb-[10vh] gap-4">
           <h1 className="col-span-4 lg:col-span-1">01/</h1>
           <h1 className="col-span-4 lg:col-span-1">
             {work.title && work.title}
@@ -191,22 +191,25 @@ export default function Project({ params }: Props) {
               </div>
             ))}
         </div>
-        <div className="grid grid-cols-2 pt-[20vh] pb-[20vh] items-start">
-          <h1 className="col-span-2 lg:col-span-1 text-xl lg:text-8xl pb-9">
+        <div className="grid grid-cols-2 pt-[20vh] pb-[10vh] pt-[10vh] lg:pb-[20vh] items-start">
+          <h1 className="col-span-2 lg:col-span-1 text-xl lg:text-8xl pb-2 lg:pb-0">
             View next project
           </h1>
-          <div className="col-span-2 lg:col-span-1 flex flex-wrap ml-auto">
+          <div className="col-span-2 lg:col-span-1 h-full">
             {nextProjectSlug && (
               <Link
-                className="text-left lg:text-right text-lg lg:text-md w-full"
+                className="flex flex-wrap justify-end w-full h-full"
                 href={nextProjectSlug}
               >
-                <h1>{nextProjectTitle}</h1>
+                <h1 className="text-left text-xl lg:text-right lg:text-md w-full pb-9 lg:pb-0">
+                  {nextProjectTitle}
+                </h1>
+
+                <div className="mt-auto mr-auto lg:ml-auto w-[10px]">
+                  <Arrow />
+                </div>
               </Link>
             )}
-            <div className="ml-auto pt-9">
-              <Arrow />
-            </div>
           </div>
         </div>
       </div>
