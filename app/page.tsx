@@ -165,7 +165,7 @@ export default function Home() {
               scroll={true}
               key={index}
               href={`/projects/${project.slug}`}
-              className="w-screen grid grid-cols-4 items-center font-medium"
+              className="w-screen grid grid-cols-3 lg:grid-cols-4 items-center font-medium"
               style={{
                 opacity:
                   hoveredIndex === null || hoveredIndex === index ? 1 : 0.5,
@@ -189,7 +189,7 @@ export default function Home() {
               <h1 className="lg:text-4xl text-left pl-9 line-clamp-2">
                 {project.tag}
               </h1>
-              <div className="lg:text-4xl ml-auto">
+              <div className="lg:text-4xl ml-auto hidden lg:block">
                 {/* <LottieAnimation animHovered={playAnim} index={index} /> */}
                 <Arrow />
               </div>
@@ -230,12 +230,12 @@ export default function Home() {
               ))}
             </div>
             <div className="col-span-2 lg:col-span-1">
-              <h1 className="lg:text-5xl pt-4 font-medium">
+              <h1 className="lg:text-5xl pt-[4vh] font-medium">
                 Tyler is an experienced designer combining 2D/3D motion design
                 expertise with UI/UX skills to create visually striking and
                 user-friendly experiences.
               </h1>
-              <div className="grid grid-cols-2 text-black pt-[10vh] gap-9">
+              <div className="grid grid-cols-1 lg:grid-cols-2 text-xs lg:text-lg text-black pt-[4vh] lg:pt-[10vh] gap-9">
                 <h1>
                   With 3+ years of 2D/3D motion design experience. Tylers
                   strongest skillset is in 3D simulations, animation, lighting,
@@ -248,10 +248,10 @@ export default function Home() {
                 </h1>
               </div>
               <div id="awards" className="pt-[5vh] lg:pt-[20vh]">
-                <h1 className="pb-4 pt-4 font-medium text-2xl">
+                <h1 className="pb-4 pt-4 font-medium text-lg lg:text-2xl">
                   Press and awards
                 </h1>
-                <div className="grid grid-cols-2 underline font-medium text-2xl gap-4">
+                <div className="grid grid-cols-2 underline font-medium text-md lg:text-2xl gap-4">
                   {awards.map((award, index) => (
                     <h1 key={index}>{award.title}</h1>
                   ))}
@@ -260,29 +260,35 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div id="clients" className="pt-[35vh] pb-[35vh]">
+        <div
+          id="clients"
+          className="pt-[25vh] pb-[25vh] lg:pt-[35vh] lg:pb-[35vh]"
+        >
           <h1 className="text-xl pb-4">04/ Brands I've Worked On</h1>
-          <Marquee autoFill speed={500}>
+          <Marquee autoFill speed={250}>
             {clients.map((client) => (
               <div className="marquee_element" key={client.name}>
-                <h1 className="text-[5rem] lg:text-[10rem] pl-9 pr-9">
+                <h1 className="text-[3rem] lg:text-[10rem] font-medium pl-9 pr-9">
                   {client.name}
                 </h1>
               </div>
             ))}
           </Marquee>
-          <Marquee direction="right" autoFill speed={500}>
+          <Marquee direction="right" autoFill speed={250}>
             {clients.map((client) => (
               <div className="marquee_element" key={client.name}>
-                <h1 className="text-[5rem] lg:text-[10rem] pl-9 pr-9">
+                <h1 className="text-[3rem] lg:text-[10rem] font-medium pl-9 pr-9">
                   {client.name}
                 </h1>
               </div>
             ))}
           </Marquee>
         </div>
-        <div id="footer" className="pb-[10vh] relative text-2xl font-medium">
-          <div className="grid grid-cols-4 pb-[10vh]">
+        <div
+          id="footer"
+          className="pb-[10vh] relative text-lg lg:text-2xl font-medium"
+        >
+          <div className="grid grid-cols-2 lg:grid-cols-4 pb-[10vh]">
             <h1 className="col-span-1">04/ Contact Me</h1>
             <h1 className="col-span-1">Lets work together</h1>
             <h1 className="col-span-1"></h1>
@@ -291,7 +297,7 @@ export default function Home() {
           <div className="grid grid-cols-3 pt-[5vh] pb-[5vh]">
             <h1
               ref={threeRef}
-              className="col-span-3 lg:col-span-2 text-4xl lg:text-[8rem] uppercase underline break-words pt-[10vh] pb-[10vh] leading-[1]"
+              className="col-span-3 lg:col-span-2 text-4xl lg:text-[8rem] uppercase underline break-words pt-[2vh] pb-[2vh] lg:pt-[10vh] lg:pb-[10vh] leading-[1]"
             >
               tyler@tylerwest.co
             </h1>
