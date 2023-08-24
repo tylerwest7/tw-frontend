@@ -141,7 +141,7 @@ export default function Home() {
           className="pointer-events-none"
           style={{ zIndex: threeInView ? "1" : "-1" }}
         >
-          <ThreeLogo />
+          {/* <ThreeLogo /> */}
         </div>
         <div
           id="landing"

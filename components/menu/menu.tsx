@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import AnimatedTextWord from "../animatedTextWord";
 import { AppContext } from "@/app/layout";
+import { useRouter } from "next/router";
 
 interface Props {
   // Any props you might need
@@ -32,14 +33,6 @@ const Menu: React.FC<Props> = () => {
     }
   }, [showMenu]);
 
-  const handleMenu = (): void => {
-    // Scroll to the #about div
-    const aboutDiv = document.getElementById("about");
-    if (aboutDiv) {
-      aboutDiv.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <div>
       <div
@@ -61,11 +54,11 @@ const Menu: React.FC<Props> = () => {
           >
             <h1 className="lg:text-2xl font-medium ml-auto">Menu</h1>
           </div>
-          <h1 className="lg:text-2xl font-medium hidden lg:block order-3 lg:text-center">
+          <h1 className="lg:text-2xl font-medium hidden lg:block order-3 lg:text-left">
             Designer
           </h1>
           <Link href="/home" className="grid-col-1 order-4 lg:order-2">
-            <h1 className="lg:text-2xl font-medium hidden lg:block lg:text-center">
+            <h1 className="lg:text-2xl font-medium hidden lg:block lg:text-left">
               Midwest, USA
             </h1>
           </Link>
@@ -91,10 +84,10 @@ const Menu: React.FC<Props> = () => {
               <Link onClick={openMenu} href="/">
                 <h1>Home</h1>
               </Link>
-              <Link onClick={openMenu} href="/">
+              <Link onClick={openMenu} href="/projects">
                 <h1>Projects</h1>
               </Link>
-              <Link onClick={openMenu} href="/">
+              <Link onClick={openMenu} href="/about">
                 <h1>About</h1>
               </Link>
               <Link onClick={openMenu} href="/">

@@ -7,6 +7,7 @@ import Menu from "@/components/menu/menu";
 import GoogleTagManager from "@/components/GoogleTagManager";
 import { createContext, useCallback, useEffect, useState } from "react";
 import Lenis from "@studio-freight/lenis";
+import { useRouter } from "next/router";
 
 //Create context
 export const AppContext = createContext<{
