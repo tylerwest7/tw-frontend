@@ -9,7 +9,6 @@ import Menu from "@/components/menu/menu";
 export default function Custom404() {
   return (
     <div>
-      <Menu />
       <div
         className="h-screen w-screen flex flex-wrap items-center justify-center"
         style={{

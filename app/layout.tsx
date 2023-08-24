@@ -8,6 +8,7 @@ import GoogleTagManager from "@/components/GoogleTagManager";
 import { createContext, useCallback, useEffect, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import { useRouter } from "next/router";
+import PageWrapper from "@/components/pageWrapper";
 
 //Create context
 export const AppContext = createContext<{
@@ -59,6 +60,7 @@ export default function RootLayout({
       >
         <head>
           <title>Tyler West</title>
+          <link rel="icon" href="/favicon.ico" sizes="any" />
           <meta name="description" content="Tyler West Portfolio" />
           <link href="https://use.typekit.net/pgl6tup.css" rel="stylesheet" />
           <GoogleTagManager />
@@ -67,7 +69,10 @@ export default function RootLayout({
           className="text-black"
           style={{ color: darkMode ? "black" : "black" }}
         >
-          <Menu />
+          <PageWrapper>
+            <Menu />
+          </PageWrapper>
+
           {children}
           {/* <LenisScroller /> */}
         </body>
