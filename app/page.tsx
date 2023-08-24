@@ -147,7 +147,7 @@ export default function Home() {
           id="landing"
           className="grid grid-cols-1 content-end h-screen pointer-events-none"
         >
-          <div className="col-span-2 pb-[10vh] overflow-hidden">
+          <div className="col-span-2 pb-[20vh] lg:pb-[10vh] overflow-hidden">
             <h2 className="text-4xl pb-4 font-medium">01/</h2>
             <h1 className="text-4xl font-medium lg:text-[10rem] leading-none">
               Tyler West

@@ -51,10 +51,10 @@ export default function Page() {
     <div className="ml-9 mr-9 lg:ml-24 lg:mr-24">
       <ReactLenis root options={{ orientation: "horizontal" }}>
         <PageWrapper>
-          <div className="tracking-[-0.025rem] lg:tracking-[-0.05rem] pt-[15vh] flex items-center min-h-[100vh] max-h-[100vh]">
+          <div className="tracking-[-0.025rem] lg:tracking-[-0.05rem] pt-[15vh] flex items-center lg:min-h-[100vh] lg:max-h-[100vh]">
             <div
               id="gallery"
-              className="flex flex-wrap lg:flex-nowrap gap-9 pt-[100vh] lg:pt-[0vh]"
+              className="flex flex-wrap lg:flex-nowrap gap-9 pb-[5vh] lg:pt-[0vh]"
             >
               {projects.map((project, index) => (
                 <Link
