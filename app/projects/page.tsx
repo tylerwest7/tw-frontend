@@ -48,33 +48,43 @@ export default function Page() {
   });
 
   return (
-    <ReactLenis root options={{ orientation: "horizontal" }}>
-      <PageWrapper>
-        <div className="ml-9 mr-9 lg:ml-24 lg:mr-24 tracking-[-0.025rem] lg:tracking-[-0.05rem] pt-[15vh] flex items-center min-h-[100vh] max-h-[100vh]">
-          <div id="gallery" className="flex gap-9">
-            {projects.map((project, index) => (
-              <Link key={index} href={`/projects/${project.slug}`}>
-                <div
-                  className="w-[500px] h-[500px]"
-                  onMouseEnter={() => handleMouseEnter(index)}
-                  onMouseLeave={handleMouseLeave}
-                  style={{
-                    backgroundImage: `url(${
-                      (project as Project).imagePreview
-                    })`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    transition: "transform 0.6s cubic-bezier(0.37, 0, 0.63, 1)",
-                    transform: `scale(${hoveredIndex === index ? 1.15 : 1})`,
-                  }}
+    <div className="ml-9 mr-9 lg:ml-24 lg:mr-24">
+      <ReactLenis root options={{ orientation: "horizontal" }}>
+        <PageWrapper>
+          <div className="tracking-[-0.025rem] lg:tracking-[-0.05rem] pt-[15vh] flex items-center min-h-[100vh] max-h-[100vh]">
+            <div
+              id="gallery"
+              className="flex flex-wrap lg:flex-nowrap gap-9 pt-[100vh] lg:pt-[0vh]"
+            >
+              {projects.map((project, index) => (
+                <Link
+                  style={{ overflow: "hidden" }}
+                  key={index}
+                  href={`/projects/${project.slug}`}
                 >
-                  {/* <h1>{project.title}</h1> */}
-                </div>
-              </Link>
-            ))}
+                  <div
+                    className="w-[35vw] h-[200px] lg:w-[500px] lg:h-[500px]"
+                    onMouseEnter={() => handleMouseEnter(index)}
+                    onMouseLeave={handleMouseLeave}
+                    style={{
+                      backgroundImage: `url(${
+                        (project as Project).imagePreview
+                      })`,
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      transition:
+                        "transform 0.6s cubic-bezier(0.37, 0, 0.63, 1)",
+                      transform: `scale(${hoveredIndex === index ? 1.15 : 1})`,
+                    }}
+                  >
+                    {/* <h1>{project.title}</h1> */}
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </PageWrapper>
-    </ReactLenis>
+        </PageWrapper>
+      </ReactLenis>
+    </div>
   );
 }
