@@ -20,18 +20,29 @@ const Menu: React.FC<Props> = () => {
   };
 
   useEffect(() => {
-    console.log(lenis?.velocity);
+    //console.log(lenis?.velocity);
   }, []);
 
   useEffect(() => {
     if (showMenu) {
       lenis?.stop();
-      console.log("freeze scroll");
+      //console.log("freeze scroll");
     } else {
       lenis?.start();
-      console.log("start scroll");
+      //console.log("start scroll");
     }
   }, [showMenu]);
+
+  const handleLeave = () => {
+    const page = document.getElementById("page");
+
+    // Add class
+    if (page) {
+      page.classList.add("opacity-0");
+    }
+
+    setShowMenu(!showMenu);
+  };
 
   return (
     <div>
@@ -84,7 +95,7 @@ const Menu: React.FC<Props> = () => {
               <Link onClick={openMenu} href="/">
                 <h1>Home</h1>
               </Link>
-              <Link onClick={openMenu} href="/projects">
+              <Link onClick={handleLeave} href="/projects">
                 <h1>Projects</h1>
               </Link>
               <Link onClick={openMenu} href="/about">

@@ -55,7 +55,7 @@ export default function Home() {
 
   //Lock scrolling
   useEffect(() => {
-    console.log("Locking");
+    //console.log("Locking");
     //document.body.className += " overflow-hidden max-h-[100vh]";
   }, []);
 
@@ -64,7 +64,7 @@ export default function Home() {
   const threeRef = useRef(null);
   const threeInView = useInView(threeRef, { once: true });
   useEffect(() => {
-    console.log("Element is in view: ", threeInView);
+    //console.log("Element is in view: ", threeInView);
     //console.log(threeInView);
   }, [threeInView]);
 
@@ -82,7 +82,7 @@ export default function Home() {
         setProjects(fetchedProjects);
         setClients(fetchedClients);
         setPortraits(fetchedPortraits);
-        console.log(fetchedProjects);
+        //console.log(fetchedProjects);
       } catch (error) {
         console.error("Error fetching projects:", error);
       } finally {

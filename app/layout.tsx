@@ -42,7 +42,7 @@ export default function RootLayout({
     if (!lenis) {
       const newLenis = new Lenis({});
       setLenis(newLenis);
-      console.log("direction set");
+      //console.log("direction set");
     }
     requestAnimationFrame(raf);
   }, [lenis]);
