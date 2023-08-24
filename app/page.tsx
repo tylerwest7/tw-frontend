@@ -137,7 +137,12 @@ export default function Home() {
         }}
       >
         <CursorFollower size={cursorSize} hovering={isHovering} />
-        <ThreeLogo />
+        <div
+          className="pointer-events-none"
+          style={{ zIndex: threeInView ? "1" : "-1" }}
+        >
+          <ThreeLogo />
+        </div>
         <div
           id="landing"
           className="grid grid-cols-1 content-end h-screen pointer-events-none"
