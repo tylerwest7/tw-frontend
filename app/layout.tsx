@@ -60,10 +60,10 @@ export default function RootLayout({
       >
         <head>
           <title>Tyler West</title>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/icon.ico" />
           <link
             rel="icon"
-            href="/favicon.ico"
+            href="/icon.ico"
             type="image/<generated>"
             sizes="<generated>"
           />
