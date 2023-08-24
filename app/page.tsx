@@ -8,7 +8,6 @@ import { getPortraits, getProjects } from "@/sanity/sanity-utils";
 import { getClients } from "@/sanity/sanity-utils";
 import AnimatedTextCharacter from "@/components/animatedTextCharacter";
 import AnimatedTextWord from "@/components/animatedTextWord";
-import ThreeCube from "@/components/ThreeCube";
 import LottieAnimation from "@/components/lottie/arrow";
 import CursorFollower from "@/components/useCursorFollow";
 import SpinningCube from "@/components/FallingCubes";
@@ -18,6 +17,7 @@ import Arrow from "@/components/arrow";
 import Marquee from "react-fast-marquee";
 import { useRouter } from "next/router";
 import PageWrapper from "@/components/pageWrapper";
+import ThreeLogo from "@/components/threeLogo";
 
 //Create project object
 interface Project {
@@ -137,8 +137,11 @@ export default function Home() {
         }}
       >
         <CursorFollower size={cursorSize} hovering={isHovering} />
-        <ThreeCube />
-        <div id="landing" className="grid grid-cols-1 content-end h-screen">
+        <ThreeLogo />
+        <div
+          id="landing"
+          className="grid grid-cols-1 content-end h-screen pointer-events-none"
+        >
           <div className="col-span-2 pb-[10vh] overflow-hidden">
             <h2 className="text-4xl pb-4 font-medium">01/</h2>
             <h1 className="text-4xl font-medium lg:text-[10rem] leading-none">
