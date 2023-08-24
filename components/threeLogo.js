@@ -148,10 +148,37 @@ function Pointer({ vec = new THREE.Vector3() }) {
 }
 
 export default function ThreeLogo() {
+  const [depth, setDepth] = useState();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      //console.log(window.scrollY);
+      const scrollThreshold = 200; // Adjust this value to your desired scroll threshold
+      if (window.scrollY <= scrollThreshold) {
+        setDepth(false);
+        console.log(false);
+      } else {
+        setDepth(true);
+        console.log(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div
       id="3DLogo"
       className="fixed left-0 top-0 right-0 bottom-0 pointer-events-none"
+      style={{
+        zIndex: depth ? "-1" : "1",
+        opacity: depth ? "0" : "100",
+        transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
+      }}
     >
       <Canvas
         shadows
