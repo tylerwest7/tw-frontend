@@ -15,7 +15,7 @@ export default function Custom404() {
           backgroundColor: "#E1DFDD",
         }}
       >
-        <h1 className="w-full text-8xl font-medium text-center mt-auto pb-9">
+        <h1 className="w-full text-4xl lg:text-8xl font-medium text-center mt-auto pb-9">
           You seem lost
         </h1>
         <Link

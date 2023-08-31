@@ -101,7 +101,10 @@ const Menu: React.FC<Props> = () => {
               <Link onClick={openMenu} href="/about">
                 <h1>About</h1>
               </Link>
-              <Link onClick={openMenu} href="/">
+              <Link
+                onClick={openMenu}
+                href="https://www.instagram.com/tylerwest.design/"
+              >
                 <h1>Instagram</h1>
               </Link>
             </div>

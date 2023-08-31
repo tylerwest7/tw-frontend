@@ -119,22 +119,11 @@ export default function Home() {
     setIsHovering(false);
   };
 
-  //Exit anim
-  const [isVisible, setIsVisible] = useState(true); // State to control visibility
-
-  const handleExit = () => {
-    setIsVisible(false);
-  };
-
   return (
     <PageWrapper>
       <div
         id="page"
         className="ml-9 mr-9 lg:ml-24 lg:mr-24  tracking-[-0.025rem] lg:tracking-[-0.05rem]"
-        style={{
-          opacity: isVisible ? "1" : "0",
-          transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
-        }}
       >
         <CursorFollower size={cursorSize} hovering={isHovering} />
         <div
@@ -166,10 +155,9 @@ export default function Home() {
           onMouseLeave={() => cursorLeaving()}
           className="flex items-center flex-wrap pt-[20vh] pb-[20vh] min-h-[20vh]"
         >
-          <h1 className="text-xl">02/ Favorite Projects</h1>
+          <h1 className="pb-4 text-xl">02/ Favorite Projects</h1>
           {projects.map((project, index) => (
             <Link
-              onClick={handleExit}
               scroll={true}
               key={index}
               href={`/projects/${project.slug}`}
