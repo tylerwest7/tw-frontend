@@ -47,7 +47,7 @@ export default function About() {
           {portraits.map((portrait: { image: string }, index) => (
             <div key={index} className="mt-9">
               <div
-                className="h-[45vh] lg:h-[90vh]"
+                className="h-[45vh] lg:h-[90vh] w-full lg:w-2/4"
                 style={{
                   backgroundImage: `url(${portrait?.image})`,
                   backgroundSize: "cover",

@@ -29,6 +29,7 @@ export async function getProject(slug: string): Promise<Project> {
       altText,
       desc,
       role,
+      agencies,
       "slug": slug.current,
       "image": image.asset->url,
       url,

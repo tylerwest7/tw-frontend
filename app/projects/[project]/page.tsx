@@ -14,6 +14,7 @@ type Props = {
     role: string;
     videolink: string;
     projectVideos: string;
+    agencies: string;
   };
 };
 
@@ -68,9 +69,10 @@ export default function Project({ params }: Props) {
         <div className="grid grid-cols-4 pt-[20vh] pb-[10vh] gap-4">
           <h1 className="col-span-4 lg:col-span-1">01/</h1>
           <h1 className="col-span-4 lg:col-span-1">
-            {work.title && work.title}
+            {work.agencies && work.agencies}
           </h1>
           <div className="col-span-4 lg:col-span-2">
+            <h1 className="pb-9">{work.title && work.title}</h1>
             <h1 className="pb-9">{work.desc && work.desc}</h1>
             <h1 className="text-sm opacity-50">{work.role && work.role}</h1>
           </div>
@@ -133,7 +135,7 @@ export default function Project({ params }: Props) {
           </div>
         </Suspense>
         <div id="videos">
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-2 gap-4">
             {work.projectVideos &&
               work.projectVideos.map((videoItem: any, index: any) => (
                 <div key={index} className="col-span-1">
@@ -173,7 +175,7 @@ export default function Project({ params }: Props) {
               ))}
           </div>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
           {work.projectImages &&
             work.projectImages.map((project: any, index: any) => (
               <div key={index} className="col-span-1">
