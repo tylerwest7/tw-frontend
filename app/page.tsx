@@ -82,7 +82,7 @@ export default function Home() {
         setProjects(fetchedProjects);
         setClients(fetchedClients);
         setPortraits(fetchedPortraits);
-        //console.log(fetchedProjects);
+        console.log(fetchedProjects);
       } catch (error) {
         console.error("Error fetching projects:", error);
       } finally {
@@ -134,7 +134,7 @@ export default function Home() {
         </div>
         <div
           id="landing"
-          className="grid grid-cols-1 content-end h-screen pointer-events-none"
+          className="grid grid-cols-1 content-end h-screen pointer-events-none relative"
         >
           <div className="col-span-2 pb-[20vh] lg:pb-[10vh] overflow-hidden">
             <h2 className="text-4xl pb-4 font-medium">01/</h2>
@@ -142,11 +142,36 @@ export default function Home() {
               Tyler West
             </h1>
             <h1 className="text-4xl font-medium lg:text-[10rem] leading-none">
-              UI Designer
+              Designer
             </h1>
-            {/* <AnimatedTextCharacter padding="0rem" text="/01" />
-            <AnimatedTextCharacter padding="0rem" text="Tyler West" />
-            <AnimatedTextCharacter padding="1rem" text="UI Designer" /> */}
+          </div>
+          <div
+            id="landing-videos"
+            className="h-full w-full absolute top-0 right-0 bottom-0 left-0 hidden lg:grid grid-cols-1 lg:grid-cols-3 gap-40 items-center"
+          >
+            {projects.slice(0, 3).map((project, index) => {
+              let translateY;
+              if (index === 0) {
+                translateY = 0;
+              } else if (index === 1) {
+                translateY = 50;
+              } else {
+                translateY = -35;
+              }
+
+              return (
+                <div
+                  className={`translate-y-[${translateY}%] w-full h-48 lg:h-[30rem] z-[-10]`}
+                  key={index}
+                  style={{
+                    backgroundImage: `url(${project.imagePreview})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+              );
+            })}
           </div>
         </div>
         <div
