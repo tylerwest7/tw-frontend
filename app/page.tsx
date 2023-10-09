@@ -154,21 +154,24 @@ export default function Home() {
               if (index === 0) {
                 translateY = 0;
               } else if (index === 1) {
-                translateY = 50;
+                translateY = "50%";
               } else {
-                translateY = -35;
+                translateY = "-35%";
               }
+
+              const divStyle = {
+                transform: `translateY(${translateY})`,
+                backgroundImage: `url(${project.imagePreview})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              };
 
               return (
                 <div
-                  className={`translate-y-[${translateY}%] w-full h-48 lg:h-[30rem] z-[-10]`}
+                  className="w-full h-48 lg:h-[30rem] z-[-10]" // Keep the classes here
+                  style={divStyle} // Apply the styles here
                   key={index}
-                  style={{
-                    backgroundImage: `url(${project.imagePreview})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  }}
                 ></div>
               );
             })}
