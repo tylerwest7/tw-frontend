@@ -85,6 +85,11 @@ export default function Page() {
           </div>
         </PageWrapper>
       </ReactLenis>
+      <div className="fixed top-0 left-0 right-0 bottom-0 grid items-end pointer-events-none">
+        <h1 className="black ml-9 mr-9 lg:ml-24 lg:mr-24 pb-9">
+          Scroll to browse projects
+        </h1>
+      </div>
     </div>
   );
 }

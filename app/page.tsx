@@ -183,7 +183,7 @@ export default function Home() {
           onMouseLeave={() => cursorLeaving()}
           className="flex items-center flex-wrap pt-[20vh] pb-[20vh] min-h-[20vh]"
         >
-          <h1 className="pb-4 text-xl">02/ Favorite Projects</h1>
+          <h1 className="pb-4 text-xl font-medium">02/ Favorite Projects</h1>
           {projects.map((project, index) => (
             <Link
               scroll={true}
@@ -221,7 +221,7 @@ export default function Home() {
           ))}
         </div>
         <div id="about" ref={ref} className="about">
-          <h1 className="text-xl pb-4">03/ About</h1>
+          <h1 className="text-xl pb-4 font-medium">03/ About</h1>
           <div id="aboutContainer" className="grid grid-cols-2">
             <div className="col-span-2 lg:col-span-1">
               {portraits.map((portrait, index) => (
@@ -259,7 +259,7 @@ export default function Home() {
                 expertise with UI/UX skills to create visually striking and
                 user-friendly experiences.
               </h1>
-              <div className="grid grid-cols-1 lg:grid-cols-2 text-xs lg:text-md text-black pt-[4vh] lg:pt-[10vh] gap-9">
+              <div className="grid grid-cols-1 lg:grid-cols-2 text-md lg:text-md text-black pt-[4vh] lg:pt-[10vh] gap-9 font-medium">
                 <h1>
                   With 3+ years of 2D/3D motion design experience. Tylers
                   strongest skillset is in 3D simulations, animation, lighting,
@@ -288,7 +288,7 @@ export default function Home() {
           id="clients"
           className="pt-[25vh] pb-[25vh] lg:pt-[35vh] lg:pb-[35vh]"
         >
-          <h1 className="text-xl pb-4">04/ Brands Ive Worked On</h1>
+          <h1 className="text-xl pb-4 font-medium">04/ Brands Ive Worked On</h1>
           <Marquee autoFill speed={250}>
             {clients.map((client) => (
               <div className="marquee_element" key={client.name}>
@@ -318,7 +318,7 @@ export default function Home() {
           </Marquee>
         </div>
         <div id="footer" className="pb-[10vh] relative text-lg lg:text-xl">
-          <div className="grid grid-cols-2 lg:grid-cols-4 pb-[10vh]">
+          <div className="grid grid-cols-2 lg:grid-cols-4 pb-[10vh] font-medium">
             <h1 className="col-span-1">04/ Contact Me</h1>
             <h1 className="col-span-1">Lets work together</h1>
             <h1 className="col-span-1"></h1>
@@ -332,15 +332,13 @@ export default function Home() {
               tyler@tylerwest.co
             </h1>
           </div>
-          <div className="grid grid-cols-4 pt-[10vh]">
+          <div className="grid grid-cols-4 pt-[10vh] font-medium">
             <h1 className="col-span-2 lg:col-span-1">
               Tyler West <br /> UI Designer
             </h1>
             <h1 className="hidden lg:block lg:col-span-1">Instagram</h1>
             <h1 className="hidden lg:block lg:col-span-1"></h1>
-            <h1 className="col-span-2 lg:col-span-1 text-right">
-              Designed and developed
-            </h1>
+            <h1 className="col-span-2 lg:col-span-1 text-right">Back to Top</h1>
           </div>
           {/* <FallingCubes threeVisible={threeInView} /> */}
         </div>

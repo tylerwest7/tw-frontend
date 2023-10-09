@@ -91,7 +91,7 @@ const Menu: React.FC<Props> = () => {
             >
               Close
             </h1>
-            <div className="mt-auto text-[4rem] lg:text-[6rem] pb-[10vh] font-medium">
+            <div className="mt-auto text-[3rem] lg:text-[6rem] pb-[10vh] font-medium">
               <Link onClick={openMenu} href="/">
                 <h1>Home</h1>
               </Link>

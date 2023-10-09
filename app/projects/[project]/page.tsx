@@ -65,7 +65,7 @@ export default function Project({ params }: Props) {
 
   return (
     <PageWrapper>
-      <div className="ml-9 mr-9 lg:ml-24 lg:mr-24 text-black min-h-[100vh]">
+      <div className="ml-9 mr-9 lg:ml-24 lg:mr-24 text-black min-h-[100vh] font-medium">
         <div className="grid grid-cols-4 pt-[20vh] pb-[10vh] gap-4">
           <h1 className="col-span-4 lg:col-span-1">01/</h1>
           <h1 className="col-span-4 lg:col-span-1">
@@ -80,7 +80,7 @@ export default function Project({ params }: Props) {
         <Suspense
           fallback={
             <div className="absolute left-0 right-0 top-0 bottom-0 bg-red-500">
-              Were loading the content
+              Loading the content
             </div>
           }
         >
@@ -91,7 +91,7 @@ export default function Project({ params }: Props) {
                   <h1>Loading video...</h1>
                 ) : (
                   <video
-                    className="w-full"
+                    className="lg:w-6/12"
                     controls={true}
                     autoPlay
                     muted
@@ -207,7 +207,7 @@ export default function Project({ params }: Props) {
                   {nextProjectTitle}
                 </h1>
 
-                <div className="mt-auto mr-auto lg:ml-auto lg:mr-0 w-[10px]">
+                <div className="mr-auto lg:ml-auto lg:mr-0 pt-5">
                   <Arrow />
                 </div>
               </Link>
