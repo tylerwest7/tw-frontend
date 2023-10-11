@@ -18,6 +18,7 @@ import Marquee from "react-fast-marquee";
 import { useRouter } from "next/router";
 import PageWrapper from "@/components/pageWrapper";
 import ThreeLogo from "@/components/threeLogo";
+import { AppContext } from "./layout";
 
 //Create project object
 interface Project {
@@ -82,7 +83,7 @@ export default function Home() {
         setProjects(fetchedProjects);
         setClients(fetchedClients);
         setPortraits(fetchedPortraits);
-        console.log(fetchedProjects);
+        //console.log(fetchedProjects);
       } catch (error) {
         console.error("Error fetching projects:", error);
       } finally {
@@ -119,6 +120,16 @@ export default function Home() {
     setIsHovering(false);
   };
 
+  const appContext = useContext(AppContext);
+  const lenis = appContext?.lenis;
+
+  //Back to top
+  const handleTop = () => {
+    console.log("Going back to top");
+    const topOfPage = document.getElementById("#landing");
+    lenis?.scrollTo("top");
+  };
+
   return (
     <PageWrapper>
       <div
@@ -136,7 +147,7 @@ export default function Home() {
           id="landing"
           className="grid grid-cols-1 content-end h-screen pointer-events-none relative"
         >
-          <div className="col-span-2 pb-[20vh] lg:pb-[10vh] overflow-hidden">
+          <div className="col-span-2 pb-[20vh] lg:pb-[10vh] overflow-hidden z-[9]">
             <h2 className="text-4xl pb-4 font-medium">01/</h2>
             <h1 className="text-4xl font-medium lg:text-[10rem] leading-none">
               Tyler West
@@ -147,20 +158,38 @@ export default function Home() {
           </div>
           <div
             id="landing-videos"
-            className="h-full w-full absolute top-0 right-0 bottom-0 left-0 hidden lg:grid grid-cols-1 lg:grid-cols-3 gap-40 items-center"
+            className="h-full w-full absolute top-0 right-0 bottom-0 left-0 lg:grid grid-cols-1 lg:grid-cols-3 gap-40 items-center"
           >
             {projects.slice(0, 3).map((project, index) => {
               let translateY;
-              if (index === 0) {
-                translateY = 0;
-              } else if (index === 1) {
-                translateY = "50%";
+              let translateX;
+
+              if (window.innerWidth < 1080) {
+                if (index === 0) {
+                  translateY = "100%";
+                  translateX = "100%";
+                } else if (index === 1) {
+                  translateY = "80%";
+                  translateX = "-10%";
+                } else {
+                  translateY = "100%";
+                  translateX = "100%";
+                }
               } else {
-                translateY = "-35%";
+                if (index === 0) {
+                  translateY = 0;
+                  translateX = "0%";
+                } else if (index === 1) {
+                  translateY = "75%";
+                  translateX = "0%";
+                } else {
+                  translateY = "-35%";
+                  translateX = "0%";
+                }
               }
 
               const divStyle = {
-                transform: `translateY(${translateY})`,
+                transform: `translateY(${translateY}) translateX(${translateX})`,
                 backgroundImage: `url(${project.imagePreview})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -169,7 +198,7 @@ export default function Home() {
 
               return (
                 <div
-                  className="w-full h-48 lg:h-[30rem] z-[-10]" // Keep the classes here
+                  className="lg:w-full w-6/12 h-48 lg:h-[20rem] z-[-10]" // Keep the classes here
                   style={divStyle} // Apply the styles here
                   key={index}
                 ></div>
@@ -327,7 +356,7 @@ export default function Home() {
           <div className="grid grid-cols-3 pt-[5vh] pb-[5vh]">
             <h1
               ref={threeRef}
-              className="col-span-3 lg:col-span-2 text-4xl lg:text-[8rem] uppercase underline break-words pt-[2vh] pb-[2vh] lg:pt-[10vh] lg:pb-[10vh] leading-[1] font-medium"
+              className="col-span-3 lg:col-span-2 text-5xl lg:text-[8rem] uppercase underline break-words pt-[2vh] pb-[2vh] lg:pt-[10vh] lg:pb-[10vh] leading-[1] font-medium"
             >
               tyler@tylerwest.co
             </h1>
@@ -338,7 +367,12 @@ export default function Home() {
             </h1>
             <h1 className="hidden lg:block lg:col-span-1">Instagram</h1>
             <h1 className="hidden lg:block lg:col-span-1"></h1>
-            <h1 className="col-span-2 lg:col-span-1 text-right">Back to Top</h1>
+            <h1
+              onClick={() => handleTop()}
+              className="col-span-2 lg:col-span-1 text-right"
+            >
+              Back to Top
+            </h1>
           </div>
           {/* <FallingCubes threeVisible={threeInView} /> */}
         </div>

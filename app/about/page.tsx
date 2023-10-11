@@ -47,7 +47,7 @@ export default function About() {
           {portraits.map((portrait: { image: string }, index) => (
             <div key={index} className="mt-9">
               <div
-                className="h-[45vh] lg:h-[90vh] w-full lg:w-2/4"
+                className="h-[45vh] lg:h-[80vh] w-full lg:w-[75%]"
                 style={{
                   backgroundImage: `url(${portrait?.image})`,
                   backgroundSize: "cover",
@@ -58,8 +58,10 @@ export default function About() {
             </div>
           ))}
           <div className="">
-            <h1 className="text-4xl lg:text-[4rem] pt-9 pb-9">About</h1>
-            <div className="grid grid-cols-1 lg:grid-cols-2">
+            <h1 className="text-4xl lg:text-[4rem] pt-9 pb-9 font-medium">
+              About
+            </h1>
+            <div className="grid grid-cols-1 lg:grid-cols-1">
               <h1 className="p-1">
                 Introducing Tyler, a proficient 3D designer with roots in
                 Michigan. Starting as a motion design intern at Hornet, he

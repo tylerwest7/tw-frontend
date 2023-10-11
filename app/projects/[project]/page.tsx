@@ -106,7 +106,7 @@ export default function Project({ params }: Props) {
                   <h1>Loading video...</h1>
                 ) : (
                   <video
-                    className="w-full"
+                    className="lg:w-6/12"
                     controls={true}
                     autoPlay
                     muted={sound}
@@ -193,26 +193,23 @@ export default function Project({ params }: Props) {
               </div>
             ))}
         </div>
-        <div className="grid grid-cols-2 pt-[20vh] pb-[10vh] pt-[10vh] lg:pb-[20vh] items-start">
-          <h1 className="col-span-2 lg:col-span-1 text-xl lg:text-8xl pb-2 lg:pb-0">
-            View next project
-          </h1>
-          <div className="col-span-2 lg:col-span-1 h-full">
-            {nextProjectSlug && (
-              <Link
-                className="flex flex-wrap justify-end w-full h-full"
-                href={nextProjectSlug}
-              >
-                <h1 className="text-left text-xl lg:text-right lg:text-md w-full pb-9 lg:pb-0">
+        <div className="pt-[20vh] pb-[10vh] pt-[10vh] lg:pb-[20vh] items-start">
+          {nextProjectSlug && (
+            <Link
+              href={nextProjectSlug}
+              className="grid grid-cols-1 lg:grid-cols-2"
+            >
+              <h1 className="text-4xl">View next project</h1>
+              <div className="grid items-end">
+                <h1 className="lg:text-right pt-4 pb-4 lg:pt-0 lg:pb-8">
                   {nextProjectTitle}
                 </h1>
-
-                <div className="mr-auto lg:ml-auto lg:mr-0 pt-5">
+                <div className="lg:ml-auto">
                   <Arrow />
                 </div>
-              </Link>
-            )}
-          </div>
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </PageWrapper>
