@@ -304,7 +304,7 @@ export default function Home() {
                 <h1 className="pb-4 pt-4 font-medium text-lg lg:text-2xl">
                   Press and awards
                 </h1>
-                <div className="grid grid-cols-2 underline font-medium text-md lg:text-2xl gap-4">
+                <div className="grid grid-cols-2 underline font-medium text-md lg:text-1xl gap-2">
                   {awards.map((award, index) => (
                     <h1 key={index}>{award.title}</h1>
                   ))}
@@ -365,7 +365,15 @@ export default function Home() {
             <h1 className="col-span-2 lg:col-span-1">
               Tyler West <br /> UI Designer
             </h1>
-            <h1 className="hidden lg:block lg:col-span-1">Instagram</h1>
+            <h1 className="hidden lg:block lg:col-span-1">
+              <a
+                href="https://www.instagram.com/tylerwest.design/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram
+              </a>
+            </h1>
             <h1 className="hidden lg:block lg:col-span-1"></h1>
             <h1
               onClick={() => handleTop()}

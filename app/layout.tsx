@@ -4,11 +4,11 @@ import "../styles/globals.css";
 import { Inter } from "next/font/google";
 import LenisScroller from "@/components/lenis-scroller";
 import Menu from "@/components/menu/menu";
-import GoogleTagManager from "@/components/GoogleTagManager";
 import { createContext, useCallback, useEffect, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import { useRouter } from "next/router";
 import PageWrapper from "@/components/pageWrapper";
+import { Analytics } from "@vercel/analytics/react";
 
 //Create context
 export const AppContext = createContext<{
@@ -75,7 +75,6 @@ export default function RootLayout({
           />
           <meta name="description" content="Tyler West Portfolio" />
           <link href="https://use.typekit.net/pgl6tup.css" rel="stylesheet" />
-          <GoogleTagManager />
         </head>
         <body
           className="text-black"
@@ -89,6 +88,7 @@ export default function RootLayout({
           {/* <LenisScroller /> */}
         </body>
       </html>
+      <Analytics />
     </AppContext.Provider>
   );
 }

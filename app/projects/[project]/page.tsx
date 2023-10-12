@@ -193,7 +193,7 @@ export default function Project({ params }: Props) {
               </div>
             ))}
         </div>
-        <div className="pt-[20vh] pb-[10vh] pt-[10vh] lg:pb-[20vh] items-start">
+        <div className="pt-[20vh] pb-[10vh] pt-[10vh] lg:pb-[10vh] items-start">
           {nextProjectSlug && (
             <Link
               href={nextProjectSlug}
