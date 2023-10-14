@@ -362,9 +362,7 @@ export default function Home() {
             </h1>
           </div>
           <div className="grid grid-cols-4 pt-[10vh] font-medium">
-            <h1 className="col-span-2 lg:col-span-1">
-              Tyler West <br /> UI Designer
-            </h1>
+            <h1 className="col-span-2 lg:col-span-1">Tyler West</h1>
             <h1 className="hidden lg:block lg:col-span-1">
               <a
                 href="https://www.instagram.com/tylerwest.design/"

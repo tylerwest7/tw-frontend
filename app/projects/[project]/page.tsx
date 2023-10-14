@@ -66,13 +66,11 @@ export default function Project({ params }: Props) {
   return (
     <PageWrapper>
       <div className="ml-9 mr-9 lg:ml-24 lg:mr-24 text-black min-h-[100vh] font-medium">
-        <div className="grid grid-cols-4 pt-[20vh] pb-[10vh] gap-4">
-          <h1 className="col-span-4 lg:col-span-1">01/</h1>
-          <h1 className="col-span-4 lg:col-span-1">
-            {work.agencies && work.agencies}
-          </h1>
-          <div className="col-span-4 lg:col-span-2">
-            <h1 className="pb-9">{work.title && work.title}</h1>
+        <div className="grid lg:grid-cols-2 pt-[20vh] pb-[10vh] gap-4">
+          <div className="pb-9 text-6xl">
+            <h1 className="lg:pr-4">{work.title && work.title}</h1>
+          </div>
+          <div className="">
             <h1 className="pb-9">{work.desc && work.desc}</h1>
             <h1 className="text-sm opacity-50">{work.role && work.role}</h1>
           </div>
@@ -91,7 +89,7 @@ export default function Project({ params }: Props) {
                   <h1>Loading video...</h1>
                 ) : (
                   <video
-                    className="lg:w-6/12"
+                    className="w-full"
                     controls={true}
                     autoPlay
                     muted
@@ -106,7 +104,7 @@ export default function Project({ params }: Props) {
                   <h1>Loading video...</h1>
                 ) : (
                   <video
-                    className="lg:w-6/12"
+                    className="w-full"
                     controls={true}
                     autoPlay
                     muted={sound}
