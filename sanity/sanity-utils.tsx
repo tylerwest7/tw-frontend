@@ -74,3 +74,19 @@ export async function getPortraits() {
       }`
   );
 }
+
+export async function getLabs() {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "labs"]{
+        _id,
+        _createdAt,
+        name,
+        alt,
+        bio,
+        "slug": slug.current,
+        "image": image.asset->url,
+        url,
+        content
+      }`
+  );
+}

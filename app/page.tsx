@@ -54,12 +54,6 @@ export default function Home() {
     //console.log("Element is in view: ", isInView);
   }, [isInView]);
 
-  //Lock scrolling
-  useEffect(() => {
-    //console.log("Locking");
-    //document.body.className += " overflow-hidden max-h-[100vh]";
-  }, []);
-
   //3D animation
   const [mass, setMass] = useState<number>(0);
   const threeRef = useRef(null);
