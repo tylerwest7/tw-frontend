@@ -4,7 +4,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import LenisScroller from "@/components/lenis-scroller";
-import { getPortraits, getProjects } from "@/sanity/sanity-utils";
+import { getLabs, getPortraits, getProjects } from "@/sanity/sanity-utils";
 import { getClients } from "@/sanity/sanity-utils";
 import AnimatedTextCharacter from "@/components/animatedTextCharacter";
 import AnimatedTextWord from "@/components/animatedTextWord";
@@ -19,6 +19,7 @@ import { useRouter } from "next/router";
 import PageWrapper from "@/components/pageWrapper";
 import ThreeLogo from "@/components/threeLogo";
 import { AppContext } from "./layout";
+import project from "@/sanity/schemas/project-schema";
 
 //Create project object
 interface Project {
@@ -29,6 +30,7 @@ interface Project {
   tag?: string;
   title?: string;
   projectImages?: string;
+  //labs?: string;
   // Other properties...
 }
 
@@ -41,6 +43,8 @@ export default function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
   const [portraits, setPortraits] = useState([]);
+  const [labs, setLabs] = useState<Project[]>([]);
+
   const [awards, setAwards] = useState([
     { title: "Designers are scary!", link: "https://example.com/item1" },
     { title: "Stache feature", link: "https://example.com/item2" },
@@ -74,6 +78,8 @@ export default function Home() {
         const fetchedProjects = await getProjects();
         const fetchedClients = await getClients();
         const fetchedPortraits = await getPortraits();
+        const fetchedLabs = await getLabs();
+        setLabs(fetchedLabs);
         setProjects(fetchedProjects);
         setClients(fetchedClients);
         setPortraits(fetchedPortraits);
@@ -184,7 +190,8 @@ export default function Home() {
 
               const divStyle = {
                 transform: `translateY(${translateY}) translateX(${translateX})`,
-                backgroundImage: `url(${project.imagePreview})`,
+                //backgroundImage: `url(${project.imagePreview})`,
+                backgroundImage: `url(${labs[index].image})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
