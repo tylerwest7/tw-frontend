@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import AnimatedTextWord from "../animatedTextWord";
 import { AppContext } from "@/app/layout";
-import { useRouter } from "next/router";
 
 interface Props {
   // Any props you might need
@@ -10,6 +8,7 @@ interface Props {
 
 const Menu: React.FC<Props> = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [hideHeader, setHideHeader] = useState<boolean>(false);
   const appContext = useContext(AppContext);
 
   // Check if appContext is null before destructuring lenis
@@ -44,6 +43,14 @@ const Menu: React.FC<Props> = () => {
     setShowMenu(!showMenu);
   };
 
+  // Check the pathname and update the hideHeader state
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      console.log(window.location.pathname); // Debugging line to check the pathname
+      setHideHeader(window.location.pathname === "/admin");
+    }
+  }, []);
+
   return (
     <div>
       <div
@@ -53,6 +60,7 @@ const Menu: React.FC<Props> = () => {
           borderBottomWidth: "4px",
           borderColor: "black",
           backgroundColor: "#E1DFDD",
+          display: hideHeader ? "none" : "block", // Correctly applying display property
         }}
       >
         <div className="grid grid-cols-2 lg:grid-cols-4 text-xl font-medium">
