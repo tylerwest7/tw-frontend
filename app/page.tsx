@@ -2,24 +2,15 @@
 
 import { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
-import LenisScroller from "@/components/lenis-scroller";
+import { useInView } from "framer-motion";
 import { getLabs, getPortraits, getProjects } from "@/sanity/sanity-utils";
 import { getClients } from "@/sanity/sanity-utils";
-import AnimatedTextCharacter from "@/components/animatedTextCharacter";
-import AnimatedTextWord from "@/components/animatedTextWord";
-import LottieAnimation from "@/components/lottie/arrow";
 import CursorFollower from "@/components/useCursorFollow";
-import SpinningCube from "@/components/FallingCubes";
-import FallingCubes from "@/components/FallingCubes";
 import Link from "@/components/Link";
-import Arrow from "@/components/arrow";
 import Marquee from "react-fast-marquee";
-import { useRouter } from "next/router";
 import PageWrapper from "@/components/pageWrapper";
-import ThreeLogo from "@/components/threeLogo";
 import { AppContext } from "./layout";
-import project from "@/sanity/schemas/project-schema";
+import Footer from "@/components/footer/footer";
 
 //Create project object
 interface Project {
@@ -30,8 +21,17 @@ interface Project {
   tag?: string;
   title?: string;
   projectImages?: string;
-  //labs?: string;
-  // Other properties...
+}
+
+interface Portrait {
+  alt: string;
+  content: string | null;
+  image: string;
+  name: string;
+  slug: string | null;
+  url: string | null;
+  _id: string;
+  _createdAt: string;
 }
 
 interface Client {
@@ -42,7 +42,7 @@ export default function Home() {
   //Use state
   const [projects, setProjects] = useState<Project[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
-  const [portraits, setPortraits] = useState([]);
+  const [portraits, setPortraits] = useState<Portrait[]>([]);
   const [labs, setLabs] = useState<Project[]>([]);
 
   const [awards, setAwards] = useState([
@@ -57,15 +57,6 @@ export default function Home() {
   useEffect(() => {
     //console.log("Element is in view: ", isInView);
   }, [isInView]);
-
-  //3D animation
-  const [mass, setMass] = useState<number>(0);
-  const threeRef = useRef(null);
-  const threeInView = useInView(threeRef, { once: true });
-  useEffect(() => {
-    //console.log("Element is in view: ", threeInView);
-    //console.log(threeInView);
-  }, [threeInView]);
 
   //Loading
   const [isLoading, setIsLoading] = useState<boolean>(true); // Start with loading state as true
@@ -93,19 +84,6 @@ export default function Home() {
     fetchProjects();
   }, []);
 
-  //Project hover effects
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [playAnim, setPlayAnim] = useState<boolean>(false);
-
-  const handleHover = (index: any) => {
-    setHoveredIndex(index);
-    setPlayAnim(true);
-  };
-  const handleMouseLeave = () => {
-    setHoveredIndex(null);
-    setPlayAnim(false);
-  };
-
   //Cursor hover
   const [cursorSize, setCursorSize] = useState<number>(1);
   const [isHovering, setIsHovering] = useState<boolean>(false);
@@ -120,15 +98,12 @@ export default function Home() {
     setIsHovering(false);
   };
 
+  useEffect(() => {
+    console.log(portraits);
+  }, [portraits]);
+
   const appContext = useContext(AppContext);
   const lenis = appContext?.lenis;
-
-  //Back to top
-  const handleTop = () => {
-    console.log("Going back to top");
-    const topOfPage = document.getElementById("#landing");
-    lenis?.scrollTo("top");
-  };
 
   return (
     <PageWrapper>
@@ -136,188 +111,162 @@ export default function Home() {
         id="page"
         className="ml-9 mr-9 lg:ml-24 lg:mr-24  tracking-[-0.025rem] lg:tracking-[-0.05rem]"
       >
-        <CursorFollower size={cursorSize} hovering={isHovering} />
-        <div
-          className="pointer-events-none"
-          style={{ zIndex: threeInView ? "1" : "-1" }}
-        >
-          {/* <ThreeLogo /> */}
+        <div className="pl-10 pr-10 pt-4 pb-4 bg-black fixed bottom-0 right-0 text-gray-50">
+          Home
         </div>
+        <CursorFollower size={cursorSize} hovering={isHovering} />
+        <div className="pointer-events-none"></div>
         <div
           id="landing"
-          className="grid grid-cols-1 content-end h-screen pointer-events-none relative"
+          className="grid grid-cols-1 md:grid-cols-5 content-center md:h-screen pointer-events-none relative pt-44 pb-44"
         >
-          <div className="col-span-2 pb-[20vh] lg:pb-[10vh] overflow-hidden z-[9]">
-            <h2 className="text-4xl pb-4 font-medium">01/</h2>
-            <h1 className="text-4xl font-medium lg:text-[10rem] leading-none">
+          <div className="md:col-span-2 relative">
+            <h1 className="text-xl hidden md:text-6xl xl:text-7xl md:block font-medium">
               Tyler West
             </h1>
-            <h1 className="text-4xl font-medium lg:text-[10rem] leading-none">
-              Designer
-            </h1>
+            <div
+              id="arrow"
+              className="absolute bottom-0 left-0 hidden md:block"
+            >
+              <svg
+                width="75"
+                height="89"
+                viewBox="0 0 75 89"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M37.5 0V78" stroke="black" stroke-width="8" />
+                <path
+                  d="M3 48.5L37.5 83L72 48.5"
+                  stroke="black"
+                  stroke-width="8"
+                />
+              </svg>
+            </div>
           </div>
-          <div
-            id="landing-videos"
-            className="h-full w-full absolute top-0 right-0 bottom-0 left-0 lg:grid grid-cols-1 lg:grid-cols-3 gap-40 items-center"
-          >
-            {projects.slice(0, 3).map((project, index) => {
-              let translateY;
-              let translateX;
-
-              if (window.innerWidth < 1080) {
-                if (index === 0) {
-                  translateY = "100%";
-                  translateX = "100%";
-                } else if (index === 1) {
-                  translateY = "80%";
-                  translateX = "-10%";
-                } else {
-                  translateY = "100%";
-                  translateX = "100%";
-                }
-              } else {
-                if (index === 0) {
-                  translateY = 0;
-                  translateX = "0%";
-                } else if (index === 1) {
-                  translateY = "75%";
-                  translateX = "0%";
-                } else {
-                  translateY = "-35%";
-                  translateX = "0%";
-                }
-              }
-
-              const divStyle = {
-                transform: `translateY(${translateY}) translateX(${translateX})`,
-                //backgroundImage: `url(${project.imagePreview})`,
-                backgroundImage: `url(${labs[index].image})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              };
-
-              return (
-                <div
-                  className="lg:w-full w-6/12 h-48 lg:h-[20rem] z-[-10]" // Keep the classes here
-                  style={divStyle} // Apply the styles here
-                  key={index}
-                ></div>
-              );
-            })}
+          <div className="col-span-3">
+            <h1 className="text-4xl lg:text-6xl xl:text-7xl font-medium md:pb-10">
+              Tyler is a UI/UX designer with a focus on creating immersive XR
+              experiences.
+            </h1>
+            <h1 className="text-1xl md:text-3xl xl:text-5xl font-medium pt-5 pb-16 md:pb-44 md:pb-24">
+              In addition to his expertise in XR, Tyler is also a skilled 3D
+              designer. He creates detailed models and environments that bring
+              concepts to life with precision and creativity.
+            </h1>
+            <div className="grid grid-cols-5 gap-4">
+              <div
+                className="col-span-3 h-40 xl:h-96"
+                style={{
+                  backgroundImage: portraits[0]
+                    ? `url(${portraits[0].image})`
+                    : undefined,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              ></div>
+              <div
+                className="col-span-2 h-40 xl:h-96"
+                style={{
+                  backgroundImage: portraits[2]
+                    ? `url(${portraits[2].image})`
+                    : undefined,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              ></div>
+            </div>
           </div>
         </div>
         <div
           id="projects"
           onMouseEnter={() => cursorHovering()}
           onMouseLeave={() => cursorLeaving()}
-          className="flex items-center flex-wrap pt-[20vh] pb-[20vh] min-h-[20vh]"
+          className="grid md:grid-cols-5"
         >
-          <h1 className="pb-4 text-xl font-medium">02/ Favorite Projects</h1>
-          {projects.map((project, index) => (
-            <Link
-              scroll={true}
-              key={index}
-              href={`/projects/${project.slug}`}
-              className="w-screen grid grid-cols-3 lg:grid-cols-4 items-center font-medium"
-              style={{
-                opacity:
-                  hoveredIndex === null || hoveredIndex === index ? 1 : 0.5,
-                transition: "all 0.25s cubic-bezier(0.65, 0, 0.35, 1)",
-                borderBottomWidth: hoveredIndex === index ? "4px" : "1px",
-                borderColor: "black",
-              }}
-              onMouseEnter={() => handleHover(index)}
-              onMouseLeave={handleMouseLeave}
-            >
-              {project.imagePreview && (
-                <Image
-                  className="pl-0 p-4"
-                  src={project.imagePreview}
-                  alt={project.altText || "Default Alt Text"}
-                  height={250}
-                  width={250}
-                />
-              )}
-              <h1 className="lg:text-4xl line-clamp-2">{project.title}</h1>
-              <h1 className="lg:text-4xl text-left pl-9 line-clamp-2">
-                {project.tag}
-              </h1>
-              <div className="lg:text-4xl ml-auto hidden lg:block">
-                {/* <LottieAnimation animHovered={playAnim} index={index} /> */}
-                <Arrow />
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div id="about" ref={ref} className="about">
-          <h1 className="text-xl pb-4 font-medium">03/ About</h1>
-          <div id="aboutContainer" className="grid grid-cols-2">
-            <div className="col-span-2 lg:col-span-1">
-              {portraits.map((portrait, index) => (
-                <div
+          <div id="ProjectImage" className="col-span-2">
+            <div className="hidden">
+              {projects.map((project, index) => (
+                <Link
+                  scroll={true}
                   key={index}
-                  className="h-[50vh] lg:h-full w-full lg:w-6/12 relative"
+                  href={`/projects/${project.slug}`}
                 >
-                  {/* The mask element */}
-                  <div
-                    id="mask"
-                    className="h-full w-full absolute top-0 left-0"
-                    style={{
-                      backgroundColor: "#E1DFDD",
-                      height: isInView ? "0%" : "100%",
-                      transition: "height 1.5s cubic-bezier(0.65, 0, 0.35, 1)",
-                      transitionDelay: "0.15s",
-                    }}
-                  ></div>
-
-                  {/* The actual image */}
-                  <div
-                    style={{
-                      backgroundImage: `url(${(portrait as Project).image})`,
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      height: "100%",
-                    }}
-                  ></div>
-                </div>
+                  {project.imagePreview && (
+                    <Image
+                      className="pl-0 p-4"
+                      src={project.imagePreview}
+                      alt={project.altText || "Default Alt Text"}
+                      height={250}
+                      width={250}
+                    />
+                  )}
+                </Link>
               ))}
             </div>
-            <div className="col-span-2 lg:col-span-1">
-              <h1 className="lg:text-5xl pt-[4vh] font-medium">
-                Tyler is an experienced designer combining 2D/3D motion design
-                expertise with UI/UX skills to create visually striking and
-                user-friendly experiences.
-              </h1>
-              <div className="grid grid-cols-1 lg:grid-cols-2 text-md lg:text-md text-black pt-[4vh] lg:pt-[10vh] gap-9 font-medium">
-                <h1>
-                  With 3+ years of 2D/3D motion design experience. Tylers
-                  strongest skillset is in 3D simulations, animation, lighting,
-                  and texturing.
+            <h1 className="text-1xl font-medium w-6/12 hidden lg:block">
+              Tyler is a UI/UX designer with a focus on creating immersive XR
+              experiences.
+            </h1>
+          </div>
+          <div id="Projects" className="col-span-3 content-start">
+            <h1 className="text-3xl font-medium pb-5">Client Work</h1>
+            {projects.map((project, index) => (
+              <Link
+                scroll={true}
+                key={index}
+                href={`/projects/${project.slug}`}
+                className="grid grid-cols-2 lg:grid-cols-2 items-center font-medium relative pt-8 pb-8"
+              >
+                <h1 className="lg:text-3xl line-clamp-1">{project.title}</h1>
+                <h1 className="lg:text-3xl text-left pl-9 line-clamp-1 overflow-ellipsis">
+                  {project.tag}
                 </h1>
-                <h1>
-                  With an additional 3 years in UI/UX design, Tyler is
-                  experienced with designing, prototyping, and producing
-                  functioning interfaces for software used by thousands.
-                </h1>
-              </div>
-              <div id="awards" className="pt-[5vh] lg:pt-[10vh]">
-                <h1 className="pb-4 pt-4 font-medium text-lg lg:text-2xl">
-                  Press and awards
-                </h1>
-                <div className="grid grid-cols-2 underline font-medium text-md lg:text-1xl gap-2">
-                  {awards.map((award, index) => (
-                    <h1 key={index}>{award.title}</h1>
-                  ))}
-                </div>
-              </div>
-            </div>
+                <div className="h-[2px] absolute bottom-0 w-full bg-black"></div>
+              </Link>
+            ))}
           </div>
         </div>
         <div
-          id="clients"
-          className="pt-[25vh] pb-[25vh] lg:pt-[35vh] lg:pb-[35vh]"
+          id="about"
+          ref={ref}
+          className="grid md:grid-cols-5 content-center pt-[25vh] pb-[25vh] lg:pt-[20vh] lg:pb-[20vh]"
         >
+          <div className="col-span-2 pb-10 pt-10 lg:pt-0 lg:pb-0">
+            <h1 className="text-5xl xl:text-7xl font-medium">
+              Press and Awards
+            </h1>
+            <ul className="pt-5 pb-5">
+              <li>
+                <h1 className="text-1xl font-medium">Designers are scary!</h1>
+              </li>
+              <li>
+                <h1 className="text-1xl font-medium">WMAA Addy Association</h1>
+              </li>
+              <li>
+                <h1 className="text-1xl font-medium">Stache feature</h1>
+              </li>
+            </ul>
+            <h1 className="text-1xl font-medium">Discover more</h1>
+          </div>
+          <div className="col-span-3">
+            <h1 className="text-2xl lg:text-5xl xl:text-7xl font-medium">
+              Tyler is an experienced designer combining 2D/3D motion design
+              expertise with UI/UX skills to create visually striking and
+              user-friendly experiences.
+            </h1>
+            <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium pt-8 pb-8 xl:pt-10 xl:pb-10">
+              With 3+ years of 2D/3D motion design experience. Tylers strongest
+              skillset is in 3D simulations, animation, lighting, and texturing.
+            </h1>
+            <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium">
+              With an additional 3 years in UI/UX design, Tyler is experienced
+              with designing, prototyping, and producing functioning interfaces
+              for software used by thousands.
+            </h1>
+          </div>
+        </div>
+        <div id="clients" className="">
           <h1 className="text-xl pb-4 font-medium">04/ Brands Ive Worked On</h1>
           <Marquee autoFill speed={250}>
             {clients.map((client) => (
@@ -347,42 +296,63 @@ export default function Home() {
             ))}
           </Marquee>
         </div>
-        <div id="footer" className="pb-[10vh] relative text-lg lg:text-xl">
-          <div className="grid grid-cols-2 lg:grid-cols-4 pb-[10vh] font-medium">
-            <h1 className="col-span-1">04/ Contact Me</h1>
-            <h1 className="col-span-1">Lets work together</h1>
-            <h1 className="col-span-1"></h1>
-            <h1 className="col-span-1"></h1>
+        <div
+          id="Freebies"
+          className="grid md:grid-cols-5 pt-[25vh] pb-[25vh] lg:pt-[10vh] lg:pb-[10vh]"
+        >
+          <div className="col-span-2">
+            <h1 className="text-5xl xl:text-7xl font-medium">Freebies</h1>
           </div>
-          <div className="grid grid-cols-3 pt-[5vh] pb-[5vh]">
-            <h1
-              ref={threeRef}
-              className="col-span-3 lg:col-span-2 text-5xl lg:text-[8rem] uppercase underline break-words pt-[2vh] pb-[2vh] lg:pt-[10vh] lg:pb-[10vh] leading-[1] font-medium"
-            >
-              tyler@tylerwest.co
-            </h1>
+          <div className="col-span-3">
+            <div>
+              <h1 className="text-5xl xl:text-7xl font-medium">
+                Figma Plugins
+              </h1>
+              <ul className="pt-5 pb-5">
+                <li>
+                  <h1 className="text-1xl font-medium">FIGMAJSON</h1>
+                </li>
+                <li>
+                  <h1 className="text-1xl font-medium">RemoveLinks</h1>
+                </li>
+                <li>
+                  <h1 className="text-1xl font-medium">Request a plugin</h1>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h1 className="text-5xl xl:text-7xl font-medium">
+                Design Assets
+              </h1>
+              <ul className="pt-5 pb-5">
+                <li>
+                  <h1 className="text-1xl font-medium">Houdini Files</h1>
+                </li>
+                <li>
+                  <h1 className="text-1xl font-medium">Free models</h1>
+                </li>
+                <li>
+                  <h1 className="text-1xl font-medium">More coming soon</h1>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h1 className="text-5xl xl:text-7xl font-medium">Mentoring</h1>
+              <ul className="pt-5 pb-5">
+                <li>
+                  <h1 className="text-1xl font-medium">Contact me</h1>
+                </li>
+                <li>
+                  <h1 className="text-1xl font-medium">Lets work together</h1>
+                </li>
+                <li>
+                  <h1 className="text-1xl font-medium">Stache feature</h1>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="grid grid-cols-4 pt-[10vh] font-medium">
-            <h1 className="col-span-2 lg:col-span-1">Tyler West</h1>
-            <h1 className="hidden lg:block lg:col-span-1">
-              <a
-                href="https://www.instagram.com/tylerwest.design/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Instagram
-              </a>
-            </h1>
-            <h1 className="hidden lg:block lg:col-span-1"></h1>
-            <h1
-              onClick={() => handleTop()}
-              className="col-span-2 lg:col-span-1 text-right"
-            >
-              Back to Top
-            </h1>
-          </div>
-          {/* <FallingCubes threeVisible={threeInView} /> */}
         </div>
+        <Footer />
       </div>
     </PageWrapper>
   );

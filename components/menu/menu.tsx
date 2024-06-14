@@ -63,7 +63,7 @@ const Menu: React.FC<Props> = () => {
           display: hideHeader ? "none" : "block", // Correctly applying display property
         }}
       >
-        <div className="grid grid-cols-2 lg:grid-cols-4 text-xl font-medium">
+        <div className="grid grid-cols-2 lg:grid-cols-5 text-xl font-medium">
           <Link href="/" className="order-1">
             <h1 className="lg:text-2xl font-medium">Tyler West</h1>
           </Link>
@@ -73,7 +73,7 @@ const Menu: React.FC<Props> = () => {
           >
             <h1 className="lg:text-2xl font-medium ml-auto">Menu</h1>
           </div>
-          <h1 className="lg:text-2xl font-medium hidden lg:block order-3 lg:text-left">
+          <h1 className="lg:text-2xl lg:col-span-2 font-medium hidden lg:block order-3 lg:text-left">
             Designer
           </h1>
           <Link href="/home" className="grid-col-1 order-4 lg:order-2">

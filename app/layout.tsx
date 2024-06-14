@@ -9,6 +9,7 @@ import Lenis from "@studio-freight/lenis";
 import { useRouter } from "next/router";
 import PageWrapper from "@/components/pageWrapper";
 import { Analytics } from "@vercel/analytics/react";
+import Footer from "@/components/footer/footer";
 
 //Create context
 export const AppContext = createContext<{

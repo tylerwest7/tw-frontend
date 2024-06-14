@@ -10,10 +10,21 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        sans: ["neue-haas-grotesk-text", ...defaultTheme.fontFamily.sans],
-      },
+    screens: {
+      sm: "640px",
+      // => @media (min-width: 640px) { ... }
+
+      md: "768px",
+      // => @media (min-width: 768px) { ... }
+
+      lg: "1728px",
+      // => @media (min-width: 1024px) { ... }
+
+      xl: "2560px",
+      // => @media (min-width: 1280px) { ... }
+
+      "2xl": "1536px",
+      // => @media (min-width: 1536px) { ... }
     },
   },
   plugins: [],
