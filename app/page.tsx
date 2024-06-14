@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, createContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useInView } from "framer-motion";
 import { getLabs, getPortraits, getProjects } from "@/sanity/sanity-utils";
@@ -11,6 +11,8 @@ import Marquee from "react-fast-marquee";
 import PageWrapper from "@/components/pageWrapper";
 import { AppContext } from "./layout";
 import Footer from "@/components/footer/footer";
+import LabsCard from "@/components/labsCard/labsCard";
+import { relative } from "path";
 
 //Create project object
 interface Project {
@@ -84,6 +86,13 @@ export default function Home() {
     fetchProjects();
   }, []);
 
+  const [hoveredProject, setHoveredProject] = useState<{
+    id: string;
+    name: string;
+  }>({ id: "", name: "" });
+
+  useEffect(() => {}, [hoveredProject]);
+
   //Cursor hover
   const [cursorSize, setCursorSize] = useState<number>(1);
   const [isHovering, setIsHovering] = useState<boolean>(false);
@@ -98,12 +107,34 @@ export default function Home() {
     setIsHovering(false);
   };
 
-  useEffect(() => {
-    console.log(portraits);
-  }, [portraits]);
+  //Visible
+  const [isVisible, setIsVisible] = useState(false);
+  const divRef = useRef<HTMLDivElement>(null);
 
-  const appContext = useContext(AppContext);
-  const lenis = appContext?.lenis;
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        setIsVisible(entry.isIntersecting);
+        console.log(
+          `Div is ${entry.isIntersecting ? "visible" : "not visible"}`
+        );
+      },
+      {
+        threshold: 0.1, // Adjust this threshold as needed
+      }
+    );
+
+    if (divRef.current) {
+      observer.observe(divRef.current);
+    }
+
+    return () => {
+      if (divRef.current) {
+        observer.unobserve(divRef.current);
+      }
+    };
+  }, []);
 
   return (
     <PageWrapper>
@@ -149,14 +180,14 @@ export default function Home() {
               Tyler is a UI/UX designer with a focus on creating immersive XR
               experiences.
             </h1>
-            <h1 className="text-1xl md:text-3xl xl:text-5xl font-medium pt-5 pb-16 md:pb-44 md:pb-24">
+            <h1 className="text-1xl md:text-3xl xl:text-5xl font-medium pt-5 pb-16 lg:pb-28 md:pb-44 md:pb-24">
               In addition to his expertise in XR, Tyler is also a skilled 3D
               designer. He creates detailed models and environments that bring
               concepts to life with precision and creativity.
             </h1>
             <div className="grid grid-cols-5 gap-4">
               <div
-                className="col-span-3 h-40 xl:h-96"
+                className="col-span-3 h-40 lg:h-96 xl:h-96"
                 style={{
                   backgroundImage: portraits[0]
                     ? `url(${portraits[0].image})`
@@ -166,7 +197,7 @@ export default function Home() {
                 }}
               ></div>
               <div
-                className="col-span-2 h-40 xl:h-96"
+                className="col-span-2 h-40 lg:h-96 xl:h-96"
                 style={{
                   backgroundImage: portraits[2]
                     ? `url(${portraits[2].image})`
@@ -183,31 +214,29 @@ export default function Home() {
           onMouseEnter={() => cursorHovering()}
           onMouseLeave={() => cursorLeaving()}
           className="grid md:grid-cols-5"
+          ref={divRef}
         >
           <div id="ProjectImage" className="col-span-2">
-            <div className="hidden">
-              {projects.map((project, index) => (
-                <Link
-                  scroll={true}
-                  key={index}
-                  href={`/projects/${project.slug}`}
-                >
-                  {project.imagePreview && (
-                    <Image
-                      className="pl-0 p-4"
-                      src={project.imagePreview}
-                      alt={project.altText || "Default Alt Text"}
-                      height={250}
-                      width={250}
-                    />
-                  )}
-                </Link>
-              ))}
+            <div
+              style={{
+                position: isVisible ? "sticky" : "sticky",
+                top: "100px",
+              }}
+            >
+              <div
+                className="block h-80 w-80"
+                style={{
+                  backgroundImage: `url(${hoveredProject.name})`,
+                  backgroundSize: "cover",
+                }}
+              ></div>
+              <h1 className="text-3xl font-medium w-6/12 lg:block">
+                {hoveredProject.id}
+              </h1>
+              {/* <h1 className="text-3xl font-medium w-6/12 lg:block">
+              {hoveredProject.name}
+            </h1> */}
             </div>
-            <h1 className="text-1xl font-medium w-6/12 hidden lg:block">
-              Tyler is a UI/UX designer with a focus on creating immersive XR
-              experiences.
-            </h1>
           </div>
           <div id="Projects" className="col-span-3 content-start">
             <h1 className="text-3xl font-medium pb-5">Client Work</h1>
@@ -217,6 +246,16 @@ export default function Home() {
                 key={index}
                 href={`/projects/${project.slug}`}
                 className="grid grid-cols-2 lg:grid-cols-2 items-center font-medium relative pt-8 pb-8"
+                id={`/projects/${project.title}`}
+                onMouseOver={(e) => {
+                  const elementId = project.title || ""; // Provide a default value if title is undefined
+                  const elementName = project.imagePreview || ""; // Provide a default value if imagePreview is undefined
+                  setHoveredProject({ id: elementId, name: elementName });
+                  console.log("Hovered over project:", {
+                    id: project.title,
+                    name: project.imagePreview || "",
+                  });
+                }}
               >
                 <h1 className="lg:text-3xl line-clamp-1">{project.title}</h1>
                 <h1 className="lg:text-3xl text-left pl-9 line-clamp-1 overflow-ellipsis">
@@ -227,6 +266,7 @@ export default function Home() {
             ))}
           </div>
         </div>
+        <LabsCard />
         <div
           id="about"
           ref={ref}
@@ -238,19 +278,23 @@ export default function Home() {
             </h1>
             <ul className="pt-5 pb-5">
               <li>
-                <h1 className="text-1xl font-medium">Designers are scary!</h1>
+                <h1 className="text-3xl pt-3 font-medium">
+                  Designers are scary!
+                </h1>
               </li>
               <li>
-                <h1 className="text-1xl font-medium">WMAA Addy Association</h1>
+                <h1 className="text-3xl pt-3 font-medium">
+                  WMAA Addy Association
+                </h1>
               </li>
               <li>
-                <h1 className="text-1xl font-medium">Stache feature</h1>
+                <h1 className="text-3xl pt-3 font-medium">Stache feature</h1>
               </li>
             </ul>
-            <h1 className="text-1xl font-medium">Discover more</h1>
+            {/* <h1 className="text-1xl font-medium">Discover more</h1> */}
           </div>
           <div className="col-span-3">
-            <h1 className="text-2xl lg:text-5xl xl:text-7xl font-medium">
+            <h1 className="text-2xl lg:text-5xl xl:text-7xl font-medium pb-20">
               Tyler is an experienced designer combining 2D/3D motion design
               expertise with UI/UX skills to create visually striking and
               user-friendly experiences.
@@ -267,7 +311,7 @@ export default function Home() {
           </div>
         </div>
         <div id="clients" className="">
-          <h1 className="text-xl pb-4 font-medium">04/ Brands Ive Worked On</h1>
+          {/* <h1 className="text-xl pb-4 font-medium">04/ Brands Ive Worked On</h1> */}
           <Marquee autoFill speed={250}>
             {clients.map((client) => (
               <div className="marquee_element" key={client.name}>
@@ -295,65 +339,61 @@ export default function Home() {
               </div>
             ))}
           </Marquee>
+          <Marquee autoFill speed={250}>
+            {clients.map((client) => (
+              <div className="marquee_element" key={client.name}>
+                <h1 className="text-[3rem] lg:text-[10rem] font-medium pl-9 pr-9 ">
+                  {client.name}
+                </h1>
+              </div>
+            ))}
+          </Marquee>
         </div>
+
         <div
           id="Freebies"
-          className="grid md:grid-cols-5 pt-[25vh] pb-[25vh] lg:pt-[10vh] lg:pb-[10vh]"
+          className="grid md:grid-cols-5 pt-[25vh] pb-[25vh] lg:pt-[20vh] lg:pb-[20vh]"
         >
-          <div className="col-span-2">
+          <div className="col-span-2 pb-10">
             <h1 className="text-5xl xl:text-7xl font-medium">Freebies</h1>
           </div>
-          <div className="col-span-3">
+          <div className="col-span-3 grid grid-cols-1 lg:grid-cols-2">
             <div>
-              <h1 className="text-5xl xl:text-7xl font-medium">
+              <h1 className="text-4xl xl:text-7xl font-medium">
                 Figma Plugins
               </h1>
-              <ul className="pt-5 pb-5">
+              <ul className="pt-5 pb-5 text-1xl lg:text-3xl">
                 <li>
-                  <h1 className="text-1xl font-medium">FIGMAJSON</h1>
+                  <h1 className="font-medium">FIGMAJSON</h1>
                 </li>
                 <li>
-                  <h1 className="text-1xl font-medium">RemoveLinks</h1>
+                  <h1 className="pt-3 font-medium">RemoveLinks</h1>
                 </li>
                 <li>
-                  <h1 className="text-1xl font-medium">Request a plugin</h1>
+                  <h1 className="pt-3 font-medium">Request a plugin</h1>
                 </li>
               </ul>
             </div>
             <div>
-              <h1 className="text-5xl xl:text-7xl font-medium">
+              <h1 className="text-4xl xl:text-7xl pt-10 lg:pt-0 font-medium">
                 Design Assets
               </h1>
-              <ul className="pt-5 pb-5">
+              <ul className="pt-1 pb-5 text-1xl lg:text-3xl">
                 <li>
-                  <h1 className="text-1xl font-medium">Houdini Files</h1>
+                  <h1 className="pt-3 font-medium">Houdini Files</h1>
                 </li>
                 <li>
-                  <h1 className="text-1xl font-medium">Free models</h1>
+                  <h1 className="pt-3 font-medium">Free models</h1>
                 </li>
                 <li>
-                  <h1 className="text-1xl font-medium">More coming soon</h1>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h1 className="text-5xl xl:text-7xl font-medium">Mentoring</h1>
-              <ul className="pt-5 pb-5">
-                <li>
-                  <h1 className="text-1xl font-medium">Contact me</h1>
-                </li>
-                <li>
-                  <h1 className="text-1xl font-medium">Lets work together</h1>
-                </li>
-                <li>
-                  <h1 className="text-1xl font-medium">Stache feature</h1>
+                  <h1 className="pt-3 font-medium">More coming soon</h1>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <Footer />
       </div>
+      <Footer />
     </PageWrapper>
   );
 }
