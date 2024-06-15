@@ -1,105 +1,34 @@
 "use client";
 
-import { useContext, createContext, useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
-import { getLabs, getPortraits, getProjects } from "@/sanity/sanity-utils";
-import { getClients } from "@/sanity/sanity-utils";
 import CursorFollower from "@/components/useCursorFollow";
 import Link from "@/components/Link";
 import Marquee from "react-fast-marquee";
 import PageWrapper from "@/components/pageWrapper";
-import { AppContext } from "./layout";
 import Footer from "@/components/footer/footer";
-import LabsCard from "@/components/labsCard/labsCard";
-import { relative } from "path";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useProjectContext } from "@/components/contexts/ProjectContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-//Create project object
-interface Project {
-  altText: string;
-  imagePreview?: string;
-  image?: string;
-  slug?: string;
-  tag?: string;
-  title?: string;
-  projectImages?: string;
-}
-
-interface Portrait {
-  alt: string;
-  content: string | null;
-  image: string;
-  name: string;
-  slug: string | null;
-  url: string | null;
-  _id: string;
-  _createdAt: string;
-}
-
-interface Client {
-  name: string;
-}
-
 export default function Home() {
-  //Use state
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [clients, setClients] = useState<Client[]>([]);
-  const [portraits, setPortraits] = useState<Portrait[]>([]);
-  const [labs, setLabs] = useState<Project[]>([]);
-
-  const [awards, setAwards] = useState([
-    { title: "Designers are scary!", link: "https://example.com/item1" },
-    { title: "Stache feature", link: "https://example.com/item2" },
-    { title: "WMAA Addy Association", link: "https://example.com/item3" },
-  ]);
-
-  //Image animation
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  useEffect(() => {
-    //console.log("Element is in view: ", isInView);
-  }, [isInView]);
-
-  //Loading
-  const [isLoading, setIsLoading] = useState<boolean>(true); // Start with loading state as true
-
-  //Set data
-  useEffect(() => {
-    const fetchProjects = async () => {
-      setIsLoading(true); // Set loading to true before fetching data
-      try {
-        const fetchedProjects = await getProjects();
-        const fetchedClients = await getClients();
-        const fetchedPortraits = await getPortraits();
-        const fetchedLabs = await getLabs();
-        setLabs(fetchedLabs);
-        setProjects(fetchedProjects);
-        setClients(fetchedClients);
-        setPortraits(fetchedPortraits);
-        //console.log(fetchedProjects);
-      } catch (error) {
-        console.error("Error fetching projects:", error);
-      } finally {
-        setIsLoading(false); // Set loading to false after fetching data (whether successful or not)
-      }
-    };
-    fetchProjects();
-  }, []);
-
+  const { projects, clients, portraits, labs, isLoading } = useProjectContext();
   const [hoveredProject, setHoveredProject] = useState<{
     id: string;
     name: string;
   }>({ id: "", name: "" });
-
-  useEffect(() => {}, [hoveredProject]);
-
-  //Cursor hover
   const [cursorSize, setCursorSize] = useState<number>(1);
   const [isHovering, setIsHovering] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const divRef = useRef<HTMLDivElement>(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    // console.log("Element is in view: ", isInView);
+  }, [isInView]);
 
   const cursorHovering = () => {
     setCursorSize(3);
@@ -110,10 +39,6 @@ export default function Home() {
     setCursorSize(1);
     setIsHovering(false);
   };
-
-  //Visible
-  const [isVisible, setIsVisible] = useState(false);
-  const divRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -140,22 +65,20 @@ export default function Home() {
     };
   }, []);
 
-  //Fade
-
   return (
     <PageWrapper>
       <div
         id="page"
-        className="ml-9 mr-9 lg:ml-24 lg:mr-24  tracking-[-0.025rem] lg:tracking-[-0.05rem]"
+        className="ml-9 mr-9 lg:ml-24 lg:mr-24 tracking-[-0.025rem] lg:tracking-[-0.05rem]"
       >
-        <div className="pl-10 pr-10 pt-4 pb-4 bg-black fixed bottom-0 right-0 text-gray-50">
+        <div className="pl-10 pr-10 pt-2 pb-4 bg-black fixed bottom-0 right-0 text-gray-50">
           Home
         </div>
         <CursorFollower size={cursorSize} hovering={isHovering} />
         <div className="pointer-events-none"></div>
         <div
           id="landing"
-          className="grid grid-cols-1 md:grid-cols-5 content-center md:h-screen pointer-events-none relative pt-44 pb-44 "
+          className="grid grid-cols-1 md:grid-cols-5 content-center pointer-events-none relative lg:pt-32 xl:pt-44 pb-44 "
         >
           <div className="md:col-span-2 relative">
             <h1 className="text-xl hidden md:text-6xl xl:text-7xl md:block font-medium">
@@ -194,7 +117,7 @@ export default function Home() {
 
             <div className="grid grid-cols-5 gap-4 ">
               <div
-                className="col-span-3 h-40 lg:h-96 xl:h-96"
+                className="col-span-3 h-40 lg:h-64 xl:h-96"
                 style={{
                   backgroundImage: portraits[0]
                     ? `url(${portraits[0].image})`
@@ -204,7 +127,7 @@ export default function Home() {
                 }}
               ></div>
               <div
-                className="col-span-2 h-40 lg:h-96 xl:h-96"
+                className="col-span-2 h-40 lg:h-64 xl:h-96"
                 style={{
                   backgroundImage: portraits[2]
                     ? `url(${portraits[2].image})`
@@ -241,9 +164,6 @@ export default function Home() {
               <h1 className="text-3xl font-medium w-6/12 lg:block">
                 {hoveredProject.id}
               </h1>
-              {/* <h1 className="text-3xl font-medium w-6/12 lg:block">
-              {hoveredProject.name}
-            </h1> */}
             </div>
           </div>
           <div id="Projects" className="col-span-3 content-start">
@@ -275,7 +195,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* <LabsCard /> */}
         <div
           id="about"
           ref={ref}
@@ -300,7 +219,6 @@ export default function Home() {
                 <h1 className="text-3xl pt-3 font-medium">Stache feature</h1>
               </li>
             </ul>
-            {/* <h1 className="text-1xl font-medium">Discover more</h1> */}
           </div>
           <div className="col-span-3">
             <h1 className="text-2xl lg:text-5xl xl:text-7xl font-medium pb-20">
@@ -320,7 +238,6 @@ export default function Home() {
           </div>
         </div>
         <div id="clients" className="">
-          {/* <h1 className="text-xl pb-4 font-medium">04/ Brands Ive Worked On</h1> */}
           <Marquee autoFill speed={250}>
             {clients.map((client) => (
               <div className="marquee_element" key={client.name}>

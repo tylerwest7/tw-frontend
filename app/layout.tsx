@@ -10,8 +10,9 @@ import { useRouter } from "next/router";
 import PageWrapper from "@/components/pageWrapper";
 import { Analytics } from "@vercel/analytics/react";
 import Footer from "@/components/footer/footer";
+import { ProjectProvider } from "@/components/contexts/ProjectContext";
 
-//Create context
+// Create context
 export const AppContext = createContext<{
   lenis: Lenis | null;
   darkMode: boolean;
@@ -29,7 +30,7 @@ export default function RootLayout({
     setDarkMode((prevDarkMode) => !prevDarkMode);
   };
 
-  //Lenis
+  // Lenis
   const [lenis, setLenis] = useState<Lenis | null>(null);
 
   const raf = useCallback(
@@ -44,52 +45,52 @@ export default function RootLayout({
     if (!lenis) {
       const newLenis = new Lenis({});
       setLenis(newLenis);
-      //console.log("direction set");
+      // console.log("direction set");
     }
     requestAnimationFrame(raf);
   }, [lenis]);
 
   return (
     <AppContext.Provider value={{ lenis, darkMode, toggleDarkMode }}>
-      <html
-        className=""
-        lang="en"
-        style={{
-          backgroundColor: darkMode ? "#E1DFDD" : "#E1DFDD",
-          borderBottomColor: darkMode ? "#E1DFDD" : "black",
-        }}
-      >
-        <head>
-          <title>Tyler West</title>
-          <link rel="icon" href="/icon.ico" />
-          <link
-            rel="icon"
-            href="/icon.ico"
-            type="image/<generated>"
-            sizes="<generated>"
-          />
-          <link
-            rel="apple-touch-icon"
-            href="/favicon.ico"
-            type="image/<generated>"
-            sizes="<generated>"
-          />
-          <meta name="description" content="Tyler West Portfolio" />
-          <link href="https://use.typekit.net/pgl6tup.css" rel="stylesheet" />
-        </head>
-        <body
-          className="text-black"
-          style={{ color: darkMode ? "black" : "black" }}
+      <ProjectProvider>
+        <html
+          className=""
+          lang="en"
+          style={{
+            backgroundColor: darkMode ? "#E1DFDD" : "#E1DFDD",
+            borderBottomColor: darkMode ? "#E1DFDD" : "black",
+          }}
         >
-          <PageWrapper>
-            <Menu />
-          </PageWrapper>
-
-          {children}
-          {/* <LenisScroller /> */}
-        </body>
-      </html>
-      <Analytics />
+          <head>
+            <title>Tyler West</title>
+            <link rel="icon" href="/icon.ico" />
+            <link
+              rel="icon"
+              href="/icon.ico"
+              type="image/<generated>"
+              sizes="<generated>"
+            />
+            <link
+              rel="apple-touch-icon"
+              href="/favicon.ico"
+              type="image/<generated>"
+              sizes="<generated>"
+            />
+            <meta name="description" content="Tyler West Portfolio" />
+            <link href="https://use.typekit.net/pgl6tup.css" rel="stylesheet" />
+          </head>
+          <body
+            className="text-black"
+            style={{ color: darkMode ? "black" : "black" }}
+          >
+            <PageWrapper>
+              <Menu />
+            </PageWrapper>
+            {children}
+          </body>
+        </html>
+        <Analytics />
+      </ProjectProvider>
     </AppContext.Provider>
   );
 }
