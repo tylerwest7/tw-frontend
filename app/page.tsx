@@ -13,6 +13,10 @@ import { AppContext } from "./layout";
 import Footer from "@/components/footer/footer";
 import LabsCard from "@/components/labsCard/labsCard";
 import { relative } from "path";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 //Create project object
 interface Project {
@@ -136,6 +140,8 @@ export default function Home() {
     };
   }, []);
 
+  //Fade
+
   return (
     <PageWrapper>
       <div
@@ -149,7 +155,7 @@ export default function Home() {
         <div className="pointer-events-none"></div>
         <div
           id="landing"
-          className="grid grid-cols-1 md:grid-cols-5 content-center md:h-screen pointer-events-none relative pt-44 pb-44"
+          className="grid grid-cols-1 md:grid-cols-5 content-center md:h-screen pointer-events-none relative pt-44 pb-44 "
         >
           <div className="md:col-span-2 relative">
             <h1 className="text-xl hidden md:text-6xl xl:text-7xl md:block font-medium">
@@ -185,7 +191,8 @@ export default function Home() {
               designer. He creates detailed models and environments that bring
               concepts to life with precision and creativity.
             </h1>
-            <div className="grid grid-cols-5 gap-4">
+
+            <div className="grid grid-cols-5 gap-4 ">
               <div
                 className="col-span-3 h-40 lg:h-96 xl:h-96"
                 style={{
@@ -209,6 +216,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+
         <div
           id="projects"
           onMouseEnter={() => cursorHovering()}
@@ -266,7 +274,8 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <LabsCard />
+
+        {/* <LabsCard /> */}
         <div
           id="about"
           ref={ref}
@@ -352,7 +361,7 @@ export default function Home() {
 
         <div
           id="Freebies"
-          className="grid md:grid-cols-5 pt-[25vh] pb-[25vh] lg:pt-[20vh] lg:pb-[20vh]"
+          className="grid md:grid-cols-5 pt-[25vh] pb-[25vh] lg:pt-[20vh] lg:pb-[20vh] "
         >
           <div className="col-span-2 pb-10">
             <h1 className="text-5xl xl:text-7xl font-medium">Freebies</h1>

@@ -25,7 +25,7 @@
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
     "framer-motion": "^10.15.0",
-    "gsap": "^3.12.2",
+    "gsap": "^3.12.5",
     "lottie-web": "^5.12.2",
     "next": "13.4.10",
     "next-sanity": "^5.1.5",

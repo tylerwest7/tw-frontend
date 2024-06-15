@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
         </div>
         <div>
           <h1 className="text-3xl font-medium">My Services</h1>
-          <ul className="pt-5 pb-5 text-3xl md:text-4xl">
+          <ul className="pt-5 pb-5 text-3xl md:text-3xl">
             <li className="font-medium underline py-2">3D Design</li>
             <li className="font-medium underline py-2">Web Design</li>
             {/* <li className="font-medium underline py-2">Web Development</li> */}
@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
         </div>
         <div>
           <h1 className="text-3xl font-medium">Connect</h1>
-          <ul className="pt-5 pb-5 text-3xl md:text-4xl">
+          <ul className="pt-5 pb-5 text-3xl md:text-3xl">
             <li className="font-medium underline py-2">Instagram</li>
             <li className="font-medium underline py-2">Linkedin</li>
             <li className="font-medium underline py-2">Resume</li>
@@ -38,10 +38,10 @@ const Footer: React.FC = () => {
           <h1 className="text-3xl pb-5 font-medium">
             Want to discuss a project?
           </h1>
-          <p className="mt-2 text-3xl md:text-4xl">
+          <p className="mt-2 text-3xl md:text-3xl">
             Feel free to reach out and say hi!
           </p>
-          <p className="mt-2 underline text-3xl md:text-4xl">
+          <p className="mt-2 underline text-3xl md:text-3xl">
             tyler@tylerwest.co
           </p>
         </div>
