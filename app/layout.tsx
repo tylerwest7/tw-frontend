@@ -58,7 +58,7 @@ export default function RootLayout({
           lang="en"
           style={{
             backgroundColor: darkMode ? "#E1DFDD" : "#E1DFDD",
-            borderBottomColor: darkMode ? "#E1DFDD" : "black",
+            borderBottomColor: darkMode ? "#E1DFDD" : "#333",
           }}
         >
           <head>
@@ -81,7 +81,7 @@ export default function RootLayout({
           </head>
           <body
             className="text-black"
-            style={{ color: darkMode ? "black" : "black" }}
+            // style={{ color: darkMode ? "#333" : "#333" }}
           >
             <PageWrapper>
               <Menu />

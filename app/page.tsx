@@ -113,20 +113,20 @@ export default function Home() {
               id="arrow"
               className="absolute bottom-0 left-0 hidden md:block"
             >
-              <svg
+              {/* <svg
                 width="75"
                 height="89"
                 viewBox="0 0 75 89"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M37.5 0V78" stroke="black" strokeWidth="8" />
+                <path d="M37.5 0V78" stroke="#333" strokeWidth="8" />
                 <path
                   d="M3 48.5L37.5 83L72 48.5"
-                  stroke="black"
+                  stroke="#333"
                   strokeWidth="8"
                 />
-              </svg>
+              </svg> */}
             </div>
           </div>
           <div className="col-span-3">
@@ -199,10 +199,6 @@ export default function Home() {
                   const elementId = project.title || "";
                   const elementName = project.imagePreview || "";
                   setHoveredProject({ id: elementId, name: elementName });
-                  console.log("Hovered over project:", {
-                    id: project.title,
-                    name: project.imagePreview || "",
-                  });
                 }}
               >
                 <h1 className="lg:text-3xl line-clamp-1">{project.title}</h1>
