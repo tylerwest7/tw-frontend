@@ -65,6 +65,35 @@ export default function Home() {
     };
   }, []);
 
+  //gsap
+  const landingRef = useRef<HTMLDivElement>(null);
+  const elementRefs = useRef<(HTMLDivElement | null)[]>([]);
+  useEffect(() => {
+    if (landingRef.current) {
+      elementRefs.current.forEach((el, index) => {
+        if (el) {
+          gsap.fromTo(
+            el,
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              delay: index * 0.3,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 80%", // Adjust as needed
+                end: "bottom 20%", // Adjust as needed
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+      });
+    }
+  }, []);
+
   return (
     <PageWrapper>
       <div
@@ -278,7 +307,7 @@ export default function Home() {
 
         <div
           id="Freebies"
-          className="grid md:grid-cols-5 pt-[25vh] pb-[25vh] lg:pt-[20vh] lg:pb-[20vh] "
+          className="grid md:grid-cols-5 pt-[25vh] pb-[25vh] lg:pt-[20vh] lg:pb-[20vh]"
         >
           <div className="col-span-2 pb-10">
             <h1 className="text-5xl xl:text-7xl font-medium">Freebies</h1>
