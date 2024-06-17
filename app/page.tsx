@@ -243,8 +243,9 @@ export default function Home() {
               user-friendly experiences.
             </h1>
             <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium pt-8 pb-8 xl:pt-10 xl:pb-10">
-              With 3+ years of 2D/3D motion design experience. Tyler's strongest
-              skillset is in 3D simulations, animation, lighting, and texturing.
+              With 3+ years of 2D/3D motion design experience. Tyler&apos;s
+              strongest skillset is in 3D simulations, animation, lighting, and
+              texturing.
             </h1>
             <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium">
               With an additional 3 years in UI/UX design, Tyler is experienced
