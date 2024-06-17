@@ -52,10 +52,13 @@ const Menu: React.FC<Props> = () => {
   }, []);
 
   return (
-    <div>
+    <div
+      className="fixed w-full order-1 z-[998]"
+      style={{ backgroundColor: "#E1DFDD" }}
+    >
       <div
         id="header"
-        className="ml-9 mr-9 lg:ml-24 lg:mr-24 fixed left-0 top-0 right-0 pt-6 pb-6 z-[998]"
+        className="ml-9 mr-9 lg:ml-24 lg:mr-24 left-0 top-0 right-0 pt-6 pb-6"
         style={{
           borderBottomWidth: "4px",
           borderColor: "black",

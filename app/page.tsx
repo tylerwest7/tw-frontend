@@ -103,7 +103,7 @@ export default function Home() {
         <div className="pointer-events-none"></div>
         <div
           id="landing"
-          className="grid grid-cols-1 md:grid-cols-5 content-center pointer-events-none relative lg:pt-32 xl:pt-44 pb-44 "
+          className="grid grid-cols-1 md:grid-cols-5 content-center pointer-events-none relative lg:pt-32 xl:pt-44 pt-44 pb-44"
         >
           <div className="md:col-span-2 relative">
             <h1 className="text-xl hidden md:text-6xl xl:text-7xl md:block font-medium">
@@ -172,7 +172,7 @@ export default function Home() {
           className="grid md:grid-cols-5"
           ref={divRef}
         >
-          <div id="ProjectImage" className="col-span-2">
+          <div id="ProjectImage" className="col-span-2 hidden lg:block">
             <div style={{ position: "sticky", top: "100px" }}>
               <div
                 className="block h-80 w-80"
@@ -214,7 +214,7 @@ export default function Home() {
         <div
           id="about"
           ref={ref}
-          className="grid md:grid-cols-5 content-center pt-[25vh] pb-[25vh] lg:pt-[20vh] lg:pb-[20vh]"
+          className="grid md:grid-cols-5 content-center pt-[10vh] pb-[25vh] lg:pt-[20vh] lg:pb-[20vh]"
         >
           <div className="col-span-2 pb-10 pt-10 lg:pt-0 lg:pb-0">
             <h1 className="text-5xl xl:text-7xl font-medium">
@@ -237,12 +237,12 @@ export default function Home() {
             </ul>
           </div>
           <div className="col-span-3">
-            <h1 className="text-2xl lg:text-5xl xl:text-7xl font-medium pb-20">
+            <h1 className="text-2xl lg:text-5xl xl:text-7xl font-medium pb-10">
               Tyler is an experienced designer combining 2D/3D motion design
               expertise with UI/UX skills to create visually striking and
               user-friendly experiences.
             </h1>
-            <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium pt-8 pb-8 xl:pt-10 xl:pb-10">
+            <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium pt-2 pb-2 xl:pt-10 xl:pb-10">
               With 3+ years of 2D/3D motion design experience. Tyler&apos;s
               strongest skillset is in 3D simulations, animation, lighting, and
               texturing.
