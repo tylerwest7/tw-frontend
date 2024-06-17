@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import CursorFollower from "@/components/useCursorFollow";
-import Link from "@/components/Link";
+import Link from "next/link"; // Importing Link from next/link
 import Marquee from "react-fast-marquee";
 import PageWrapper from "@/components/pageWrapper";
 import Footer from "@/components/footer/footer";
@@ -14,7 +14,7 @@ import { useProjectContext } from "@/components/contexts/ProjectContext";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  const { projects, clients, portraits, labs, isLoading } = useProjectContext();
+  const { projects, clients, portraits } = useProjectContext();
   const [hoveredProject, setHoveredProject] = useState<{
     id: string;
     name: string;
@@ -25,10 +25,6 @@ export default function Home() {
   const divRef = useRef<HTMLDivElement>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    // console.log("Element is in view: ", isInView);
-  }, [isInView]);
 
   const cursorHovering = () => {
     setCursorSize(3);
@@ -50,7 +46,7 @@ export default function Home() {
         );
       },
       {
-        threshold: 0.1, // Adjust this threshold as needed
+        threshold: 0.1,
       }
     );
 
@@ -65,7 +61,7 @@ export default function Home() {
     };
   }, []);
 
-  //gsap
+  // GSAP animation
   const landingRef = useRef<HTMLDivElement>(null);
   const elementRefs = useRef<(HTMLDivElement | null)[]>([]);
   useEffect(() => {
@@ -83,8 +79,8 @@ export default function Home() {
               ease: "power3.out",
               scrollTrigger: {
                 trigger: el,
-                start: "top 80%", // Adjust as needed
-                end: "bottom 20%", // Adjust as needed
+                start: "top 80%",
+                end: "bottom 20%",
                 toggleActions: "play none none reverse",
               },
             }
@@ -124,11 +120,11 @@ export default function Home() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M37.5 0V78" stroke="black" stroke-width="8" />
+                <path d="M37.5 0V78" stroke="black" strokeWidth="8" />
                 <path
                   d="M3 48.5L37.5 83L72 48.5"
                   stroke="black"
-                  stroke-width="8"
+                  strokeWidth="8"
                 />
               </svg>
             </div>
@@ -171,18 +167,13 @@ export default function Home() {
 
         <div
           id="projects"
-          onMouseEnter={() => cursorHovering()}
-          onMouseLeave={() => cursorLeaving()}
+          onMouseEnter={cursorHovering}
+          onMouseLeave={cursorLeaving}
           className="grid md:grid-cols-5"
           ref={divRef}
         >
           <div id="ProjectImage" className="col-span-2">
-            <div
-              style={{
-                position: isVisible ? "sticky" : "sticky",
-                top: "100px",
-              }}
-            >
+            <div style={{ position: "sticky", top: "100px" }}>
               <div
                 className="block h-80 w-80"
                 style={{
@@ -204,9 +195,9 @@ export default function Home() {
                 href={`/projects/${project.slug}`}
                 className="grid grid-cols-2 lg:grid-cols-2 items-center font-medium relative pt-8 pb-8"
                 id={`/projects/${project.title}`}
-                onMouseOver={(e) => {
-                  const elementId = project.title || ""; // Provide a default value if title is undefined
-                  const elementName = project.imagePreview || ""; // Provide a default value if imagePreview is undefined
+                onMouseOver={() => {
+                  const elementId = project.title || "";
+                  const elementName = project.imagePreview || "";
                   setHoveredProject({ id: elementId, name: elementName });
                   console.log("Hovered over project:", {
                     id: project.title,
@@ -256,7 +247,7 @@ export default function Home() {
               user-friendly experiences.
             </h1>
             <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium pt-8 pb-8 xl:pt-10 xl:pb-10">
-              With 3+ years of 2D/3D motion design experience. Tylers strongest
+              With 3+ years of 2D/3D motion design experience. Tyler's strongest
               skillset is in 3D simulations, animation, lighting, and texturing.
             </h1>
             <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium">
