@@ -113,7 +113,7 @@ export default function Home() {
               id="arrow"
               className="absolute bottom-0 left-0 hidden md:block"
             >
-              {/* <svg
+              <svg
                 width="75"
                 height="89"
                 viewBox="0 0 75 89"
@@ -126,7 +126,7 @@ export default function Home() {
                   stroke="#333"
                   strokeWidth="8"
                 />
-              </svg> */}
+              </svg>
             </div>
           </div>
           <div className="col-span-3">
