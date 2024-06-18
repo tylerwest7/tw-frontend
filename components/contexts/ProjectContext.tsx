@@ -61,6 +61,7 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
+      console.log("Fetching data...");
       try {
         const fetchedProjects = await getProjects();
         const fetchedClients = await getClients();
@@ -74,6 +75,7 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
         console.error("Error fetching data:", error);
       } finally {
         setIsLoading(false);
+        console.log("Data fetched successfully");
       }
     };
     fetchData();

@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import CursorFollower from "@/components/useCursorFollow";
 import Link from "next/link"; // Importing Link from next/link
 import Marquee from "react-fast-marquee";
 import PageWrapper from "@/components/pageWrapper";
 import Footer from "@/components/footer/footer";
-import gsap from "gsap";
+import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useProjectContext } from "@/components/contexts/ProjectContext";
+import { AppContext } from "./layout";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,6 +26,9 @@ export default function Home() {
   const divRef = useRef<HTMLDivElement>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const appContext = useContext(AppContext);
+  // Check if appContext is null before destructuring lenis
+  const lenis = appContext?.lenis;
 
   const cursorHovering = () => {
     setCursorSize(3);
@@ -61,33 +65,43 @@ export default function Home() {
     };
   }, []);
 
-  // GSAP animation
-  const landingRef = useRef<HTMLDivElement>(null);
-  const elementRefs = useRef<(HTMLDivElement | null)[]>([]);
+  //Landing animation
   useEffect(() => {
-    if (landingRef.current) {
-      elementRefs.current.forEach((el, index) => {
-        if (el) {
-          gsap.fromTo(
-            el,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              delay: index * 0.3,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: el,
-                start: "top 80%",
-                end: "bottom 20%",
-                toggleActions: "play none none reverse",
-              },
-            }
-          );
-        }
-      });
-    }
+    const h1Elements = document.querySelectorAll("#landing .stagger");
+
+    gsap.fromTo(
+      h1Elements,
+      { y: 10, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.out",
+        stagger: 0.2, // Adjust the stagger duration as needed
+        scrollTrigger: {
+          trigger: "#landing",
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      "#tag",
+      { y: 50 },
+      {
+        y: 0, // Adjust the y value as needed for the translation
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "footer",
+          start: "top center",
+          end: "top center",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
   }, []);
 
   return (
@@ -96,8 +110,19 @@ export default function Home() {
         id="page"
         className="ml-9 mr-9 lg:ml-24 lg:mr-24 tracking-[-0.025rem] lg:tracking-[-0.05rem]"
       >
-        <div className="pl-10 pr-10 pt-2 pb-4 bg-black fixed bottom-0 right-0 text-gray-50">
-          Home
+        <div
+          onClick={() => {
+            console.log("Back to top");
+            // window.scrollTo({
+            //   top: 0,
+            //   behavior: "smooth",
+            // });
+            lenis?.scrollTo(0);
+          }}
+          id="tag"
+          className="pl-10 pr-10 pt-2 pb-4 bg-black fixed bottom-0 right-0 text-gray-50 order-[9999]"
+        >
+          Back to top
         </div>
         <CursorFollower size={cursorSize} hovering={isHovering} />
         <div className="pointer-events-none"></div>
@@ -106,7 +131,7 @@ export default function Home() {
           className="grid grid-cols-1 md:grid-cols-5 content-center pointer-events-none relative lg:pt-32 xl:pt-44 pt-44 pb-44"
         >
           <div className="md:col-span-2 relative">
-            <h1 className="text-xl hidden md:text-6xl xl:text-7xl md:block font-medium">
+            <h1 className="text-xl hidden md:text-6xl xl:text-7xl md:block font-medium stagger">
               Tyler West
             </h1>
             <div
@@ -130,11 +155,11 @@ export default function Home() {
             </div>
           </div>
           <div className="col-span-3">
-            <h1 className="text-4xl lg:text-6xl xl:text-7xl font-medium md:pb-10">
+            <h1 className="text-4xl lg:text-6xl xl:text-7xl font-medium md:pb-10 stagger">
               Tyler is a UI/UX designer with a focus on creating immersive XR
               experiences.
             </h1>
-            <h1 className="text-1xl md:text-3xl xl:text-5xl font-medium pt-5 pb-16 lg:pb-28 md:pb-44 md:pb-24">
+            <h1 className="text-1xl md:text-3xl xl:text-5xl font-medium pt-5 pb-16 lg:pb-28 md:pb-44 md:pb-24 stagger">
               In addition to his expertise in XR, Tyler is also a skilled 3D
               designer. He creates detailed models and environments that bring
               concepts to life with precision and creativity.
@@ -142,7 +167,7 @@ export default function Home() {
 
             <div className="grid grid-cols-5 gap-4 ">
               <div
-                className="col-span-3 h-40 lg:h-64 xl:h-96"
+                className="col-span-3 h-40 lg:h-64 xl:h-96 stagger"
                 style={{
                   backgroundImage: portraits[0]
                     ? `url(${portraits[0].image})`
@@ -152,7 +177,7 @@ export default function Home() {
                 }}
               ></div>
               <div
-                className="col-span-2 h-40 lg:h-64 xl:h-96"
+                className="col-span-2 h-40 lg:h-64 xl:h-96 stagger"
                 style={{
                   backgroundImage: portraits[2]
                     ? `url(${portraits[2].image})`
@@ -282,7 +307,7 @@ export default function Home() {
               </div>
             ))}
           </Marquee>
-          <Marquee autoFill speed={250}>
+          <Marquee direction="right" autoFill speed={250}>
             {clients.map((client) => (
               <div className="marquee_element" key={client.name}>
                 <h1 className="text-[3rem] lg:text-[10rem] font-medium pl-9 pr-9 ">

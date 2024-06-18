@@ -10,7 +10,10 @@ import { useRouter } from "next/router";
 import PageWrapper from "@/components/pageWrapper";
 import { Analytics } from "@vercel/analytics/react";
 import Footer from "@/components/footer/footer";
-import { ProjectProvider } from "@/components/contexts/ProjectContext";
+import {
+  ProjectProvider,
+  useProjectContext,
+} from "@/components/contexts/ProjectContext";
 
 // Create context
 export const AppContext = createContext<{
@@ -18,6 +21,52 @@ export const AppContext = createContext<{
   darkMode: boolean;
   toggleDarkMode: () => void;
 } | null>(null);
+
+const Content = ({ children }: { children: React.ReactNode }) => {
+  const { isLoading } = useProjectContext();
+  const [percentage, setPercentage] = useState(0);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isLoading) {
+      interval = setInterval(() => {
+        setPercentage((prev) => {
+          if (prev < 100) {
+            return prev + 1;
+          } else {
+            clearInterval(interval);
+            return 100;
+          }
+        });
+      }, 20); // Adjust the interval time for speed of animation
+    } else {
+      setPercentage(0);
+    }
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isLoading]);
+
+  if (isLoading) {
+    return (
+      <div
+        className="h-screen w-screen flex items-center justify-center"
+        style={{ backgroundColor: "#CBC9C7" }}
+      >
+        <h1>{percentage}%</h1>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <PageWrapper>
+        <Menu />
+      </PageWrapper>
+      {children}
+    </>
+  );
+};
 
 export default function RootLayout({
   children,
@@ -79,14 +128,9 @@ export default function RootLayout({
             <meta name="description" content="Tyler West Portfolio" />
             <link href="https://use.typekit.net/pgl6tup.css" rel="stylesheet" />
           </head>
-          <body
-            className="text-black"
-            // style={{ color: darkMode ? "#333" : "#333" }}
-          >
-            <PageWrapper>
-              <Menu />
-            </PageWrapper>
-            {children}
+          <body className="text-black">
+            <Content>{children}</Content>
+            {/* <Footer /> */}
           </body>
         </html>
         <Analytics />
