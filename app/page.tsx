@@ -156,7 +156,7 @@ export default function Home() {
           </div>
           <div className="col-span-3">
             <h1 className="text-4xl lg:text-6xl xl:text-7xl font-medium md:pb-10 stagger">
-              Tyler is a UI/UX designer with a focus on creating immersive XR
+              Tyler is a 3D generalist with a focus on creating immersive XR
               experiences.
             </h1>
             <h1 className="text-1xl md:text-3xl xl:text-5xl font-medium pt-5 pb-16 lg:pb-28 md:pb-44 md:pb-24 stagger">
@@ -197,7 +197,7 @@ export default function Home() {
           className="grid md:grid-cols-5"
           ref={divRef}
         >
-          <div id="ProjectImage" className="col-span-2 hidden lg:block">
+          <div id="ProjectImage" className="col-span-2 invisible lg:visible">
             <div style={{ position: "sticky", top: "100px" }}>
               <div
                 className="block h-80 w-80"
