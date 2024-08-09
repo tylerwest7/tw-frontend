@@ -128,7 +128,7 @@ export default function Home() {
         <div className="pointer-events-none"></div>
         <div
           id="landing"
-          className="grid grid-cols-1 md:grid-cols-5 content-center pointer-events-none relative lg:pt-32 xl:pt-44 pt-44 pb-44"
+          className="grid grid-cols-1 md:grid-cols-5 content-center pointer-events-none relative lg:pt-32 xl:pt-44 pt-28 pb-28"
         >
           <div className="md:col-span-2 relative">
             <h1 className="text-xl hidden md:text-6xl xl:text-7xl md:block font-medium stagger">
@@ -159,7 +159,7 @@ export default function Home() {
               Tyler is a 3D generalist with a focus on creating immersive XR
               experiences.
             </h1>
-            <h1 className="text-1xl md:text-3xl xl:text-5xl font-medium pt-5 pb-16 lg:pb-28 md:pb-44 md:pb-24 stagger">
+            <h1 className="text-1xl md:text-3xl xl:text-5xl font-medium pt-5 pb-16 lg:pb-20 md:pb-44 md:pb-24 stagger">
               In addition to his expertise in XR, Tyler is also a skilled 3D
               designer, creating detailed levels and environments using a mix of
               Houdini Engine with Unreal and Unity, bringing concepts to life
@@ -198,7 +198,7 @@ export default function Home() {
           className="grid md:grid-cols-5"
           ref={divRef}
         >
-          <div id="ProjectImage" className="col-span-2 invisible lg:visible">
+          <div id="ProjectImage" className="col-span-2 hidden lg:block">
             <div style={{ position: "sticky", top: "100px" }}>
               <div
                 className="block h-80 w-80"
@@ -240,9 +240,9 @@ export default function Home() {
         <div
           id="about"
           ref={ref}
-          className="grid md:grid-cols-5 content-center pt-[10vh] pb-[25vh] lg:pt-[20vh] lg:pb-[20vh]"
+          className="grid md:grid-cols-5 content-center pt-[10vh] pb-[10vh] lg:pt-[20vh] lg:pb-[20vh]"
         >
-          <div className="col-span-2 pb-10 pt-10 lg:pt-0 lg:pb-0">
+          <div className="col-span-2 pb-10 pt-5 lg:pt-0 lg:pb-0">
             <h1 className="text-5xl xl:text-7xl font-medium">
               Press and Awards
             </h1>
@@ -321,7 +321,7 @@ export default function Home() {
 
         <div
           id="Freebies"
-          className="grid md:grid-cols-5 pt-[25vh] pb-[25vh] lg:pt-[20vh] lg:pb-[20vh]"
+          className="grid md:grid-cols-5 pt-[10vh] pb-[10vh] lg:pt-[20vh] lg:pb-[20vh]"
         >
           <div className="col-span-2 pb-10">
             <h1 className="text-5xl xl:text-7xl font-medium">Freebies</h1>
