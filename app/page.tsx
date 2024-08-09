@@ -161,8 +161,9 @@ export default function Home() {
             </h1>
             <h1 className="text-1xl md:text-3xl xl:text-5xl font-medium pt-5 pb-16 lg:pb-28 md:pb-44 md:pb-24 stagger">
               In addition to his expertise in XR, Tyler is also a skilled 3D
-              designer. He creates detailed models and environments that bring
-              concepts to life with precision and creativity.
+              designer, creating detailed levels and environments using a mix of
+              Houdini Engine with Unreal and Unity, bringing concepts to life
+              with precision and creativity.
             </h1>
 
             <div className="grid grid-cols-5 gap-4 ">
@@ -263,19 +264,19 @@ export default function Home() {
           </div>
           <div className="col-span-3">
             <h1 className="text-2xl lg:text-5xl xl:text-7xl font-medium pb-10">
-              Tyler is an experienced designer combining 2D/3D motion design
-              expertise with UI/UX skills to create visually striking and
-              user-friendly experiences.
+              Tyler is a 3D generalist with a focus on creating immersive XR
+              experiences, combining 2D/3D motion design expertise with UI/UX
+              skills to deliver engaging and interactive environments.
             </h1>
-            <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium pt-2 pb-2 xl:pt-10 xl:pb-10">
-              With 3+ years of 2D/3D motion design experience. Tyler&apos;s
-              strongest skillset is in 3D simulations, animation, lighting, and
-              texturing.
+            <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium pt-2 pb-8 xl:pt-10 xl:pb-20">
+              With 3+ years of 3D motion design experience, Tyler excels in 3D
+              simulations, animation, lighting, and texturing, crafting visually
+              captivating experiences.
             </h1>
             <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium">
-              With an additional 3 years in UI/UX design, Tyler is experienced
-              with designing, prototyping, and producing functioning interfaces
-              for software used by thousands.
+              Additionally, with a history in UI/UX design, Tyler is proficient
+              in designing, prototyping, and developing user-friendly interfaces
+              that enhance the immersive quality of XR projects.
             </h1>
           </div>
         </div>
@@ -332,13 +333,31 @@ export default function Home() {
               </h1>
               <ul className="pt-5 pb-5 text-1xl lg:text-3xl">
                 <li>
-                  <h1 className="font-medium">FIGMAJSON</h1>
+                  <h1 className="font-medium">
+                    <a
+                      href="https://www.figma.com/community/plugin/1366469161957463273/figmajson"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      FigmaJSON
+                    </a>
+                  </h1>
                 </li>
                 <li>
-                  <h1 className="pt-3 font-medium">RemoveLinks</h1>
+                  <h1 className="pt-3 font-medium">
+                    <a
+                      href="https://www.figma.com/community/plugin/1377288866548711521/removelinks"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      RemoveLinks
+                    </a>
+                  </h1>
                 </li>
                 <li>
-                  <h1 className="pt-3 font-medium">Request a plugin</h1>
+                  <h1 className="pt-3 font-medium">
+                    <a href="mailto:tyler@tylerwest.co">Request a plugin</a>
+                  </h1>
                 </li>
               </ul>
             </div>
@@ -346,7 +365,7 @@ export default function Home() {
               <h1 className="text-4xl xl:text-7xl pt-10 lg:pt-0 font-medium">
                 Design Assets
               </h1>
-              <ul className="pt-1 pb-5 text-1xl lg:text-3xl">
+              <ul className="pt-1 pb-5 text-1xl lg:text-3xl opacity-50">
                 <li>
                   <h1 className="pt-3 font-medium">Houdini Files</h1>
                 </li>

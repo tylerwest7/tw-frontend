@@ -21,17 +21,33 @@ const Footer: React.FC = () => {
           <h1 className="text-3xl font-medium">My Services</h1>
           <ul className="pt-5 pb-5 text-3xl md:text-3xl">
             <li className="font-medium underline py-2">3D Design</li>
-            <li className="font-medium underline py-2">Web Design</li>
+            <li className="font-medium underline py-2">Motion Design</li>
             {/* <li className="font-medium underline py-2">Web Development</li> */}
-            <li className="font-medium underline py-2">Figma Plugins</li>
+            <li className="font-medium underline py-2">AR/VR Experiences</li>
           </ul>
         </div>
         <div>
           <h1 className="text-3xl font-medium">Connect</h1>
           <ul className="pt-5 pb-5 text-3xl md:text-3xl">
-            <li className="font-medium underline py-2">Instagram</li>
-            <li className="font-medium underline py-2">Linkedin</li>
-            <li className="font-medium underline py-2">Resume</li>
+            <li className="font-medium underline py-2">
+              <a
+                href="https://www.instagram.com/tylerwest.design/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram
+              </a>
+            </li>
+            <li className="font-medium underline py-2">
+              <a
+                href="https://www.linkedin.com/in/tyler-west/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Linkedin
+              </a>
+            </li>
+            <li className="font-medium underline py-2 opacity-50">Resume</li>
           </ul>
         </div>
         <div className="col-span-1 md:col-span-2">
@@ -42,7 +58,7 @@ const Footer: React.FC = () => {
             Feel free to reach out and say hi!
           </p>
           <p className="mt-2 underline text-3xl md:text-3xl">
-            tyler@tylerwest.co
+            <a href="mailto:your-email@example.com">tyler@tylerwest.co</a>
           </p>
         </div>
       </div>

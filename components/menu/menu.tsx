@@ -37,7 +37,7 @@ const Menu: React.FC<Props> = () => {
 
     // Add class
     if (page) {
-      page.classList.add("opacity-0");
+      //page.classList.add("opacity-0");
     }
 
     setShowMenu(!showMenu);
@@ -70,12 +70,12 @@ const Menu: React.FC<Props> = () => {
           <Link href="/" className="order-1">
             <h1 className="lg:text-2xl font-medium">Tyler West</h1>
           </Link>
-          <div
+          {/* <div
             onClick={openMenu}
             className="ml-auto cursor-pointer order-2 lg:order-4"
           >
             <h1 className="lg:text-2xl font-medium ml-auto">Menu</h1>
-          </div>
+          </div> */}
           <h1 className="lg:text-2xl lg:col-span-2 font-medium hidden lg:block order-3 lg:text-left">
             Designer
           </h1>
@@ -103,7 +103,7 @@ const Menu: React.FC<Props> = () => {
               Close
             </h1>
             <div className="mt-auto text-[3rem] lg:text-[6rem] pb-[10vh] font-medium">
-              <Link onClick={openMenu} href="/">
+              {/* <Link onClick={openMenu} href="/">
                 <h1>Home</h1>
               </Link>
               <Link onClick={handleLeave} href="/projects">
@@ -117,7 +117,20 @@ const Menu: React.FC<Props> = () => {
                 href="https://www.instagram.com/tylerwest.design/"
               >
                 <h1>Instagram</h1>
-              </Link>
+              </Link> */}
+              <h1
+                onClick={() => {
+                  console.log("Back to top");
+                  // window.scrollTo({
+                  //   top: 0,
+                  //   behavior: "smooth",
+                  // });
+                  lenis?.scrollTo(100);
+                  handleLeave();
+                }}
+              >
+                Projects
+              </h1>
             </div>
           </div>
         </div>
