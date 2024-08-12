@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
         <div>
           <h1 className="text-3xl font-medium">Tyler West</h1>
           <p className="mt-2 text-3xl pt-0 lg:pt-5 xl:pt-5 md:text-4xl">
-            UI/UX Designer
+            3D Generalist
           </p>
         </div>
         <div>
