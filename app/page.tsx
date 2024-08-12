@@ -156,14 +156,12 @@ export default function Home() {
           </div>
           <div className="col-span-3">
             <h1 className="text-4xl lg:text-6xl xl:text-7xl font-medium md:pb-10 stagger">
-              Tyler is a 3D generalist with a focus on creating immersive XR
-              experiences.
+              Tyler is a 3D generalist with a focus on creating memorable
+              interacive and visual experiences.
             </h1>
             <h1 className="text-1xl md:text-3xl xl:text-5xl font-medium pt-5 pb-16 lg:pb-20 md:pb-44 md:pb-24 stagger">
-              In addition to his expertise in XR, Tyler is also a skilled 3D
-              designer, creating detailed levels and environments using a mix of
-              Houdini Engine with Unreal and Unity, bringing concepts to life
-              with precision and creativity.
+              Tyler excels in lighting, texturing, simulations, motion design,
+              and creating immersive interactive experiences.
             </h1>
 
             <div className="grid grid-cols-5 gap-4 ">
@@ -264,9 +262,9 @@ export default function Home() {
           </div>
           <div className="col-span-3">
             <h1 className="text-2xl lg:text-5xl xl:text-7xl font-medium pb-10">
-              Tyler is a 3D generalist with a focus on creating immersive XR
-              experiences, combining 2D/3D motion design expertise with UI/UX
-              skills to deliver engaging and interactive environments.
+              Tyler is a 3D generalist with a focus on creating memorable 3D
+              experiences by combining his strong history of 3D Motion Design
+              and UI/UX abilities.
             </h1>
             <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium pt-2 pb-8 xl:pt-10 xl:pb-20">
               With 3+ years of 3D motion design experience, Tyler excels in 3D
@@ -276,7 +274,7 @@ export default function Home() {
             <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium">
               Additionally, with a history in UI/UX design, Tyler is proficient
               in designing, prototyping, and developing user-friendly interfaces
-              that enhance the immersive quality of XR projects.
+              that enhance the immersive quality of 3D based XR projects.
             </h1>
           </div>
         </div>
