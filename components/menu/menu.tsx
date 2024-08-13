@@ -77,13 +77,22 @@ const Menu: React.FC<Props> = () => {
             <h1 className="lg:text-2xl font-medium ml-auto">Menu</h1>
           </div> */}
           <h1 className="lg:text-2xl lg:col-span-2 font-medium hidden lg:block order-3 lg:text-left">
-            Designer
+            3D Generalist
           </h1>
           <Link href="/home" className="grid-col-1 order-4 lg:order-2">
             <h1 className="lg:text-2xl font-medium hidden lg:block lg:text-left">
               Midwest, USA
             </h1>
           </Link>
+          <h1 className="lg:text-2xl lg:col-span-1 font-medium hidden lg:block order-3 lg:text-right">
+            <a
+              href="https://www.instagram.com/tylerwest.design/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instagram
+            </a>
+          </h1>
         </div>
       </div>
       <div
