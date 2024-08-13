@@ -267,7 +267,7 @@ export default function Home() {
               and UI/UX abilities.
             </h1>
             <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium pt-2 pb-8 xl:pt-10 xl:pb-20">
-              With 3+ years of 3D motion design experience, Tyler excels in 3D
+              With extensive 3D motion design experience, Tyler excels in 3D
               simulations, animation, lighting, and texturing, crafting visually
               captivating experiences.
             </h1>
