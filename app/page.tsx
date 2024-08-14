@@ -263,19 +263,18 @@ export default function Home() {
           <div className="col-span-3">
             <h1 className="text-2xl lg:text-5xl xl:text-7xl font-medium pb-10">
               Tyler is a 3D generalist with a focus on creating memorable 3D
-              experiences by combining his strong history of 3D Motion Design
-              and UI/UX abilities.
+              motion design experiences.
             </h1>
             <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium pt-2 pb-8 xl:pt-10 xl:pb-20">
               With extensive 3D motion design experience, Tyler excels in 3D
               simulations, animation, lighting, and texturing, crafting visually
               captivating experiences.
             </h1>
-            <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium">
+            {/* <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium">
               Additionally, with a history in UI/UX design, Tyler is proficient
               in designing, prototyping, and developing user-friendly interfaces
               that enhance the immersive quality of 3D based XR projects.
-            </h1>
+            </h1> */}
           </div>
         </div>
         <div id="clients" className="">
