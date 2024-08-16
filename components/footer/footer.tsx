@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
         <div className="md:col-span-2">
           <h1 className="text-3xl font-medium">Tyler West</h1>
           <p className="mt-2 text-3xl pt-0 lg:pt-5 xl:pt-5 md:text-4xl">
-            3D Generalist
+            Designer
           </p>
         </div>
         <div className="col-span-3 grid grid-cols-1 md:grid-cols-3">

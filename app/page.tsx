@@ -156,12 +156,13 @@ export default function Home() {
           </div>
           <div className="col-span-3">
             <h1 className="text-4xl lg:text-6xl xl:text-7xl font-medium md:pb-10 stagger">
-              Tyler is a 3D generalist with a focus on creating memorable
-              interacive and visual experiences.
+              Tyler is a design generalist with a focus on creating memorable
+              visual experiences.
             </h1>
             <h1 className="text-1xl md:text-3xl xl:text-5xl font-medium pt-5 pb-16 lg:pb-20 md:pb-44 md:pb-24 stagger">
-              Tyler excels in lighting, texturing, simulations, motion design,
-              and creating immersive interactive experiences.
+              Tyler excels primarily in 3D including lighting, texturing,
+              simulations, and motion design. With an additional focus on 2D
+              motion design, typography, and layout.
             </h1>
 
             <div className="grid grid-cols-5 gap-4 ">
@@ -262,11 +263,11 @@ export default function Home() {
           </div>
           <div className="col-span-3">
             <h1 className="text-2xl lg:text-5xl xl:text-7xl font-medium pb-10">
-              Tyler is a 3D generalist with a focus on creating memorable 3D
-              motion design experiences.
+              Tyler is a design generalist with a focus on creating memorable
+              visual experiences.
             </h1>
             <h1 className="text-1xl lg:text-4xl xl:text-5xl font-medium pt-2 pb-8 xl:pt-10 xl:pb-20">
-              With extensive 3D motion design experience, Tyler excels in 3D
+              With extensive 3D/2D motion design experience, Tyler excels in 3D
               simulations, animation, lighting, and texturing, crafting visually
               captivating experiences.
             </h1>

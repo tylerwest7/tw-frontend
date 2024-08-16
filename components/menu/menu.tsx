@@ -77,7 +77,7 @@ const Menu: React.FC<Props> = () => {
             <h1 className="lg:text-2xl font-medium ml-auto">Menu</h1>
           </div> */}
           <h1 className="lg:text-2xl lg:col-span-2 font-medium hidden lg:block order-3 lg:text-left">
-            3D Generalist
+            Designer
           </h1>
           <Link href="/home" className="grid-col-1 order-4 lg:order-2">
             <h1 className="lg:text-2xl font-medium hidden lg:block lg:text-left">
